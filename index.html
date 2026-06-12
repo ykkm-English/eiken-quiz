@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>不定詞クイズ 〜元素・数学・栄養・ダジャレ〜</title>
+<style>
+  body { font-family: "Yu Gothic", "Hiragino Sans", sans-serif; margin: 0; padding: 24px 12px;
+         background: linear-gradient(135deg, #FFF3E0 0%, #E3F2FD 50%, #F3E5F5 100%);
+         min-height: 100vh; color: #333; }
+  #app { max-width: 640px; margin: 0 auto; }
+  .card { background: #fff; border-radius: 20px; padding: 28px;
+          box-shadow: 0 8px 24px rgba(120, 80, 200, 0.15); border-top: 8px solid #7C4DFF; }
+  h1 { font-size: 24px; font-weight: 700; margin: 0 0 8px;
+       background: linear-gradient(90deg, #7C4DFF, #00BFA5, #FF7043, #EC407A);
+       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  button { font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 20px;
+           border: none; border-radius: 12px; background: #F1EFE8; cursor: pointer;
+           transition: transform 0.1s, box-shadow 0.1s; }
+  button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  button:active { transform: scale(0.97); }
+  button:disabled { cursor: default; transform: none; box-shadow: none; }
+  .sub { font-size: 14px; color: #777; line-height: 1.7; }
+  .badge { font-size: 13px; font-weight: 700; padding: 5px 14px; border-radius: 999px; }
+  .mono { font-family: Consolas, Menlo, monospace; }
+  .opt { text-align: left; background: #fff; border: 3px solid #E0E0E0; font-size: 16px; }
+  .opt:hover { border-color: #7C4DFF; background: #F6F2FF; }
+  .big-btn { color: #fff; font-size: 17px; padding: 14px 32px; }
+  @keyframes pop { 0%{transform:scale(0.5);opacity:0;} 70%{transform:scale(1.15);} 100%{transform:scale(1);opacity:1;} }
+  @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+  @keyframes wiggle { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-6deg);} 75%{transform:rotate(6deg);} }
+  .pop { animation: pop 0.35s ease-out; }
+  .bounce { display:inline-block; animation: bounce 0.8s ease-in-out infinite; }
+  .wiggle { display:inline-block; animation: wiggle 0.5s ease-in-out 2; }
+  .confetti { position: fixed; top: -20px; font-size: 22px; animation: fall linear forwards; z-index: 99; pointer-events: none; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="screen" class="card">
+    <p class="sub" style="margin:0 0 4px;">🏆 英検3級チャレンジ</p>
+    <h1>不定詞クイズ</h1>
+    <p style="font-size:16px;font-weight:700;margin:0 0 12px;">
+      <span class="badge" style="background:#EEEDFE;color:#534AB7;">🧪 元素</span>
+      <span class="badge" style="background:#E6F1FB;color:#185FA5;">📐 数学</span>
+      <span class="badge" style="background:#E1F5EE;color:#0F6E56;">🥦 栄養</span>
+      <span class="badge" style="background:#FAECE7;color:#993C1D;">😆 ダジャレ</span>
+    </p>
+    <p class="sub" style="margin:0 0 20px;">選ぶう問題が8問、言葉の並べ替えが4問、全部で12問。<br>満点で★3つ＆紙ふぶきが…！？</p>
+    <button class="big-btn" onclick="startQuiz()" style="background:linear-gradient(90deg,#7C4DFF,#00BFA5);">🚀 スタート！</button>
+  </div>
+</div>
+<script>
+const Q = [
+ {t:'c',theme:'元素',q:'I want (　　) about hydrogen.',ja:'私は水素について学びたいです。',opts:['learn','to learn','learning','learned'],a:1,exp:'want to 〜 で「〜したい」。toの後は動詞の元の形！'},
+ {t:'c',theme:'栄養',q:'We need oxygen (　　).',ja:'私たちは生きるために酸素が必要です。',opts:['live','to live','living','lives'],a:1,exp:'「〜するために」は to ＋ 動詞（副詞的用法）。'},
+ {t:'c',theme:'数学',q:'I like (　　) difficult math problems.',ja:'私は難しい数学の問題を解くのが好きです。',opts:['solve','solves','to solve','solved'],a:2,exp:'like to 〜 で「〜するのが好き」。'},
+ {t:'c',theme:'数学',q:'It is impossible (　　) by zero.',ja:'0で割ることは不可能です。',opts:['divide','to divide','dividing','divided'],a:1,exp:'It is ... to 〜「〜するのは…だ」。0では割れない！'},
+ {t:'c',theme:'栄養',q:'Vitamin C helps (　　) our body strong.',ja:'ビタミンCは体を強く保つのに役立ちます。',opts:['to keep','keep to','keeps','kept'],a:0,exp:'help to 〜 で「〜するのに役立つ」。'},
+ {t:'c',theme:'元素',q:'Scientists use helium (　　) balloons float.',ja:'科学者は風船を浮かせるためにヘリウムを使います。',opts:['make','to make','making','makes'],a:1,exp:'use A to 〜「〜するためにAを使う」。ヘリウムは空気より軽い！'},
+ {t:'c',theme:'ダジャレ',q:'I want (　　) a baker because I need the dough!',ja:'パン屋になりたいな、だって生地（お金）が必要だから！',opts:['be','to be','being','been'],a:1,exp:'want to be 〜「〜になりたい」。doughは「パン生地」と「お金」の2つの意味！'},
+ {t:'c',theme:'ダジャレ',q:'The math book had too many problems (　　).',ja:'その数学の本には解くべき問題（悩み）が多すぎた。',opts:['solve','solving','to solve','solved'],a:2,exp:'problems to solve「解くべき問題」（形容詞的用法）。problemは「問題」と「悩み」！'},
+ {t:'o',theme:'元素',ja:'私は元素について学びたいです。',words:['I','want','to','learn','about','the','elements','.']},
+ {t:'o',theme:'栄養',ja:'健康でいるために、私は野菜を食べます。',words:['I','eat','vegetables','to','stay','healthy','.']},
+ {t:'o',theme:'数学',ja:'彼女は計算する速い方法を見つけようとしました。',words:['She','tried','to','find','a','fast','way','.']},
+ {t:'o',theme:'ダジャレ',ja:'霧を捕まえようとしたけど、逃した！(mist=missed!)',words:['I','tried','to','catch','the','fog','.']},
+];
+let idx=0,score=0,picked=[],muted=false,actx=null;
+function beep(freq,dur,delay,type,vol){
+ if(muted)return;
+ if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();
+ const t=actx.currentTime+(delay||0);
+ const o=actx.createOscillator(),g=actx.createGain();
+ o.type=type||'sine';o.frequency.value=freq;
+ g.gain.setValueAtTime(vol||0.25,t);
+ g.gain.exponentialRampToValueAtTime(0.001,t+dur);
+ o.connect(g);g.connect(actx.destination);
+ o.start(t);o.stop(t+dur);
+}
+function sndTap(){beep(600,0.08,0,'triangle',0.15);}
+function sndOK(){beep(660,0.12);beep(880,0.12,0.1);beep(1320,0.25,0.2);}
+function sndNG(){beep(220,0.25,0,'sawtooth',0.12);beep(180,0.3,0.15,'sawtooth',0.12);}
+function sndFanfare(){[523,659,784,1047,784,1047].forEach((f,i)=>beep(f,0.18,i*0.13,'triangle',0.22));}
+function toggleMute(){muted=!muted;document.getElementById('mutebtn').textContent=muted?'🔇':'🔊';}
+const S=document.getElementById('screen');
+const TH={'元素':{c:'#534AB7',bg:'#EEEDFE',icon:'🧪'},'数学':{c:'#185FA5',bg:'#E6F1FB',icon:'📐'},'栄養':{c:'#0F6E56',bg:'#E1F5EE',icon:'🥦'},'ダジャレ':{c:'#993C1D',bg:'#FAECE7',icon:'😆'}};
+const CHEER=['ナイス！','すごい！','天才！','その調子！','カンペキ！','イェーイ！'];
+function startQuiz(){idx=0;score=0;render();}
+function bar(){return '<div style="height:10px;background:#F1EFE8;border-radius:5px;margin:0 0 16px;"><div style="height:10px;width:'+Math.round(idx/Q.length*100)+'%;background:linear-gradient(90deg,#7C4DFF,#00BFA5);border-radius:5px;transition:width 0.3s;"></div></div>';}
+function head(q){
+ const th=TH[q.theme];
+ S.style.borderTopColor=th.c;
+ return bar()+'<div style="display:flex;justify-content:space-between;align-items:center;margin:0 0 12px;"><span class="badge" style="background:'+th.bg+';color:'+th.c+';">'+th.icon+' '+q.theme+'の世界</span><span class="sub" style="font-size:13px;font-weight:700;">第'+(idx+1)+'問 / '+Q.length+'　⭐ '+score+'　<button id="mutebtn" onclick="toggleMute()" style="font-size:14px;padding:4px 8px;background:#F1EFE8;" aria-label="音の切り替え">'+(muted?'🔇':'🔊')+'</button></span></div>';
+}
+function render(){
+ if(idx>=Q.length){return final();}
+ const q=Q[idx];
+ if(q.t==='c'){
+  S.innerHTML=head(q)
+   +'<p class="pop" style="font-size:20px;font-weight:700;margin:0 0 4px;">'+q.q+'</p>'
+   +'<p class="sub" style="margin:0 0 16px;">'+q.ja+'</p>'
+   +'<div id="opts" style="display:grid;gap:10px;">'
+   +q.opts.map((o,i)=>'<button class="mono opt" onclick="pick('+i+')">'+o+'</button>').join('')
+   +'</div><div id="fb"></div>';
+ }else{
+  picked=[];
+  const sh=[...q.words.keys()].sort(()=>Math.random()-0.5);
+  S.innerHTML=head(q)
+   +'<p class="sub" style="margin:0 0 4px;">🧩 単語をタップして正しい順に並べよう：</p>'
+   +'<p class="pop" style="font-size:17px;font-weight:700;margin:0 0 16px;">'+q.ja+'</p>'
+   +'<div id="answer" style="min-height:48px;border:3px dashed '+TH[q.theme].c+'55;border-radius:12px;padding:8px;display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;background:'+TH[q.theme].bg+'66;"></div>'
+   +'<div id="bank" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;">'
+   +sh.map(i=>'<button id="w'+i+'" class="mono" onclick="addW('+i+')" style="padding:8px 14px;background:#fff;border:3px solid #E0E0E0;">'+q.words[i]+'</button>').join('')
+   +'</div>'
+   +'<div style="display:flex;gap:8px;"><button onclick="resetW()" style="font-size:14px;">↺ やり直す</button><button onclick="checkW()" style="font-size:14px;background:linear-gradient(90deg,#00BFA5,#26C6DA);color:#fff;">✓ 答え合わせ</button></div><div id="fb"></div>';
+ }
+}
+function pick(i){
+ const q=Q[idx],ok=i===q.a;
+ if(ok){score++;sndOK();}else{sndNG();}
+ document.querySelectorAll('#opts button').forEach((b,bi)=>{
+  b.disabled=true;
+  if(bi===q.a)b.style.cssText+='background:#E1F5EE;border-color:#1D9E75;color:#085041;';
+  else if(bi===i)b.style.cssText+='background:#FCEBEB;border-color:#E24B4A;color:#791F1F;';
+ });
+ fb(ok,q.exp);
+}
+function addW(i){
+ const q=Q[idx];picked.push(i);sndTap();
+ document.getElementById('w'+i).style.visibility='hidden';
+ document.getElementById('answer').innerHTML=picked.map(p=>'<span class="mono pop" style="font-size:15px;font-weight:700;padding:8px 14px;background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1);">'+q.words[p]+'</span>').join('');
+}
+function resetW(){picked=[];document.getElementById('answer').innerHTML='';document.querySelectorAll('#bank button').forEach(b=>b.style.visibility='visible');}
+function checkW(){
+ const q=Q[idx];
+ const ok=picked.length===q.words.length&&picked.every((p,j)=>q.words[p]===q.words[j]);
+ if(ok){score++;sndOK();}else{sndNG();}
+ fb(ok,'正解：'+q.words.join(' ').replace(' .','.'));
+}
+function fb(ok,exp){
+ if(ok)miniConfetti(8);
+ document.getElementById('fb').innerHTML=
+  '<div class="pop" style="margin-top:14px;padding:14px;border-radius:14px;background:'+(ok?'#E1F5EE':'#FCEBEB')+';">'
+  +'<p style="font-size:17px;font-weight:700;margin:0 0 4px;color:'+(ok?'#085041':'#791F1F')+';">'
+  +(ok?'<span class="bounce">🎉</span> '+CHEER[Math.floor(Math.random()*CHEER.length)]:'<span class="wiggle">💪</span> おしい！次は当てよう！')+'</p>'
+  +'<p style="font-size:14px;line-height:1.6;margin:0;color:'+(ok?'#0F6E56':'#993C1D')+';">'+exp+'</p></div>'
+  +'<button onclick="idx++;render()" style="margin-top:14px;font-size:15px;background:linear-gradient(90deg,#7C4DFF,#EC407A);color:#fff;">次へ →</button>';
+}
+function miniConfetti(n){
+ const em=['🎊','✨','⭐','🎉','💫'];
+ for(let i=0;i<n;i++){
+  const d=document.createElement('div');
+  d.className='confetti';
+  d.textContent=em[Math.floor(Math.random()*em.length)];
+  d.style.left=Math.random()*100+'vw';
+  d.style.animationDuration=(1.2+Math.random()*1.5)+'s';
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),3000);
+ }
+}
+function final(){
+ const pct=score/Q.length;
+ let msg,stars,icon;
+ if(pct===1){msg='パーフェクト！君は不定詞マスターだ！';stars=3;icon='👑';miniConfetti(40);sndFanfare();}
+ else if(pct>=0.75){msg='すごい！あと少しで満点！';stars=2;icon='🌟';miniConfetti(15);sndFanfare();}
+ else if(pct>=0.5){msg='いい調子！間違えた問題をもう一回やってみよう。';stars=1;icon='😊';}
+ else{msg='不定詞は「to＋動詞の元の形」。プリントを見直してもう一度！';stars=0;icon='📖';}
+ S.style.borderTopColor='#7C4DFF';
+ S.innerHTML='<div style="text-align:center;padding:16px 0;">'
+  +'<p class="bounce" style="font-size:48px;margin:0;">'+icon+'</p>'
+  +'<p class="sub" style="margin:0 0 8px;">結果発表</p>'
+  +'<p class="pop" style="font-size:48px;font-weight:700;margin:0;background:linear-gradient(90deg,#7C4DFF,#00BFA5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">'+score+' <span style="font-size:20px;">/ '+Q.length+'</span></p>'
+  +'<p style="font-size:34px;margin:8px 0;">'+'⭐'.repeat(stars)+'☆'.repeat(3-stars)+'</p>'
+  +'<p style="font-size:16px;font-weight:700;line-height:1.7;margin:0 0 24px;">'+msg+'</p>'
+  +'<button class="big-btn" onclick="startQuiz()" style="background:linear-gradient(90deg,#FF7043,#EC407A);">↺ もう一回チャレンジ！</button></div>';
+}
+</script>
+</body>
+</html>
