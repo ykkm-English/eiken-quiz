@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動名詞 宿題 — 英検3級</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-dark:#1a56a8; --blue-mid:#2563eb; --blue-light:#60a5fa;
+  --blue-pale:#dbeafe; --blue-bg:#eff6ff;
+  --green:#10b981; --yellow:#f59e0b; --red:#ef4444; --purple:#8b5cf6;
+  --text:#1e293b; --gray:#64748b; --radius:14px;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+.file-nav {
+  background: #1e3a5f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 12px;
+}
+.file-nav-current { color: #fcd34d; font-weight: 800; font-size: 0.95rem; }
+.file-nav-link {
+  color: rgba(255,255,255,0.85); font-weight: 700; font-size: 0.95rem;
+  text-decoration: none; background: rgba(255,255,255,0.12);
+  padding: 6px 16px; border-radius: 100px;
+  border: 1.5px solid rgba(255,255,255,0.25); transition: background .15s;
+}
+.file-nav-link:hover { background: rgba(255,255,255,0.25); }
+body{
+  font-family:'Nunito','Noto Sans JP',sans-serif;
+  font-size:17px;
+  background:linear-gradient(135deg,#dbeafe 0%,#eff6ff 60%,#e0f2fe 100%);
+  color:var(--text); min-height:100vh;
+}
+
+/* ===== HEADER ===== */
+.hero{
+  background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid),#0ea5e9);
+  color:white; text-align:center; padding:28px 20px 22px;
+}
+.hero-badge{
+  display:inline-block; background:rgba(255,255,255,.2);
+  border:1.5px solid rgba(255,255,255,.4); border-radius:100px;
+  padding:4px 16px; font-size:.82rem; font-weight:700; margin-bottom:10px;
+}
+.hero h1{ font-size:clamp(1.7rem,5vw,2.6rem); font-weight:900; margin-bottom:6px; }
+.hero h1 span{ color:#fcd34d; }
+.hero p{ font-size:.95rem; opacity:.88; }
+
+/* ===== SCORE BAR ===== */
+.score-bar{
+  background:white; box-shadow:0 2px 10px rgba(0,0,0,.08);
+  padding:10px 20px; display:flex; align-items:center;
+  justify-content:space-between; position:sticky; top:0; z-index:200; gap:10px;
+}
+.score-num{ font-size:1.4rem; font-weight:900; color:var(--blue-mid); }
+.score-label{ font-size:.9rem; font-weight:700; }
+.btn-print{
+  padding:7px 18px; border-radius:100px; border:2px solid var(--blue-mid);
+  background:white; color:var(--blue-mid); font-family:inherit;
+  font-size:.88rem; font-weight:800; cursor:pointer; transition:all .15s;
+}
+.btn-print:hover{ background:var(--blue-mid); color:white; }
+
+/* ===== MAIN ===== */
+.main{ padding:14px 14px 120px; max-width:860px; margin:0 auto; }
+
+/* ===== SECTION CARD ===== */
+.sec-card{
+  background:white; border-radius:var(--radius);
+  box-shadow:0 4px 20px rgba(37,99,235,.13);
+  padding:22px; margin-bottom:18px;
+}
+.sec-head{ display:flex; align-items:center; gap:12px; margin-bottom:6px; }
+.sec-icon{
+  width:46px; height:46px; border-radius:12px;
+  background:var(--blue-pale); display:flex; align-items:center;
+  justify-content:center; font-size:1.5rem; flex-shrink:0;
+}
+.sec-head h2{ font-size:1.15rem; font-weight:900; color:var(--blue-dark); }
+.sec-desc{ font-size:.88rem; color:var(--gray); margin-bottom:18px; line-height:1.6; }
+
+/* ===== PUN BOX ===== */
+.pun-box{
+  background:linear-gradient(135deg,#fef9c3,#fef3c7);
+  border:2px dashed var(--yellow); border-radius:12px;
+  padding:12px 16px; font-size:.92rem; margin-bottom:18px;
+  display:flex; gap:10px; align-items:flex-start; line-height:1.65;
+}
+.pun-box strong{ color:#92400e; }
+
+/* ===== Q ITEM ===== */
+.q-item{ margin-bottom:20px; }
+.q-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:50%;
+  background:var(--blue-mid); color:white;
+  font-size:.82rem; font-weight:900; margin-right:8px; flex-shrink:0;
+}
+.q-text{ font-size:1.05rem; font-weight:600; line-height:1.75; margin-bottom:10px; }
+.q-text .blank{
+  display:inline-block; border-bottom:2.5px solid var(--blue-mid);
+  min-width:110px; text-align:center; color:var(--blue-mid); font-weight:900;
+}
+.q-jp{ font-size:.9rem; color:var(--gray); margin-top:2px; margin-bottom:10px; }
+
+/* 4択 */
+.choices{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.choice{
+  padding:11px 14px; border-radius:10px; border:2px solid #e2e8f0;
+  background:white; font-family:inherit; font-size:1rem; font-weight:600;
+  cursor:pointer; transition:all .15s; text-align:center;
+  display:grid; place-items:center; min-height:52px;
+}
+.choice:hover{ border-color:var(--blue-mid); background:var(--blue-pale); }
+.choice.correct{ border-color:var(--green); background:#dcfce7; color:#15803d; }
+.choice.wrong{ border-color:var(--red); background:#fee2e2; color:#b91c1c; }
+
+/* 用法識別 */
+.usage-choices{ display:flex; gap:8px; flex-wrap:wrap; }
+.uc-btn{
+  padding:9px 20px; border-radius:100px; border:2px solid #e2e8f0;
+  background:white; font-family:inherit; font-size:.97rem; font-weight:700;
+  cursor:pointer; transition:all .15s;
+}
+.uc-btn:hover{ border-color:var(--blue-mid); background:var(--blue-pale); }
+.uc-btn.subj{ --col:#1d4ed8; }
+.uc-btn.obj { --col:#15803d; }
+.uc-btn.prep{ --col:#7e22ce; }
+.uc-btn.correct{ border-color:var(--col); background:var(--blue-pale); color:var(--col); font-weight:900; }
+.uc-btn.wrong{ border-color:var(--red); background:#fee2e2; color:#b91c1c; }
+
+/* 空欄補充 */
+.fill-wrap{ display:flex; align-items:center; flex-wrap:wrap; gap:4px; font-size:1.05rem; font-weight:600; line-height:2; }
+.fill-input{
+  border:none; border-bottom:2.5px solid var(--blue-mid);
+  outline:none; font-family:inherit; font-size:1.05rem; font-weight:700;
+  color:var(--blue-mid); width:140px; text-align:center;
+  background:transparent; padding:2px 4px;
+}
+.fill-input.correct{ border-color:var(--green); color:var(--green); }
+.fill-input.wrong  { border-color:var(--red);   color:var(--red);   }
+
+/* 並び替え */
+.sort-pool{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
+.sort-word{
+  padding:8px 15px; border-radius:100px;
+  border:2px solid var(--blue-mid); background:white;
+  font-family:inherit; font-size:.97rem; font-weight:700;
+  color:var(--blue-dark); cursor:pointer; transition:all .15s; user-select:none;
+}
+.sort-word:hover{ background:var(--blue-pale); transform:translateY(-2px); }
+.sort-word.used{ opacity:.3; pointer-events:none; }
+.sort-word.to-w{ color:#059669; background:#dcfce7; border-color:#10b981; }
+.sort-display{
+  min-height:50px; border:2px dashed var(--blue-light);
+  border-radius:10px; padding:10px 12px; display:flex;
+  flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:8px;
+  background:var(--blue-bg);
+}
+.sort-display.has-w{ border-style:solid; border-color:var(--blue-mid); }
+.sort-placed{
+  padding:7px 14px; border-radius:100px; background:var(--blue-mid);
+  color:white; font-size:.92rem; font-weight:700; cursor:pointer;
+}
+.sort-placed.to-w{ background:#059669; }
+.sort-placed:hover{ background:var(--blue-dark); }
+.drop-hint{ color:var(--gray); font-size:.88rem; }
+
+/* feedback */
+.q-feedback{
+  margin-top:8px; padding:10px 14px; border-radius:10px;
+  font-size:.92rem; line-height:1.65; display:none;
+}
+.q-feedback.show{ display:block; }
+.q-feedback.ok{ background:#dcfce7; border:1.5px solid #bbf7d0; color:#15803d; }
+.q-feedback.ng{ background:#fee2e2; border:1.5px solid #fecaca; color:#b91c1c; }
+.fb-title{ font-weight:800; font-size:1rem; margin-bottom:3px; }
+
+/* check btn */
+.btn-check{
+  padding:10px 24px; border-radius:10px; border:none;
+  background:var(--green); color:white; font-family:inherit;
+  font-size:.97rem; font-weight:800; cursor:pointer; margin-top:6px;
+  transition:background .15s;
+}
+.btn-check:hover{ background:#059669; }
+.btn-check:disabled{ background:#cbd5e1; cursor:default; }
+
+/* 英作文 */
+.eisaku-area{
+  width:100%; min-height:70px; border:2px solid #e2e8f0;
+  border-radius:10px; padding:12px 14px; font-family:inherit;
+  font-size:1rem; resize:vertical; outline:none; transition:border .15s;
+  line-height:1.7;
+}
+.eisaku-area:focus{ border-color:var(--blue-mid); }
+.eisaku-hint{
+  font-size:.85rem; color:var(--gray); margin-top:6px;
+  background:var(--blue-bg); padding:8px 12px; border-radius:8px;
+}
+
+/* result banner */
+.result-banner{
+  background:linear-gradient(135deg,var(--blue-dark),var(--blue-mid));
+  color:white; border-radius:var(--radius); padding:28px 24px;
+  text-align:center; margin-bottom:18px; display:none;
+}
+.result-banner.show{ display:block; }
+.result-banner .medal{ font-size:4rem; margin-bottom:10px; }
+.result-banner h3{ font-size:1.5rem; font-weight:900; margin-bottom:8px; }
+.result-banner p{ font-size:1rem; opacity:.88; line-height:1.7; }
+.result-banner .big{ font-size:2.4rem; font-weight:900; color:#fcd34d; }
+
+/* btn-all-check */
+.btn-all{
+  display:block; width:100%; padding:16px;
+  border-radius:14px; border:none; background:var(--blue-mid);
+  color:white; font-family:inherit; font-size:1.1rem;
+  font-weight:900; cursor:pointer; transition:background .15s;
+  margin-bottom:18px;
+}
+.btn-all:hover{ background:var(--blue-dark); }
+
+/* ===== OVERLAY PEN ===== */
+#overlayCanvas{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  z-index:500; pointer-events:none; touch-action:none;
+}
+#overlayCanvas.pen-active{ pointer-events:all; cursor:crosshair; }
+.pen-fab{
+  position:fixed; bottom:24px; right:18px; z-index:600;
+  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+}
+.pen-toggle{
+  width:56px; height:56px; border-radius:50%; border:none;
+  background:var(--blue-mid); color:white; font-size:1.5rem;
+  cursor:pointer; box-shadow:0 4px 20px rgba(37,99,235,.4);
+  transition:background .2s; display:flex; align-items:center; justify-content:center;
+}
+.pen-toggle:hover{ background:var(--blue-dark); }
+.pen-toggle.active{ background:#ef4444; }
+.pen-panel{
+  background:white; border-radius:14px;
+  box-shadow:0 6px 28px rgba(0,0,0,.15);
+  padding:14px; display:none; flex-direction:column; gap:10px; min-width:190px;
+}
+.pen-panel.open{ display:flex; }
+.pen-row{ display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+.pen-row-label{ font-size:.76rem; font-weight:700; color:var(--gray); margin-bottom:2px; }
+.pen-color{
+  width:24px; height:24px; border-radius:50%;
+  border:2.5px solid transparent; cursor:pointer; transition:transform .1s;
+}
+.pen-color.active{ border-color:#1e293b; transform:scale(1.3); }
+.pen-size{
+  width:28px; height:28px; border-radius:50%;
+  border:1.5px solid #e2e8f0; background:white;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-weight:700; font-size:.72rem; color:var(--gray);
+}
+.pen-size.active{ border-color:var(--blue-mid); color:var(--blue-mid); background:var(--blue-pale); }
+.pen-tool-row{ display:flex; gap:6px; }
+.ptool-btn{
+  flex:1; padding:6px 4px; border-radius:8px;
+  border:1.5px solid #e2e8f0; background:white;
+  font-family:inherit; font-size:.8rem; font-weight:700;
+  cursor:pointer; color:var(--gray); text-align:center;
+}
+.ptool-btn.active{ background:var(--blue-mid); color:white; border-color:var(--blue-mid); }
+.ptool-btn.eraser.active{ background:var(--gray); border-color:var(--gray); }
+.btn-clear-overlay{
+  width:100%; padding:7px; border-radius:8px;
+  border:1.5px solid #fca5a5; background:white;
+  color:#ef4444; font-family:inherit; font-size:.85rem; font-weight:700; cursor:pointer;
+}
+.btn-clear-overlay:hover{ background:#fee2e2; }
+
+/* ===== CONFETTI ===== */
+#confettiCanvas{ position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:800; }
+
+/* ===== TOAST ===== */
+.toast{
+  position:fixed; bottom:80px; left:50%;
+  transform:translateX(-50%) translateY(200px); opacity:0;
+  background:#1e293b; color:white; padding:10px 24px;
+  border-radius:100px; font-weight:700; font-size:.92rem;
+  z-index:999; transition:transform .3s,opacity .3s;
+  pointer-events:none; white-space:nowrap;
+}
+.toast.show{ transform:translateX(-50%) translateY(0); opacity:1; }
+
+/* ===== PRINT ===== */
+.print-answer-page{ display:none; }
+
+@media print{
+  * { -webkit-print-color-adjust:exact!important; print-color-adjust:exact!important; }
+  body{ background:white!important; font-size:11.5pt; }
+  .score-bar, .pen-fab, #overlayCanvas, #confettiCanvas,
+  .btn-print, .btn-all, .result-banner, .pun-box,
+  .q-feedback, .btn-check, .file-nav, .hero { display:none!important; }
+  .main{ padding:0; max-width:100%; }
+  .sec-card{
+    box-shadow:none!important; border:1.5px solid #bfdbfe;
+    border-radius:8px; padding:14px 16px; margin-bottom:14px;
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  .sec-head h2{ font-size:12pt; color:#1a56a8!important; }
+  .sec-desc{ font-size:9.5pt; }
+  .print-header{ display:block!important; border-bottom:2px solid #1a56a8; padding-bottom:10px; margin-bottom:16px; }
+  .choices{ display:flex; gap:14px; flex-wrap:wrap; }
+  .choice{
+    border:1px solid #94a3b8; border-radius:6px;
+    padding:6px 14px; font-size:10.5pt; min-height:auto; background:white!important;
+  }
+  .choice::before{ content:'□ '; font-size:10pt; color:#475569; }
+  .usage-choices{ display:flex; gap:10px; }
+  .uc-btn{ border:1px solid #94a3b8; border-radius:100px; padding:5px 14px; font-size:10pt; background:white!important; }
+  .fill-input{ border:none; border-bottom:2px solid #333; width:140px; font-size:11pt; background:transparent!important; }
+  .sort-pool{ gap:6px; }
+  .sort-word{ border:1px solid #94a3b8; border-radius:100px; padding:5px 12px; font-size:10pt; background:white!important; }
+  .sort-display{ display:none!important; }
+  .sort-pool::before{ content:'【語群】'; font-size:9pt; color:#64748b; font-weight:700; display:block; width:100%; margin-bottom:4px; }
+  .sort-answer-line{ display:block!important; border-bottom:1.5px solid #333; height:28px; margin:8px 0 4px; width:100%; }
+  .eisaku-area{ border:1px solid #94a3b8; min-height:60px; font-size:11pt; background:#fafafa!important; }
+  .print-answer-page{ display:block!important; page-break-before:always; padding:20px; }
+  .ans-title{ font-size:14pt; font-weight:900; color:#1a56a8; border-bottom:2px solid #1a56a8; padding-bottom:8px; margin-bottom:16px; }
+  .ans-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:10.5pt; }
+  .ans-item{ padding:4px 0; border-bottom:1px solid #e2e8f0; }
+  .ans-num{ font-weight:800; color:#1a56a8; margin-right:8px; }
+  .ans-val{ font-weight:700; }
+}
+
+@media(max-width:480px){
+  .choices{ grid-template-columns:1fr; }
+  .usage-choices{ flex-direction:column; }
+}
+</style>
+</head>
+<body>
+<canvas id="confettiCanvas"></canvas>
+<canvas id="overlayCanvas"></canvas>
+
+
+<!-- 印刷時のみ表示されるヘッダー -->
+<div class="print-header" style="display:none; padding:16px 20px 10px; font-family:'Noto Sans JP',sans-serif;">
+  <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:8px;">
+    <div>
+      <div style="font-size:9pt; color:#64748b; margin-bottom:2px;">英検3級 · 動名詞（gerund）</div>
+      <div style="font-size:15pt; font-weight:900; color:#1a56a8;">⚗️ 動名詞ミッション 練習問題</div>
+    </div>
+    <div style="font-size:9.5pt; color:#475569;">
+      名前：＿＿＿＿＿＿＿＿　　　点数：＿＿＿＿／220点
+    </div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">🔬 英検3級 · 動名詞 練習問題</div>
+  <h1>⚗️ 動名詞<span>ミッション</span> 問題集</h1>
+  <p>全4ステージ・22問 ＋ 英作文チャレンジ！動名詞マスターを目指せ！</p>
+</div>
+
+<!-- SCORE BAR -->
+<div class="score-bar">
+  <div><span class="score-label">⭐ スコア </span><span class="score-num" id="totalScore">0</span><span class="score-label"> pt</span></div>
+  <div><span class="score-label" id="correctCount">0</span><span class="score-label"> / <span id="totalQ">0</span> 正解</span></div>
+  <button class="btn-print" onclick="window.print()">🖨️ 印刷</button>
+</div>
+
+<div class="main">
+
+<!-- ===== STAGE 1: 4択 ===== -->
+<div class="sec-card">
+  <div class="sec-head">
+    <div class="sec-icon">🧪</div>
+    <div><h2>Stage 1｜正しい形を選べ！（4択）</h2></div>
+  </div>
+  <p class="sec-desc">( ) に入る正しいものを①〜④から選んでタップしよう。</p>
+  <div class="pun-box">
+    <span style="font-size:1.4rem">⚗️</span>
+    <div><strong>ダジャレ①</strong> 「ing」を日本語で読むと「いんぐ」。動名詞をマスターすれば英語力が「<em>引力（いんりょく）</em>」のように周りを引き寄せる！🌍</div>
+  </div>
+  <div id="stage1"></div>
+</div>
+
+<!-- ===== STAGE 2: 用法識別 ===== -->
+<div class="sec-card">
+  <div class="sec-head">
+    <div class="sec-icon">🔭</div>
+    <div><h2>Stage 2｜用法を識別せよ！</h2></div>
+  </div>
+  <p class="sec-desc">下線部の動名詞が「主語用法・目的語用法・前置詞用法」のどれかをタップしよう。</p>
+  <div class="pun-box">
+    <span style="font-size:1.4rem">🧬</span>
+    <div><strong>ダジャレ②</strong> 動名詞の3用法は元素の3状態（固体・液体・気体）みたい！<br>主語→固体（どっしり文頭），目的語→液体（動詞にくっつく），前置詞→気体（前置詞の後でフワッと）⚡</div>
+  </div>
+  <div id="stage2"></div>
+</div>
+
+<!-- ===== STAGE 3: 空欄補充 ===== -->
+<div class="sec-card">
+  <div class="sec-head">
+    <div class="sec-icon">🧬</div>
+    <div><h2>Stage 3｜空欄を埋めよ！</h2></div>
+  </div>
+  <p class="sec-desc">日本語を参考に，（　）に適切な英語を入れよう。「答え合わせ」ボタンで確認できるよ。</p>
+  <div class="pun-box">
+    <span style="font-size:1.4rem">🔬</span>
+    <div><strong>ダジャレ③</strong> 「enjoy」の語源は「喜びの中へ入る」。<em>Enjoy filling in the blanks!</em> 空欄を埋めることを楽しもう！😄</div>
+  </div>
+  <div id="stage3"></div>
+  <button class="btn-check" id="checkStage3" onclick="checkFill()">✅ 答え合わせ</button>
+</div>
+
+<!-- ===== STAGE 4: 並び替え ===== -->
+<div class="sec-card">
+  <div class="sec-head">
+    <div class="sec-icon">🧩</div>
+    <div><h2>Stage 4｜語句を並び替えよ！</h2></div>
+  </div>
+  <p class="sec-desc">単語をタップして正しい英文を作ろう。緑色が動名詞（-ing形）だよ。</p>
+  <div id="stage4"></div>
+</div>
+
+<!-- ===== STAGE 5: 英作文 ===== -->
+<div class="sec-card">
+  <div class="sec-head">
+    <div class="sec-icon">✍️</div>
+    <div><h2>Stage 5｜英作文チャレンジ！</h2></div>
+  </div>
+  <p class="sec-desc">自分のことを動名詞を使って書いてみよう！理科・数学・趣味…何でもOK！</p>
+  <div class="pun-box">
+    <span style="font-size:1.4rem">🏆</span>
+    <div><strong>ダジャレ④</strong> 動名詞は「動く名詞」= 電子みたいにいつもグルグル動いている⚡<br>自分の「動き」を英語で書き出そう！</div>
+  </div>
+  <div id="stage5"></div>
+</div>
+
+<!-- ALL CHECK -->
+<button class="btn-all" onclick="showResult()">🎓 全問チェック！スコアを出す</button>
+
+<!-- RESULT -->
+<div class="result-banner" id="resultBanner">
+  <div class="medal" id="rMedal">🏆</div>
+  <h3 id="rTitle">ミッション完了！</h3>
+  <div class="big" id="rScore"></div>
+  <p id="rMsg"></p>
+</div>
+
+</div><!-- /main -->
+
+<!-- 印刷時のみ表示：答えページ -->
+<div class="print-answer-page">
+  <div class="ans-title">✅ 解答・解説</div>
+
+  <p style="font-size:10pt;font-weight:700;color:#1a56a8;margin-bottom:8px;">【Stage 1】正しい形を選べ！</p>
+  <div class="ans-grid">
+    <div class="ans-item"><span class="ans-num">1.</span><span class="ans-val">② experimenting</span>　enjoy + -ing</div>
+    <div class="ans-item"><span class="ans-num">2.</span><span class="ans-val">③ Memorizing</span>　動名詞が主語</div>
+    <div class="ans-item"><span class="ans-num">3.</span><span class="ans-val">① recording</span>　finish + -ing</div>
+    <div class="ans-item"><span class="ans-num">4.</span><span class="ans-val">④ solving</span>　be good at + -ing</div>
+    <div class="ans-item"><span class="ans-num">5.</span><span class="ans-val">② teaching</span>　for + -ing（前置詞）</div>
+    <div class="ans-item"><span class="ans-num">6.</span><span class="ans-val">③ becoming</span>　動名詞が補語</div>
+    <div class="ans-item"><span class="ans-num">7.</span><span class="ans-val">① trying</span>　keep + -ing</div>
+  </div>
+
+  <p style="font-size:10pt;font-weight:700;color:#1a56a8;margin:12px 0 8px;">【Stage 2】用法を識別せよ！</p>
+  <div class="ans-grid">
+    <div class="ans-item"><span class="ans-num">1.</span><span class="ans-val">主語用法</span>　文の主語</div>
+    <div class="ans-item"><span class="ans-num">2.</span><span class="ans-val">目的語用法</span>　enjoy の目的語</div>
+    <div class="ans-item"><span class="ans-num">3.</span><span class="ans-val">前置詞用法</span>　at の後</div>
+    <div class="ans-item"><span class="ans-num">4.</span><span class="ans-val">主語用法</span>　文の主語</div>
+    <div class="ans-item"><span class="ans-num">5.</span><span class="ans-val">目的語用法</span>　finish の目的語</div>
+    <div class="ans-item"><span class="ans-num">6.</span><span class="ans-val">前置詞用法</span>　for の後</div>
+  </div>
+
+  <p style="font-size:10pt;font-weight:700;color:#1a56a8;margin:12px 0 8px;">【Stage 3】空欄を埋めよ！</p>
+  <div class="ans-grid">
+    <div class="ans-item"><span class="ans-num">1.</span><span class="ans-val">memorizing</span></div>
+    <div class="ans-item"><span class="ans-num">2.</span><span class="ans-val">conducting</span></div>
+    <div class="ans-item"><span class="ans-num">3.</span><span class="ans-val">collecting</span></div>
+    <div class="ans-item"><span class="ans-num">4.</span><span class="ans-val">playing</span></div>
+    <div class="ans-item"><span class="ans-num">5.</span><span class="ans-val">helping</span></div>
+  </div>
+
+  <p style="font-size:10pt;font-weight:700;color:#1a56a8;margin:12px 0 8px;">【Stage 4】語句を並び替えよ！</p>
+  <div class="ans-grid" style="grid-template-columns:1fr;">
+    <div class="ans-item"><span class="ans-num">1.</span><span class="ans-val">Analyzing data is exciting.</span></div>
+    <div class="ans-item"><span class="ans-num">2.</span><span class="ans-val">Ash enjoys observing cells.</span></div>
+    <div class="ans-item"><span class="ans-num">3.</span><span class="ans-val">Ash is good at solving problems.</span></div>
+    <div class="ans-item"><span class="ans-num">4.</span><span class="ans-val">My dream is becoming a scientist.</span></div>
+  </div>
+</div>
+
+<!-- PEN FAB -->
+<div class="pen-fab">
+  <div class="pen-panel" id="penPanel">
+    <div>
+      <div class="pen-row-label">色</div>
+      <div class="pen-row">
+        <div class="pen-color active" style="background:#2563eb" data-color="#2563eb" onclick="setPenColor(this)"></div>
+        <div class="pen-color" style="background:#ef4444" data-color="#ef4444" onclick="setPenColor(this)"></div>
+        <div class="pen-color" style="background:#10b981" data-color="#10b981" onclick="setPenColor(this)"></div>
+        <div class="pen-color" style="background:#f59e0b" data-color="#f59e0b" onclick="setPenColor(this)"></div>
+        <div class="pen-color" style="background:#8b5cf6" data-color="#8b5cf6" onclick="setPenColor(this)"></div>
+        <div class="pen-color" style="background:#1e293b" data-color="#1e293b" onclick="setPenColor(this)"></div>
+      </div>
+    </div>
+    <div>
+      <div class="pen-row-label">太さ</div>
+      <div class="pen-row">
+        <div class="pen-size active" data-size="2" onclick="setPenSize(this)">S</div>
+        <div class="pen-size" data-size="4" onclick="setPenSize(this)">M</div>
+        <div class="pen-size" data-size="8" onclick="setPenSize(this)">L</div>
+        <div class="pen-size" data-size="16" onclick="setPenSize(this)">XL</div>
+      </div>
+    </div>
+    <div class="pen-tool-row">
+      <button class="ptool-btn active" id="penBtn" onclick="setOverlayTool('pen')">✏️ ペン</button>
+      <button class="ptool-btn eraser" id="eraserBtn" onclick="setOverlayTool('eraser')">🧹 消し</button>
+    </div>
+    <button class="btn-clear-overlay" onclick="clearOverlay()">🗑️ 全消去</button>
+  </div>
+  <button class="pen-toggle" id="penToggle" onclick="togglePen()">✏️</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==============================
+   DATA
+============================== */
+const q1Data = [
+  { stem:'I enjoy ___ in the science lab.', jp:'私は実験室で実験することを楽しむ。',
+    opts:['experiment','experimenting','to experiment','experimented'], ans:1,
+    fb:'「enjoy + -ing」！enjoyの後は必ず動名詞（-ing形）。to不定詞は使えないよ！' },
+  { stem:'___ the periodic table is the key to success.', jp:'周期表を覚えることが成功のカギだ。',
+    opts:['Memorize','Memorized','Memorizing','To memorized'], ans:2,
+    fb:'文のはじめに動名詞！「Memorizing」が主語になっている。動詞にingをつけるだけ！' },
+  { stem:'Ash finished ___ the experimental data.', jp:'Ashは実験データを記録し終えた。',
+    opts:['recording','record','to record','recorded'], ans:0,
+    fb:'「finish + -ing」！finishの後も動名詞。「記録完了！」という感じだね⚗️' },
+  { stem:'Ash is good at ___ math problems.', jp:'Ashは数学の問題を解くことが得意だ。',
+    opts:['solve','solved','to solve','solving'], ans:3,
+    fb:'「be good at + -ing」！atは前置詞なので後ろは必ず動名詞！' },
+  { stem:'Thank you for ___ me about nutrition.', jp:'栄養について教えてくれてありがとう。',
+    opts:['teach','taught','teaching','to teach'], ans:2,
+    fb:'「Thank you for + -ing」！forは前置詞なので後ろは動名詞。感謝の定番表現！' },
+  { stem:'My goal is ___ a chemist.', jp:'私の目標は化学者になることだ。',
+    opts:['become','became','becoming','to became'], ans:2,
+    fb:'「My goal is + -ing」= 〜することだ。動名詞が補語（be動詞の右側）になっている！' },
+  { stem:'We kept ___ until we found the answer.', jp:'私たちは答えが見つかるまで試し続けた。',
+    opts:['trying','try','to try','tried'], ans:0,
+    fb:'「keep + -ing」= 〜し続ける。諦めずにkeep going！⚡' },
+];
+
+const q2Data = [
+  { stem:'<u>Collecting</u> minerals is Ash\'s hobby.', jp:'鉱物を集めることがAshの趣味だ。',
+    ans:'subj', fb:'「Collecting minerals」が主語（動名詞が文のはじめ）→ 主語用法！' },
+  { stem:'Ash enjoys <u>analyzing</u> data.', jp:'Ashはデータを分析することを楽しむ。',
+    ans:'obj', fb:'「enjoys analyzing」のanalyzing は enjoy の目的語 → 目的語用法！' },
+  { stem:'Ash is good at <u>calculating</u> quickly.', jp:'Ashはすばやく計算することが得意だ。',
+    ans:'prep', fb:'「good at calculating」のat は前置詞 → 前置詞の後 → 前置詞用法！' },
+  { stem:'<u>Studying</u> nutrition is important for health.', jp:'栄養を勉強することは健康にとって大切だ。',
+    ans:'subj', fb:'「Studying nutrition」が主語（文のはじめ）→ 主語用法！' },
+  { stem:'I finished <u>reading</u> the science book.', jp:'私はその理科の本を読み終えた。',
+    ans:'obj', fb:'「finished reading」のreading は finish の目的語 → 目的語用法！' },
+  { stem:'Thank you for <u>helping</u> me with the experiment.', jp:'実験を手伝ってくれてありがとう。',
+    ans:'prep', fb:'「for helping」のfor は前置詞 → 前置詞の後 → 前置詞用法！' },
+];
+
+const q3Data = [
+  { before:'I enjoy', after:'the periodic table.',
+    ans:'memorizing', hint:'「〜することを楽しむ」= enjoy + -ing（動名詞）', jp:'私は周期表を覚えることを楽しむ。' },
+  { before:'Ash is good at', after:'experiments.',
+    ans:'conducting', hint:'「〜することが得意」= be good at + -ing（前置詞の後）', jp:'Ashは実験を行うことが得意だ。' },
+  { before:'My hobby is', after:'minerals.',
+    ans:'collecting', hint:'「〜することだ」= My hobby is + -ing（動名詞が補語）', jp:'私の趣味は鉱物を集めることだ。' },
+  { before:'Ash stopped', after:'games to study.',
+    ans:'playing', hint:'「〜するのをやめる」= stop + -ing（動名詞）', jp:'Ashは勉強するためにゲームをするのをやめた。' },
+  { before:'Thank you for', after:'me with math.',
+    ans:'helping', hint:'「〜してくれてありがとう」= Thank you for + -ing（前置詞の後）', jp:'数学を手伝ってくれてありがとう。' },
+];
+
+const q4Data = [
+  { jp:'データを分析することはわくわくする。',
+    words:['Analyzing','data','is','exciting','.'],
+    ans:['Analyzing','data','is','exciting','.'], toW:['Analyzing'] },
+  { jp:'Ashは細胞を観察することを楽しむ。',
+    words:['Ash','enjoys','observing','cells','.'],
+    ans:['Ash','enjoys','observing','cells','.'], toW:['observing'] },
+  { jp:'Ashは数学の問題を解くことが得意だ。',
+    words:['Ash','is','good','at','solving','problems','.'],
+    ans:['Ash','is','good','at','solving','problems','.'], toW:['solving'] },
+  { jp:'私の夢は科学者になることだ。',
+    words:['My','dream','is','becoming','a','scientist','.'],
+    ans:['My','dream','is','becoming','a','scientist','.'], toW:['becoming'] },
+];
+
+const q5Data = [
+  { prompt:'①「〜することを楽しむ・好き」を使って：あなたが楽しんでいることを書こう。（enjoy / like + -ing）',
+    hint:'例：I enjoy analyzing data. / I like collecting minerals.' },
+  { prompt:'②「〜することが得意・苦手」を使って：あなたの得意なこと・苦手なことを書こう。（be good / bad at + -ing）',
+    hint:'例：I am good at solving math problems. / I am not good at memorizing words.' },
+  { prompt:'③「私の趣味・夢は〜することだ」を使って：あなたの趣味や夢を書こう。（My hobby / dream is + -ing）',
+    hint:'例：My hobby is collecting stamps. / My dream is becoming a scientist.' },
+];
+
+/* ==============================
+   SCORE
+============================== */
+let totalScore = 0;
+let correctCount = 0;
+let totalQ = 0;
+const answered = {};
+
+function addScore(id, pt) {
+  if (answered[id]) return;
+  answered[id] = true;
+  totalScore += pt; correctCount++;
+  document.getElementById('totalScore').textContent = totalScore;
+  document.getElementById('correctCount').textContent = correctCount;
+}
+
+/* ==============================
+   SPEECH
+============================== */
+let enVoice = null;
+function loadVoices(){
+  const voices = window.speechSynthesis.getVoices();
+  for(const lang of ['en-US','en-GB','en-AU','en']){
+    const v = voices.find(v => v.lang.startsWith(lang) && !v.name.includes('Japanese'));
+    if(v){ enVoice = v; break; }
+  }
+  if(!enVoice) enVoice = voices.find(v => v.lang.toLowerCase().startsWith('en')) || null;
+}
+if(window.speechSynthesis){
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+  loadVoices();
+}
+function speak(text){
+  if(!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US';
+  if(enVoice) u.voice = enVoice;
+  u.rate = 0.85; u.pitch = 1.0;
+  window.speechSynthesis.speak(u);
+}
+
+/* ==============================
+   SOUND
+============================== */
+let audioCtx = null;
+function getACtx(){ if (!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+function playOK(){
+  try{
+    const c=getACtx();
+    [523.25,783.99].forEach((f,i)=>{
+      const o=c.createOscillator(), g=c.createGain();
+      o.connect(g); g.connect(c.destination);
+      o.type='sine'; o.frequency.value=f;
+      g.gain.setValueAtTime(0,c.currentTime+i*.15);
+      g.gain.linearRampToValueAtTime(.08,c.currentTime+i*.15+.03);
+      g.gain.exponentialRampToValueAtTime(.001,c.currentTime+i*.15+.5);
+      o.start(c.currentTime+i*.15); o.stop(c.currentTime+i*.15+.51);
+    });
+  }catch(e){}
+}
+function playNG(){
+  try{
+    const c=getACtx(), o=c.createOscillator(), g=c.createGain();
+    o.connect(g); g.connect(c.destination); o.type='sine';
+    o.frequency.setValueAtTime(260,c.currentTime);
+    o.frequency.linearRampToValueAtTime(200,c.currentTime+.25);
+    g.gain.setValueAtTime(.07,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.28);
+    o.start(c.currentTime); o.stop(c.currentTime+.29);
+  }catch(e){}
+}
+
+/* ==============================
+   CONFETTI
+============================== */
+const cc=document.getElementById('confettiCanvas');
+const cctx=cc.getContext('2d');
+let cParts=[],cAnim=null;
+const COLS=['#2563eb','#f59e0b','#10b981','#ef4444','#8b5cf6','#fcd34d','#34d399'];
+function launchConfetti(){
+  cc.width=window.innerWidth; cc.height=window.innerHeight; cParts=[];
+  for(let i=0;i<120;i++) cParts.push({
+    x:Math.random()*cc.width, y:-10-Math.random()*100,
+    w:6+Math.random()*7, h:3+Math.random()*4,
+    color:COLS[Math.floor(Math.random()*COLS.length)],
+    vx:(Math.random()-.5)*3, vy:2.5+Math.random()*3,
+    angle:Math.random()*Math.PI*2, spin:(Math.random()-.5)*.18
+  });
+  if(cAnim) cancelAnimationFrame(cAnim);
+  animC(); setTimeout(stopC,2500);
+}
+function animC(){
+  cctx.clearRect(0,0,cc.width,cc.height); let alive=false;
+  cParts.forEach(p=>{
+    if(p.y>cc.height+20) return; alive=true;
+    p.x+=p.vx; p.y+=p.vy; p.angle+=p.spin; p.vy+=.06;
+    cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.angle);
+    cctx.fillStyle=p.color; cctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); cctx.restore();
+  });
+  if(alive) cAnim=requestAnimationFrame(animC); else stopC();
+}
+function stopC(){ if(cAnim){cancelAnimationFrame(cAnim);cAnim=null;} cctx.clearRect(0,0,cc.width,cc.height); }
+
+/* ==============================
+   STAGE 1: 4択
+============================== */
+function renderStage1(){
+  const el=document.getElementById('stage1');
+  el.innerHTML=q1Data.map((q,qi)=>`
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">${qi+1}</span>${q.stem.replace('___','<span class="blank">???</span>')}</div>
+      <div class="q-jp">${q.jp}</div>
+      <div class="choices">
+        ${q.opts.map((o,oi)=>`<div class="choice" role="button" onclick="ansS1(${qi},${oi})">${o}</div>`).join('')}
+      </div>
+      <div class="q-feedback" id="fb1-${qi}"></div>
+    </div>`).join('');
+  totalQ+=q1Data.length;
+  document.getElementById('totalQ').textContent=totalQ;
+}
+
+function ansS1(qi,oi){
+  const q=q1Data[qi];
+  const cells=document.querySelectorAll(`#stage1 .q-item:nth-child(${qi+1}) .choice`);
+  cells.forEach(c=>{ c.style.pointerEvents='none'; });
+  const fb=document.getElementById(`fb1-${qi}`);
+  if(oi===q.ans){
+    cells[oi].classList.add('correct');
+    fb.className='q-feedback show ok';
+    fb.innerHTML=`<div class="fb-title">🎉 正解！</div>${q.fb}`;
+    playOK(); launchConfetti();
+    addScore(`s1-${qi}`,10);
+    showToast('🎉 正解！ +10pt');
+    setTimeout(()=>speak(q.stem.replace('___', q.opts[q.ans]).replace('???',q.opts[q.ans])), 600);
+  } else {
+    cells[oi].classList.add('wrong');
+    cells[q.ans].classList.add('correct');
+    fb.className='q-feedback show ng';
+    fb.innerHTML=`<div class="fb-title">😅 惜しい！</div>正解は <strong>${q.opts[q.ans]}</strong>。${q.fb}`;
+    playNG();
+  }
+}
+
+/* ==============================
+   STAGE 2: 用法識別
+============================== */
+const useLabel={subj:'主語用法',obj:'目的語用法',prep:'前置詞用法'};
+function renderStage2(){
+  const el=document.getElementById('stage2');
+  el.innerHTML=q2Data.map((q,qi)=>`
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">${qi+1}</span>${q.stem}</div>
+      <div class="q-jp">${q.jp}</div>
+      <div class="usage-choices">
+        <div class="uc-btn subj" role="button" onclick="ansS2(${qi},'subj',this)">主語用法</div>
+        <div class="uc-btn obj"  role="button" onclick="ansS2(${qi},'obj',this)">目的語用法</div>
+        <div class="uc-btn prep" role="button" onclick="ansS2(${qi},'prep',this)">前置詞用法</div>
+      </div>
+      <div class="q-feedback" id="fb2-${qi}"></div>
+    </div>`).join('');
+  totalQ+=q2Data.length;
+  document.getElementById('totalQ').textContent=totalQ;
+}
+
+function ansS2(qi,val,btn){
+  const q=q2Data[qi];
+  const btns=btn.parentElement.querySelectorAll('.uc-btn');
+  btns.forEach(b=>b.style.pointerEvents='none');
+  const fb=document.getElementById(`fb2-${qi}`);
+  if(val===q.ans){
+    btn.classList.add('correct');
+    fb.className='q-feedback show ok';
+    fb.innerHTML=`<div class="fb-title">🎉 正解！ ${useLabel[q.ans]}</div>${q.fb}`;
+    playOK(); launchConfetti();
+    addScore(`s2-${qi}`,10);
+    showToast('🎉 正解！ +10pt');
+    setTimeout(()=>speak(q.stem.replace(/<[^>]+>/g,'')), 600);
+  } else {
+    btn.classList.add('wrong');
+    btns.forEach(b=>{ if(b.onclick && b.onclick.toString().includes(`'${q.ans}'`)) b.classList.add('correct'); });
+    fb.className='q-feedback show ng';
+    fb.innerHTML=`<div class="fb-title">😅 惜しい！正解は${useLabel[q.ans]}</div>${q.fb}`;
+    playNG();
+  }
+}
+
+/* ==============================
+   STAGE 3: 空欄補充
+============================== */
+function renderStage3(){
+  const el=document.getElementById('stage3');
+  el.innerHTML=q3Data.map((q,qi)=>`
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">${qi+1}</span>
+        <span class="fill-wrap">
+          ${q.before}&nbsp;<input class="fill-input" id="fill-${qi}" placeholder="　　　　" autocomplete="off">&nbsp;${q.after}
+        </span>
+      </div>
+      <div class="q-jp">${q.jp}</div>
+      <div class="q-feedback" id="fb3-${qi}"></div>
+    </div>`).join('');
+  totalQ+=q3Data.length;
+  document.getElementById('totalQ').textContent=totalQ;
+}
+
+function checkFill(){
+  document.getElementById('checkStage3').disabled=true;
+  q3Data.forEach((q,qi)=>{
+    const inp=document.getElementById(`fill-${qi}`);
+    const val=inp.value.trim().toLowerCase().replace(/\s+/g,' ');
+    const ans=q.ans.toLowerCase();
+    const fb=document.getElementById(`fb3-${qi}`);
+    if(val===ans){
+      inp.classList.add('correct');
+      fb.className='q-feedback show ok';
+      fb.innerHTML=`<div class="fb-title">🎉 正解！</div>${q.hint}`;
+      addScore(`s3-${qi}`,10);
+      setTimeout(()=>speak(`${q.before} ${q.ans} ${q.after}`.replace(/\.\s*$/,'.')), 600 + qi*800);
+    } else {
+      inp.classList.add('wrong');
+      fb.className='q-feedback show ng';
+      fb.innerHTML=`<div class="fb-title">😅 惜しい！</div>正解は <strong>${q.ans}</strong>。${q.hint}`;
+    }
+  });
+  playOK();
+  showToast('✅ Stage 3 採点完了！');
+}
+
+/* ==============================
+   STAGE 4: 並び替え
+============================== */
+let s4placed=[];
+function renderStage4(){
+  const el=document.getElementById('stage4');
+  el.innerHTML=q4Data.map((q,qi)=>{
+    const sh=[...q.words].sort(()=>Math.random()-.5);
+    return `
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">${qi+1}</span><span style="font-size:.95rem;color:var(--gray);">${q.jp}</span></div>
+      <div class="sort-display" id="sd-${qi}"><span class="drop-hint">↓ 単語をタップして並べよう</span></div>
+      <div class="sort-answer-line" style="display:none;"></div>
+      <div class="sort-pool" id="sp-${qi}">
+        ${sh.map((w,wi)=>`<div class="sort-word ${q.toW.includes(w)?'to-w':''}" data-word="${w}" data-qi="${qi}" data-wi="${wi}" onclick="placeS4(this)">${w}</div>`).join('')}
+      </div>
+      <div class="q-feedback" id="fb4-${qi}"></div>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <button class="btn-check" onclick="checkS4(${qi})">✅ 確認</button>
+        <button class="btn-check" style="background:#94a3b8;" onclick="resetS4(${qi})">↩ リセット</button>
+      </div>
+    </div>`;
+  }).join('');
+  q4Data.forEach((_,qi)=>{ s4placed[qi]=[]; });
+  totalQ+=q4Data.length;
+  document.getElementById('totalQ').textContent=totalQ;
+}
+
+function placeS4(btn){
+  if(btn.classList.contains('used')) return;
+  const qi=parseInt(btn.dataset.qi);
+  s4placed[qi].push({word:btn.dataset.word,wi:btn.dataset.wi});
+  btn.classList.add('used');
+  updateS4Display(qi);
+}
+function updateS4Display(qi){
+  const disp=document.getElementById(`sd-${qi}`);
+  const q=q4Data[qi];
+  if(!s4placed[qi].length){ disp.innerHTML='<span class="drop-hint">↓ 単語をタップして並べよう</span>'; disp.classList.remove('has-w'); return; }
+  disp.classList.add('has-w');
+  disp.innerHTML=s4placed[qi].map((p,i)=>
+    `<div class="sort-placed ${q.toW.includes(p.word)?'to-w':''}" onclick="removeS4(${qi},${i})">${p.word}</div>`
+  ).join('');
+}
+function removeS4(qi,i){
+  const removed=s4placed[qi].splice(i,1)[0];
+  const btn=document.querySelector(`[data-qi="${qi}"][data-wi="${removed.wi}"]`);
+  if(btn) btn.classList.remove('used');
+  updateS4Display(qi);
+}
+function resetS4(qi){
+  s4placed[qi]=[];
+  document.querySelectorAll(`[data-qi="${qi}"]`).forEach(b=>b.classList.remove('used'));
+  updateS4Display(qi);
+  document.getElementById(`fb4-${qi}`).className='q-feedback';
+}
+function checkS4(qi){
+  const q=q4Data[qi];
+  const placed=s4placed[qi].map(p=>p.word);
+  const fb=document.getElementById(`fb4-${qi}`);
+  const correct=JSON.stringify(placed)===JSON.stringify(q.ans);
+  if(correct){
+    fb.className='q-feedback show ok';
+    fb.innerHTML=`<div class="fb-title">🎉 正解！</div>${q.ans.join(' ')}`;
+    playOK(); launchConfetti();
+    addScore(`s4-${qi}`,10);
+    showToast('🎉 正解！ +10pt');
+    setTimeout(()=>speak(q.ans.filter(w=>w!=='.').join(' ')), 600);
+  } else {
+    fb.className='q-feedback show ng';
+    fb.innerHTML=`<div class="fb-title">😅 惜しい！</div>正解：<strong>${q.ans.join(' ')}</strong>`;
+    playNG();
+  }
+}
+
+/* ==============================
+   STAGE 5: 英作文
+============================== */
+function renderStage5(){
+  const el=document.getElementById('stage5');
+  el.innerHTML=q5Data.map((q,qi)=>`
+    <div class="q-item">
+      <div class="q-text"><span class="q-num">${qi+1}</span>${q.prompt}</div>
+      <textarea class="eisaku-area" placeholder="ここに英文を書こう…" rows="2"></textarea>
+      <div class="eisaku-hint">💡 ヒント：${q.hint}</div>
+    </div>`).join('');
+}
+
+/* ==============================
+   RESULT
+============================== */
+function showResult(){
+  const total=q1Data.length+q2Data.length+q3Data.length+q4Data.length;
+  const pct=Math.round((correctCount/total)*100);
+  let medal='🔬',title='まだまだ実験中！',msg='解説タブに戻って3用法を確認しよう！';
+  if(pct>=90){medal='🏆';title='博士号取得おめでとう！！';msg='完璧！元素研究所の所長に認定されました！動名詞マスター！';}
+  else if(pct>=70){medal='🥇';title='動名詞マスター！';msg='すばらしい！あと少しで完璧だ！';}
+  else if(pct>=50){medal='🥈';title='合格ライン突破！';msg='なかなかいい感じ！苦手なステージを復習しよう。';}
+  const banner=document.getElementById('resultBanner');
+  document.getElementById('rMedal').textContent=medal;
+  document.getElementById('rTitle').textContent=title;
+  document.getElementById('rScore').textContent=`${totalScore}pt (${pct}%)`;
+  document.getElementById('rMsg').textContent=msg;
+  banner.classList.add('show');
+  banner.scrollIntoView({behavior:'smooth'});
+  if(pct>=70){ playOK(); launchConfetti(); }
+}
+
+/* ==============================
+   OVERLAY PEN
+============================== */
+const oc=document.getElementById('overlayCanvas');
+const octx=oc.getContext('2d');
+let penActive=false,oDrawing=false,oPenColor='#2563eb',oPenSize=2,oTool='pen',oLX=0,oLY=0;
+function resizeOverlay(){ oc.width=window.innerWidth; oc.height=window.innerHeight; }
+function togglePen(){
+  penActive=!penActive;
+  oc.classList.toggle('pen-active',penActive);
+  document.getElementById('penToggle').classList.toggle('active',penActive);
+  document.getElementById('penToggle').textContent=penActive?'✕':'✏️';
+  document.getElementById('penPanel').classList.toggle('open',penActive);
+}
+function getOP(e){ if(e.touches) return{x:e.touches[0].clientX,y:e.touches[0].clientY}; return{x:e.clientX,y:e.clientY}; }
+oc.addEventListener('mousedown',e=>{oDrawing=true;const p=getOP(e);oLX=p.x;oLY=p.y;});
+oc.addEventListener('mousemove',e=>{if(!oDrawing)return;const p=getOP(e);drawO(oLX,oLY,p.x,p.y);oLX=p.x;oLY=p.y;});
+oc.addEventListener('mouseup',()=>oDrawing=false);
+oc.addEventListener('mouseleave',()=>oDrawing=false);
+oc.addEventListener('touchstart',e=>{e.preventDefault();oDrawing=true;const p=getOP(e);oLX=p.x;oLY=p.y;},{passive:false});
+oc.addEventListener('touchmove',e=>{e.preventDefault();if(!oDrawing)return;const p=getOP(e);drawO(oLX,oLY,p.x,p.y);oLX=p.x;oLY=p.y;},{passive:false});
+oc.addEventListener('touchend',()=>oDrawing=false);
+function drawO(x1,y1,x2,y2){
+  octx.beginPath();octx.moveTo(x1,y1);octx.lineTo(x2,y2);
+  octx.strokeStyle=oTool==='eraser'?'rgba(255,255,255,0.95)':oPenColor;
+  octx.lineWidth=oTool==='eraser'?oPenSize*6:oPenSize;
+  octx.lineCap='round';octx.lineJoin='round';octx.stroke();
+}
+function setPenColor(el){
+  document.querySelectorAll('.pen-color').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');oPenColor=el.dataset.color;oTool='pen';
+  document.getElementById('penBtn').classList.add('active');
+  document.getElementById('eraserBtn').classList.remove('active');
+}
+function setPenSize(el){
+  document.querySelectorAll('.pen-size').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');oPenSize=parseInt(el.dataset.size);
+}
+function setOverlayTool(t){
+  oTool=t;
+  document.getElementById('penBtn').classList.toggle('active',t==='pen');
+  document.getElementById('eraserBtn').classList.toggle('active',t==='eraser');
+}
+function clearOverlay(){ octx.clearRect(0,0,oc.width,oc.height); }
+
+/* ==============================
+   TOAST
+============================== */
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ==============================
+   INIT
+============================== */
+window.addEventListener('load',()=>{
+  resizeOverlay();
+  renderStage1();
+  renderStage2();
+  renderStage3();
+  renderStage4();
+  renderStage5();
+});
+window.addEventListener('resize',resizeOverlay);
+</script>
+</body>
+</html>
+
