@@ -90,6 +90,12 @@ body{
 <div class="section-title">📖 NEW HORIZON 1 ゲーム教材</div>
 <div id="nh1List"></div>
 
+<div class="section-title">📖 NEW CROWN 3 ゲーム教材</div>
+<div id="nc3List"></div>
+
+<div class="section-title">📖 SUNSHINE 1 ゲーム教材</div>
+<div id="s1List"></div>
+
 <div class="footer">
   新しい教材が増えると，このページにも自動で追加されます。<br>
   ※このページと各教材は，URLを知っている人なら誰でも見られます。<br>
@@ -115,11 +121,24 @@ const QUIZZES = [
 ];
 
 const NH1_GAMES = [
-  { unit:'Unit 2 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part1.html' },
-  { unit:'Unit 2 Part 2', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part2.html' },
-  { unit:'Unit 2 Part 3', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part3.html' },
-  { unit:'Unit 3 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part1.html' },
-  { unit:'Unit 3 Part 2', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part2.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 2 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part1.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 2 Part 2', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part2.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 2 Part 3', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part3.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 3 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part1.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 3 Part 2', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part2.html' },
+];
+
+const NC3_GAMES = [
+  { book:'NEW CROWN 3', unit:'L2 Take Action Talk 2', sub:'単語カード・クイズ・本文', file:'nc3/l2_takeaction_talk2.html' },
+  { book:'NEW CROWN 3', unit:'L2-2 Bruno Mars 単語ゲーム', sub:'単語カード・クイズ', file:'nc3/l2_2_bruno_mars_words.html' },
+  { book:'NEW CROWN 3', unit:'Help! The Beatles 単語ゲーム', sub:'単語カード・クイズ', file:'nc3/beatles_words.html' },
+];
+
+const S1_GAMES = [
+  { book:'SUNSHINE 1', unit:'Program 2 Part 1', sub:'単語カード・クイズ・本文', file:'s1/prog2_part1.html' },
+  { book:'SUNSHINE 1', unit:'Program 2 Part 2', sub:'単語カード・クイズ・本文', file:'s1/prog2_part2.html' },
+  { book:'SUNSHINE 1', unit:'Program 3', sub:'単語カード・クイズ・本文', file:'s1/prog3.html' },
+  { book:'SUNSHINE 1', unit:'Program 3 Part 2', sub:'単語カード・クイズ・本文', file:'s1/prog3_part2.html' },
 ];
 
 function urlOf(item){
@@ -132,7 +151,7 @@ function quizMessage(item){
     + '全部で' + item.q + '問＋英作文チャレンジです。満点目指してがんばってね！';
 }
 function nh1Message(item){
-  return '英語の授業で使ったゲーム教材（NEW HORIZON 1 ' + item.unit + '）です。\n'
+  return '英語の授業で使ったゲーム教材（' + item.book + ' ' + item.unit + '）です。\n'
     + '下のリンクをタップすると開けます（iPadでそのまま使えます）。\n\n'
     + urlOf(item) + '\n\n'
     + '単語カードやクイズで復習してね！';
@@ -157,6 +176,10 @@ function render(){
     QUIZZES.map((item, i) => makeCard(item, 'quizMessage', 'QUIZZES', i)).join('');
   document.getElementById('nh1List').innerHTML =
     NH1_GAMES.map((item, i) => makeCard(item, 'nh1Message', 'NH1_GAMES', i)).join('');
+  document.getElementById('nc3List').innerHTML =
+    NC3_GAMES.map((item, i) => makeCard(item, 'nh1Message', 'NC3_GAMES', i)).join('');
+  document.getElementById('s1List').innerHTML =
+    S1_GAMES.map((item, i) => makeCard(item, 'nh1Message', 'S1_GAMES', i)).join('');
 }
 
 function copyText(text, doneMsg){

@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUNSHINE 1 Program 3 Part 2 — Can you dance?</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fff8f0;
+    --card: #ffffff;
+    --gold: #f59e0b;
+    --orange: #fb923c;
+    --blue: #3b82f6;
+    --green: #22c55e;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --shadow: 0 4px 16px rgba(0,0,0,0.1);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* === HEADER === */
+  header {
+    background: linear-gradient(135deg, #f59e0b, #fb923c);
+    color: white;
+    text-align: center;
+    padding: 28px 20px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '🕺💃🎭🎪🎵🎶';
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.15;
+    top: 8px; left: 10px;
+    letter-spacing: 8px;
+  }
+  header::after {
+    content: '🕺💃🎭🎪🎵🎶';
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.15;
+    bottom: 8px; right: 10px;
+    letter-spacing: 8px;
+  }
+  .header-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    line-height: 1.2;
+  }
+  header p {
+    margin-top: 8px;
+    font-size: 1rem;
+    opacity: 0.9;
+  }
+
+  /* === TABS === */
+  .tab-bar {
+    display: flex;
+    background: white;
+    border-bottom: 3px solid var(--gold);
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 90px;
+    padding: 14px 8px;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+  }
+  .tab-btn span.tab-icon { font-size: 1.4rem; }
+  .tab-btn.active {
+    color: var(--orange);
+    border-bottom: 4px solid var(--orange);
+    background: #fff5eb;
+  }
+  .tab-btn:hover:not(.active) { background: #f8f9fa; color: var(--gold); }
+
+  .tab-panel { display: none; padding: 24px 16px 40px; max-width: 860px; margin: 0 auto; }
+  .tab-panel.active { display: block; }
+
+  /* === DIALOG CARDS === */
+  .scene-header {
+    background: linear-gradient(135deg, #667eea22, #764ba222);
+    border: 2px solid #764ba233;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .scene-header h2 { font-size: 1.2rem; color: #4c1d95; }
+  .scene-header p { font-size: 0.9rem; color: var(--muted); margin-top: 4px; }
+
+  .dialog-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: flex-end; /* 右利きユーザー向けに右端寄せ */
+  }
+  .ctrl-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ctrl-btn.gold { background: var(--gold); color: white; }
+  .ctrl-btn.orange { background: var(--orange); color: white; }
+  .ctrl-btn.blue { background: var(--blue); color: white; }
+  .ctrl-btn.outline { background: white; color: var(--text); border: 2px solid var(--border); }
+  .ctrl-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .ctrl-btn:active { transform: translateY(0); }
+
+  .line-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 5px solid var(--gold);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .line-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .line-card.mao { border-left-color: var(--purple); }
+
+  .speaker-badge {
+    min-width: 54px;
+    text-align: center;
+  }
+  .speaker-avatar {
+    font-size: 2.4rem;
+    line-height: 1;
+    display: block;
+  }
+  .speaker-name {
+    font-size: 0.72rem;
+    font-weight: 900;
+    margin-top: 4px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .line-body { flex: 1; }
+  .line-en {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .line-jp {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border);
+    line-height: 1.6;
+    transition: opacity 0.3s;
+  }
+  .line-jp.hidden { display: none; }
+
+  .line-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* 右利きユーザー向けに右端寄せ */
+  }
+  .line-actions .speak-btn.slow { order: -1; } /* 並び順：ゆっくり→読む（読むが一番右） */
+  .speak-btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .speak-btn.en { background: #dbeafe; color: #1d4ed8; }
+  .speak-btn.slow { background: #fef3c7; color: #92400e; }
+  .speak-btn:hover { transform: scale(1.05); }
+
+  /* Key phrases highlight */
+  .key { color: var(--orange); font-weight: 900; }
+
+  /* === PRACTICE TAB === */
+  .practice-section {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  .practice-section h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .role-select {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .role-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 16px;
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .role-btn:hover, .role-btn.selected { border-color: var(--orange); background: #fff5eb; color: var(--orange); }
+  .role-btn .role-avatar { font-size: 2rem; display: block; margin-bottom: 4px; }
+
+  .roleplay-script {
+    margin-top: 16px;
+  }
+  .roleplay-line {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .roleplay-line.partner {
+    background: #dbeafe;
+    border-left: 4px solid var(--blue);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .roleplay-line.partner:hover { background: #bfdbfe; }
+  .roleplay-line.my-turn {
+    background: #f0fdf4;
+    border-left: 4px solid var(--green);
+    opacity: 0.7;
+    font-style: italic;
+  }
+  .play-icon { font-size: 1.2rem; }
+
+  /* === WRITING TAB === */
+  .worksheet-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .worksheet-header h2 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--orange);
+  }
+  .worksheet-header p {
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .fill-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--gold);
+  }
+  .fill-card .q-num {
+    font-size: 0.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .fill-card .q-jp {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .fill-card .q-en {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 2;
+    margin-bottom: 12px;
+  }
+  .reveal-bar {
+    display: inline-block;
+    background: #1e293b;
+    color: #1e293b;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-width: 80px;
+    padding: 3px 12px;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    text-align: center;
+    user-select: none;
+    vertical-align: middle;
+  }
+  .reveal-bar:hover { background: #334155; color: #334155; }
+  .reveal-bar.revealed { background: var(--green); color: white; }
+
+  .free-write-area {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--purple);
+  }
+  .free-write-area h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+    color: var(--purple);
+  }
+  .write-prompt {
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+  .big-textarea {
+    width: 100%;
+    min-height: 120px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+    font-size: 1rem;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafafa;
+  }
+  .big-textarea:focus { border-color: var(--purple); background: white; }
+
+  /* === ROULETTE TAB === */
+  .roulette-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 10px 0;
+  }
+
+  .roulette-question {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    width: 100%;
+    border-top: 4px solid var(--orange);
+  }
+  .roulette-question h3 { font-size: 1rem; color: var(--muted); margin-bottom: 8px; }
+  .q-display {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .q-display .q-highlight { color: var(--orange); }
+
+  .roulette-wheel {
+    width: 280px;
+    height: 280px;
+    position: relative;
+  }
+  #rouletteCanvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  .wheel-pointer {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .spin-btn {
+    padding: 18px 48px;
+    background: linear-gradient(135deg, var(--orange), #ef4444);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 6px 24px rgba(251,146,60,0.4);
+    letter-spacing: 1px;
+  }
+  .spin-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(251,146,60,0.5); }
+  .spin-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  .result-display {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--orange);
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 24px;
+    background: var(--card);
+    border-radius: var(--radius);
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: all 0.3s;
+  }
+
+  .q-picker {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .q-chip {
+    padding: 8px 16px;
+    border: 2px solid var(--border);
+    border-radius: 50px;
+    background: white;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text);
+  }
+  .q-chip.active { border-color: var(--orange); background: #fff5eb; color: var(--orange); }
+  .q-chip:hover { border-color: var(--gold); }
+
+  /* Confetti */
+  .confetti-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    animation: fall 2.5s linear forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* === WORD CARDS === */
+  .vocab-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: flex-end; /* 右利きユーザー向けに右端寄せ */
+  }
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .flip-card {
+    height: 160px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    border-radius: var(--radius);
+  }
+  .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+  }
+  .flip-front {
+    background: white;
+    border-top: 5px solid var(--gold);
+  }
+  .flip-back {
+    background: linear-gradient(135deg, #fff8f0, #fef3c7);
+    border-top: 5px solid var(--orange);
+    transform: rotateY(180deg);
+  }
+  .flip-en {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .flip-pos {
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: #f1f5f9;
+    padding: 2px 10px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .flip-hint {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .flip-ja {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--orange);
+    margin-bottom: 6px;
+  }
+  .flip-ex {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .flip-speak {
+    margin-top: 8px;
+    padding: 4px 12px;
+    border: none;
+    border-radius: 50px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .flip-speak:hover { background: #bfdbfe; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6rem; }
+    .tab-btn { font-size: 0.78rem; padding: 12px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-label">SUNSHINE 1 &nbsp;|&nbsp; Program３ Part2</div>
+  <h1>🕺 Can you dance? 💃</h1>
+  <p>— Daniel & Emma —</p>
+</header>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('dialog')">
+    <span class="tab-icon">📖</span>本文
+  </button>
+  <button class="tab-btn" onclick="switchTab('vocab')">
+    <span class="tab-icon">🃏</span>単語
+  </button>
+  <button class="tab-btn" onclick="switchTab('practice')">
+    <span class="tab-icon">🎧</span>練習
+  </button>
+  <button class="tab-btn" onclick="switchTab('writing')">
+    <span class="tab-icon">✏️</span>書き込み
+  </button>
+  <button class="tab-btn" onclick="switchTab('roulette')">
+    <span class="tab-icon">🎰</span>ルーレット
+  </button>
+</div>
+
+<!-- ===================== TAB 1: DIALOG ===================== -->
+<div id="tab-dialog" class="tab-panel active">
+
+  <div class="scene-header">
+    <h2>🎭 シーン：タレントショーの前日</h2>
+    <p>DanielとEmmaが、学校のタレントショーについて話しています。</p>
+  </div>
+
+  <div class="dialog-controls">
+    <button class="ctrl-btn gold" onclick="readAll()">▶ 全部読む</button>
+    <button class="ctrl-btn outline" id="jp-toggle-btn" onclick="toggleAllJp()">🇯🇵 日本語を表示</button>
+    <button class="ctrl-btn blue" onclick="stopSpeech()">⏹ 止める</button>
+  </div>
+
+  <!-- Line 1 -->
+  <div class="line-card" id="line-1">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">🧑</span>
+      <div class="speaker-name">Daniel</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en">Do you <span class="key">know</span> the Japanese dancer, <span class="key">EBIKEN</span>?</div>
+      <div class="line-jp hidden">日本人のダンサー、EBIKENを知っていますか？</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('Do you know the Japanese dancer, Eh bee ken?')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('Do you know the Japanese dancer, Eh bee ken?')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line 2 -->
+  <div class="line-card mao" id="line-2">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">👧</span>
+      <div class="speaker-name">Emma</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en">Yes, I <span class="key">do</span>. I <span class="key">want to dance</span> like EBIKEN.</div>
+      <div class="line-jp hidden">はい、知っています。EBIKENのように踊りたいです。</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('Yes, I do. I want to dance like Eh bee ken.')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('Yes, I do. I want to dance like Eh bee ken.')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line 3 -->
+  <div class="line-card" id="line-3">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">🧑</span>
+      <div class="speaker-name">Daniel</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en"><span class="key">Can you dance</span>?</div>
+      <div class="line-jp hidden">あなたは踊れますか？</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('Can you dance?')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('Can you dance?')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line 4 -->
+  <div class="line-card mao" id="line-4">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">👧</span>
+      <div class="speaker-name">Emma</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en">Yes, I <span class="key">can</span>.</div>
+      <div class="line-jp hidden">はい、踊れます。</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('Yes, I can.')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('Yes, I can.')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line 5 -->
+  <div class="line-card" id="line-5">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">🧑</span>
+      <div class="speaker-name">Daniel</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en"><span class="key">Let's dance</span> at our <span class="key">talent show</span>. What can you do?</div>
+      <div class="line-jp hidden">タレントショーで一緒に踊りましょう。あなたは何ができますか？</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('Let\'s dance at our talent show. What can you do?')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('Let\'s dance at our talent show. What can you do?')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line 6 -->
+  <div class="line-card mao" id="line-6">
+    <div class="speaker-badge">
+      <span class="speaker-avatar">👧</span>
+      <div class="speaker-name">Emma</div>
+    </div>
+    <div class="line-body">
+      <div class="line-en">I can do the <span class="key">bon dance</span>.</div>
+      <div class="line-jp hidden">私は盆踊りができます。</div>
+      <div class="line-actions">
+        <button class="speak-btn en" onclick="speak('I can do the bon dance.')">🔊 読む</button>
+        <button class="speak-btn slow" onclick="speakSlow('I can do the bon dance.')">🐢 ゆっくり</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== TAB 2: PRACTICE ===================== -->
+<div id="tab-practice" class="tab-panel">
+
+  <!-- Role Play -->
+  <div class="practice-section">
+    <h3>🎭 ロールプレイ — 役を選んで練習しよう</h3>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px;">自分の役を選ぶと、相手の台詞を自動で読み上げます。青いカードをクリックしたら音が出ます。</p>
+    <div class="role-select">
+      <button class="role-btn" id="role-daniel" onclick="selectRole('Daniel')">
+        <span class="role-avatar">🧑</span>
+        Daniel役
+      </button>
+      <button class="role-btn" id="role-mao" onclick="selectRole('Emma')">
+        <span class="role-avatar">👧</span>
+        Emma役
+      </button>
+    </div>
+    <div class="roleplay-script" id="roleplay-script"></div>
+  </div>
+
+  <!-- Listening Quiz -->
+  <div class="practice-section">
+    <h3>🎧 リスニングクイズ</h3>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:14px;">音声を聞いて、正しい文を選ぼう！</p>
+    <div id="lq-area"></div>
+    <button class="ctrl-btn gold" onclick="nextLQ()" id="lq-next-btn" style="margin-top:14px;">次の問題 ▶</button>
+  </div>
+
+</div>
+
+<!-- ===================== TAB 3: WRITING ===================== -->
+<div id="tab-writing" class="tab-panel">
+
+  <div class="worksheet-header">
+    <h2>✏️ Try it!</h2>
+  </div>
+
+  <!-- Q1 -->
+  <div class="fill-card">
+    <div class="q-num">Question 1</div>
+    <div class="q-jp">日本人のダンサー、EBIKENを知っていますか？</div>
+    <div class="q-en">
+      Do you <span class="reveal-bar" onclick="toggleReveal(this)">know</span> the Japanese dancer, EBIKEN?
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="fill-card">
+    <div class="q-num">Question 2</div>
+    <div class="q-jp">はい、知っています。EBIKENのように踊りたいです。</div>
+    <div class="q-en">
+      Yes, I <span class="reveal-bar" onclick="toggleReveal(this)">do</span>. I <span class="reveal-bar" onclick="toggleReveal(this)">want</span> to dance like EBIKEN.
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="fill-card">
+    <div class="q-num">Question 3</div>
+    <div class="q-jp">あなたは踊れますか？</div>
+    <div class="q-en">
+      <span class="reveal-bar" onclick="toggleReveal(this)">Can</span> you <span class="reveal-bar" onclick="toggleReveal(this)">dance</span>?
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="fill-card">
+    <div class="q-num">Question 4</div>
+    <div class="q-jp">タレントショーで一緒に踊りましょう。あなたは何ができますか？</div>
+    <div class="q-en">
+      Let's <span class="reveal-bar" onclick="toggleReveal(this)">dance</span> at our talent show. What <span class="reveal-bar" onclick="toggleReveal(this)">can</span> you do?
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="fill-card">
+    <div class="q-num">Question 5</div>
+    <div class="q-jp">私は盆踊りができます。</div>
+    <div class="q-en">
+      I <span class="reveal-bar" onclick="toggleReveal(this)">can</span> do the <span class="reveal-bar" onclick="toggleReveal(this)">bon</span> dance.
+    </div>
+  </div>
+
+  <button class="ctrl-btn outline" style="margin:16px auto;display:block;" onclick="resetReveal()">🔄 全部隠す</button>
+
+  <!-- 日本語→英語 全文カード -->
+  <div style="margin-top:32px;">
+    <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">🇯🇵 → 🇺🇸 日本語を見て英語で言ってみよう</h3>
+    <div style="margin-bottom:16px;"></div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">日本人のダンサー、EBIKENを知っていますか？</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">Do you know the Japanese dancer, EBIKEN?</div>
+    </div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">はい、知っています。EBIKENのように踊りたいです。</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">Yes, I do. I want to dance like EBIKEN.</div>
+    </div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">あなたは踊れますか？</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">Can you dance?</div>
+    </div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">はい、踊れます。</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">Yes, I can.</div>
+    </div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">タレントショーで一緒に踊りましょう。あなたは何ができますか？</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">Let's dance at our talent show. What can you do?</div>
+    </div>
+
+    <div class="fill-card">
+      <div class="q-jp" style="font-size:1.05rem;font-weight:700;color:var(--text);">私は盆踊りができます。</div>
+      <div class="reveal-bar reveal-full" onclick="toggleReveal(this)" style="margin-top:12px;min-width:0;width:100%;display:block;padding:8px 14px;border-radius:10px;text-align:left;">I can do the bon dance.</div>
+    </div>
+
+    <button class="ctrl-btn outline" style="margin:16px auto;display:block;" onclick="resetRevealFull()">🔄 全部隠す</button>
+  </div>
+
+  <!-- Free Writing -->
+  <div class="free-write-area">
+    <h3>🖊️ 自由記述 — 自分のことを書いてみよう</h3>
+    <p class="write-prompt">あなたは何ができますか？ <strong>Can you ~?</strong> や <strong>I can ~.</strong> を使って、自分のことを書いてみよう。</p>
+    <textarea class="big-textarea" placeholder="例：Can you play soccer? / Yes, I can. I can play guitar, too."></textarea>
+    <p style="margin-top:12px;color:var(--muted);font-size:0.88rem;">↑ここに自由に書いてOK！保存したいときは画面をスクショしてね📸</p>
+
+    <p class="write-prompt" style="margin-top:20px;">友達や先生との会話を書いてみよう（ダイアログ練習）：</p>
+    <textarea class="big-textarea" placeholder="A: Can you ___________?&#10;B: Yes, I can. / No, I can't.&#10;A: What can you do?&#10;B: I can ___________."></textarea>
+  </div>
+
+</div>
+
+<!-- ===================== TAB 4: ROULETTE ===================== -->
+<div id="tab-roulette" class="tab-panel">
+  <div class="roulette-area">
+
+    <div class="roulette-question">
+      <h3>今日の質問：</h3>
+      <div class="q-display" id="rq-display">
+        <span class="q-highlight">Can you</span> dance?
+      </div>
+    </div>
+
+
+    <div class="roulette-wheel">
+      <div class="wheel-pointer">▼</div>
+      <canvas id="rouletteCanvas" width="280" height="280"></canvas>
+    </div>
+
+    <button class="spin-btn" id="spin-btn" onclick="spinWheel()">🎰 スタート！</button>
+
+    <div class="result-display" id="result-display">
+      ← スタートボタンを押してね！
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== TAB 2: VOCAB ===================== -->
+<div id="tab-vocab" class="tab-panel">
+
+  <div class="vocab-controls">
+    <button class="ctrl-btn gold" onclick="flipMode('en')">🇺🇸 英語→日本語</button>
+    <button class="ctrl-btn orange" onclick="flipMode('ja')">🇯🇵 日本語→英語</button>
+    <button class="ctrl-btn outline" onclick="resetAllCards()">🔄 全部戻す</button>
+  </div>
+
+  <div class="vocab-grid" id="vocab-grid"></div>
+</div>
+
+<!-- CONFETTI -->
+<div class="confetti-container" id="confetti"></div>
+
+<script>
+// ===================== TTS =====================
+function getEnVoice() {
+  const voices = speechSynthesis.getVoices().filter(v =>
+    v.lang.startsWith('en') && !v.name.toLowerCase().includes('japanese'));
+  if (!voices.length) return null;
+  const score = v => {
+    const n = v.name.toLowerCase();
+    let s = 0;
+    if (n.includes('natural')) s += 8;
+    if (n.includes('google')) s += 6;
+    if (n.includes('online')) s += 4;
+    if (n.includes('aria') || n.includes('jenny') || n.includes('emma')) s += 2;
+    if (v.lang.startsWith('en-US')) s += 1;
+    return s;
+  };
+  return voices.sort((a, b) => score(b) - score(a))[0];
+}
+
+function speakName(name, question, preferMale = false) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const isJapanese = /[぀-ヿ一-鿿]/.test(name);
+  const u1 = new SpeechSynthesisUtterance(name + '!');
+  u1.lang = isJapanese ? 'ja-JP' : 'en-US';
+  if (isJapanese) {
+    const jaVoices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('ja'));
+    const maleKeywords = ['ichiro', 'keita', 'male', 'man', 'haruto', 'takumi'];
+    const femaleKeywords = ['haruka', 'female', 'woman', 'ayumi', 'kyoko', 'nanami'];
+    let picked = null;
+    if (preferMale) {
+      picked = jaVoices.find(v => maleKeywords.some(k => v.name.toLowerCase().includes(k)));
+      if (!picked) picked = jaVoices.find(v => !femaleKeywords.some(k => v.name.toLowerCase().includes(k)));
+    }
+    if (!picked) picked = jaVoices[0];
+    if (picked) u1.voice = picked;
+  } else {
+    const v = getEnVoice(); if (v) u1.voice = v;
+  }
+  u1.rate = 0.9;
+  u1.onend = () => { setTimeout(() => speak(question), 300); };
+  speechSynthesis.speak(u1);
+}
+
+function speak(text, rate = 0.85) {
+  if (!window.speechSynthesis) return;
+  // EBIKEN は人名なので「エビケン」と読ませる
+  text = text.replace(/EBIKEN/gi, 'Eh bee ken');
+  speechSynthesis.cancel();
+  const doSpeak = () => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    const v = getEnVoice();
+    if (v) u.voice = v;
+    u.rate = rate;
+    speechSynthesis.speak(u);
+  };
+  const voices = speechSynthesis.getVoices();
+  if (voices.length > 0) { doSpeak(); }
+  else { speechSynthesis.onvoiceschanged = () => { speechSynthesis.onvoiceschanged = null; doSpeak(); }; }
+}
+
+function speakSlow(text) { speak(text, 0.6); }
+function stopSpeech() { speechSynthesis.cancel(); }
+
+// ===================== TABS =====================
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  if (name === 'roulette') drawWheel(0);
+}
+
+// ===================== DIALOG =====================
+let jpVisible = false;
+function toggleAllJp() {
+  jpVisible = !jpVisible;
+  document.querySelectorAll('.line-jp').forEach(el => {
+    el.classList.toggle('hidden', !jpVisible);
+  });
+  document.getElementById('jp-toggle-btn').textContent = jpVisible ? '🙈 日本語を隠す' : '🇯🇵 日本語を表示';
+}
+
+const allLines = [
+  "Do you know the Japanese dancer, Eh bee ken?",
+  "Yes, I do. I want to dance like Eh bee ken.",
+  "Can you dance?",
+  "Yes, I can.",
+  "Let's dance at our talent show. What can you do?",
+  "I can do the bon dance."
+];
+
+function readAll() {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  let i = 0;
+  const doSpeak = () => {
+    if (i >= allLines.length) return;
+    const u = new SpeechSynthesisUtterance(allLines[i]);
+    u.lang = 'en-US';
+    const v = getEnVoice();
+    if (v) u.voice = v;
+    u.rate = 0.85;
+    u.onend = () => { i++; setTimeout(doSpeak, 600); };
+    speechSynthesis.speak(u);
+  };
+  const voices = speechSynthesis.getVoices();
+  if (voices.length > 0) { doSpeak(); }
+  else { speechSynthesis.onvoiceschanged = () => { speechSynthesis.onvoiceschanged = null; doSpeak(); }; }
+}
+
+// ===================== PRACTICE - ROLE PLAY =====================
+const dialog = [
+  { speaker: 'Daniel', text: "Do you know the Japanese dancer, Eh bee ken?" },
+  { speaker: 'Emma',    text: "Yes, I do. I want to dance like Eh bee ken." },
+  { speaker: 'Daniel', text: "Can you dance?" },
+  { speaker: 'Emma',    text: "Yes, I can." },
+  { speaker: 'Daniel', text: "Let's dance at our talent show. What can you do?" },
+  { speaker: 'Emma',    text: "I can do the bon dance." }
+];
+
+let selectedRole = null;
+
+function selectRole(role) {
+  selectedRole = role;
+  document.getElementById('role-daniel').classList.toggle('selected', role === 'Daniel');
+  document.getElementById('role-mao').classList.toggle('selected', role === 'Emma');
+  renderRoleplay();
+}
+
+function renderRoleplay() {
+  const container = document.getElementById('roleplay-script');
+  container.innerHTML = '';
+  dialog.forEach((line, i) => {
+    const div = document.createElement('div');
+    const isMyTurn = line.speaker === selectedRole;
+    const avatar = line.speaker === 'Daniel' ? '🧑' : '👧';
+    if (isMyTurn) {
+      div.className = 'roleplay-line my-turn';
+      div.innerHTML = `${avatar} <strong>${line.speaker}:</strong> ${line.text} <span style="color:var(--green)">← あなたの番！</span>`;
+    } else {
+      div.className = 'roleplay-line partner';
+      div.title = 'クリックで読み上げ';
+      div.innerHTML = `<span class="play-icon">▶️</span> ${avatar} <strong>${line.speaker}:</strong> ${line.text}`;
+      const txt = line.text;
+      div.onclick = () => speak(txt);
+    }
+    container.appendChild(div);
+  });
+}
+
+// ===================== LISTENING QUIZ =====================
+const lqData = [
+  {
+    audio: "Do you know the Japanese dancer, Eh bee ken?",
+    choices: [
+      "EBIKENのように踊りたいですか？",
+      "日本人のダンサーEBIKENを知っていますか？",
+      "EBIKENを見たことがありますか？",
+      "EBIKENは踊れますか？"
+    ],
+    ans: 1
+  },
+  {
+    audio: "I want to dance like Eh bee ken.",
+    choices: [
+      "EBIKENのように歌いたいです。",
+      "EBIKENのように走りたいです。",
+      "EBIKENのように踊りたいです。",
+      "EBIKENが好きです。"
+    ],
+    ans: 2
+  },
+  {
+    audio: "Can you dance?",
+    choices: [
+      "一緒に踊りましょう。",
+      "あなたは踊りたいですか？",
+      "あなたは踊れますか？",
+      "あなたはダンサーですか？"
+    ],
+    ans: 2
+  },
+  {
+    audio: "Yes, I can.",
+    choices: [
+      "はい、知っています。",
+      "はい、したいです。",
+      "いいえ、できません。",
+      "はい、できます。"
+    ],
+    ans: 3
+  },
+  {
+    audio: "Let's dance at our talent show.",
+    choices: [
+      "タレントショーで歌いましょう。",
+      "タレントショーで踊りましょう。",
+      "タレントショーに行きましょう。",
+      "タレントショーを見ましょう。"
+    ],
+    ans: 1
+  },
+  {
+    audio: "I can do the bon dance.",
+    choices: [
+      "私は盆踊りが好きです。",
+      "私は盆踊りをしたいです。",
+      "私は盆踊りができます。",
+      "私は盆踊りを知っています。"
+    ],
+    ans: 2
+  }
+];
+let lqIndex = 0;
+let lqAnswered = false;
+
+function renderLQ() {
+  const area = document.getElementById('lq-area');
+  const q = lqData[lqIndex];
+  area.innerHTML = `
+    <div style="margin-bottom:14px;">
+      <button class="ctrl-btn gold" onclick="speak('${q.audio.replace(/'/g,"\\'")}')">🔊 音声を聞く</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;" id="lq-choices"></div>
+    <div id="lq-feedback" style="margin-top:12px;font-weight:800;font-size:1rem;"></div>
+  `;
+  const choicesDiv = document.getElementById('lq-choices');
+  q.choices.forEach((c, ci) => {
+    const btn = document.createElement('button');
+    btn.className = 'ctrl-btn outline';
+    btn.style.textAlign = 'left';
+    btn.style.padding = '12px 16px';
+    btn.style.borderRadius = '12px';
+    btn.style.fontSize = '0.95rem';
+    btn.textContent = (ci + 1) + '．' + c;
+    btn.onclick = () => checkLQ(ci, btn, q);
+    choicesDiv.appendChild(btn);
+  });
+  lqAnswered = false;
+}
+
+function checkLQ(ci, btn, q) {
+  if (lqAnswered) return;
+  lqAnswered = true;
+  const fb = document.getElementById('lq-feedback');
+  const allBtns = document.getElementById('lq-choices').querySelectorAll('button');
+  allBtns[q.ans].style.background = '#dcfce7';
+  allBtns[q.ans].style.borderColor = 'var(--green)';
+  allBtns[q.ans].style.color = 'var(--green)';
+  if (ci === q.ans) {
+    fb.textContent = '✅ 正解！すばらしい！';
+    fb.style.color = 'var(--green)';
+    launchConfetti();
+  } else {
+    btn.style.background = '#fee2e2';
+    btn.style.borderColor = 'var(--red)';
+    btn.style.color = 'var(--red)';
+    fb.textContent = '❌ 不正解... もう一度聞いてみよう！';
+    fb.style.color = 'var(--red)';
+  }
+}
+
+function nextLQ() {
+  lqIndex = (lqIndex + 1) % lqData.length;
+  renderLQ();
+}
+
+// ===================== FILL IN THE BLANKS =====================
+const fillGroups = [
+  { inputs: ['f1a'], result: 'r1a' },
+  { inputs: ['f2a', 'f2b'], result: 'r2a' },
+  { inputs: ['f3a', 'f3b'], result: 'r3a' },
+  { inputs: ['f4a', 'f4b'], result: 'r4a' },
+  { inputs: ['f5a', 'f5b'], result: 'r5a' }
+];
+
+function toggleReveal(el) {
+  el.classList.toggle('revealed');
+}
+
+function resetReveal() {
+  document.querySelectorAll('.reveal-bar:not(.reveal-full)').forEach(el => el.classList.remove('revealed'));
+}
+
+function resetRevealFull() {
+  document.querySelectorAll('.reveal-full').forEach(el => el.classList.remove('revealed'));
+}
+
+// ===================== ROULETTE =====================
+const students = [
+  { name: 'Lily', emoji: '🌸', speak: 'Lily' },
+  { name: 'Mia',  emoji: '🎵', speak: 'うたの' },
+  { name: 'Leo', emoji: '⚡', speak: 'りゅうせい', male: true },
+  { name: 'Ken',  emoji: '🏃', speak: 'Ken' },
+  { name: 'Noah',   emoji: '🧑', speak: 'Noah' },
+  { name: 'Emma',    emoji: '👧', speak: 'Emma' }
+];
+
+const segColors = ['#f59e0b','#fb923c','#ef4444','#a855f7','#3b82f6','#22c55e'];
+let currentAngle = 0;
+let spinning = false;
+
+const rqList = [
+  { text: '<span class="q-highlight">Can you</span> dance?',                          speak: 'Can you dance?' },
+  { text: 'Do you <span class="q-highlight">know</span> EBIKEN?',                     speak: 'Do you know Eh bee ken?' },
+  { text: 'What <span class="q-highlight">can you do</span>?',                        speak: 'What can you do?' },
+  { text: 'Can you do the <span class="q-highlight">bon dance</span>?',                speak: 'Can you do the bon dance?' },
+  { text: '<span class="q-highlight">Can you sing</span>?',                           speak: 'Can you sing?' },
+  { text: 'Can you <span class="q-highlight">play soccer</span>?',                    speak: 'Can you play soccer?' },
+  { text: 'Can you <span class="q-highlight">cook</span>?',                           speak: 'Can you cook?' },
+  { text: '<span class="q-highlight">What sport</span> can you play?',                speak: 'What sport can you play?' },
+  { text: 'Can you <span class="q-highlight">play the guitar</span>?',                speak: 'Can you play the guitar?' },
+  { text: 'Can you <span class="q-highlight">swim</span>?',                           speak: 'Can you swim?' },
+  { text: 'Can you <span class="q-highlight">run fast</span>?',                       speak: 'Can you run fast?' },
+  { text: 'Can you <span class="q-highlight">draw pictures</span> well?',             speak: 'Can you draw pictures well?' },
+  { text: 'Can you <span class="q-highlight">play the piano</span>?',                 speak: 'Can you play the piano?' },
+  { text: 'Can you <span class="q-highlight">jump rope</span>?',                      speak: 'Can you jump rope?' },
+  { text: 'What <span class="q-highlight">music</span> do you like?',                 speak: 'What music do you like?' },
+  { text: 'Can you <span class="q-highlight">do a handstand</span>?',                 speak: 'Can you do a handstand?' },
+  { text: 'What <span class="q-highlight">animal</span> do you like?',                speak: 'What animal do you like?' },
+  { text: 'What <span class="q-highlight">can you do</span> at school?',              speak: 'What can you do at school?' },
+  { text: 'Can you <span class="q-highlight">play basketball</span>?',                speak: 'Can you play basketball?' },
+  { text: 'Can you <span class="q-highlight">eat spicy food</span>?',                 speak: 'Can you eat spicy food?' },
+  { text: 'Do you <span class="q-highlight">know any</span> English songs?',          speak: 'Do you know any English songs?' },
+  { text: 'Can you <span class="q-highlight">whistle</span>? 🎵',                          speak: 'Can you whistle?' },
+  { text: 'Can you <span class="q-highlight">wink</span>? 😉',                             speak: 'Can you wink?' },
+  { text: 'Can you <span class="q-highlight">make a funny face</span>? 😜',                speak: 'Can you make a funny face?' },
+  { text: 'Can you <span class="q-highlight">speak like a robot</span>? 🤖',               speak: 'Can you speak like a robot?' },
+  { text: 'Can you <span class="q-highlight">do a magic trick</span>? 🪄',                 speak: 'Can you do a magic trick?' },
+  { text: 'Do you <span class="q-highlight">like video games</span>? 🎮',                  speak: 'Do you like video games?' },
+  { text: 'Can you <span class="q-highlight">eat natto</span>? 😅',                        speak: 'Can you eat natto?' },
+];
+let rqIndex = 0;
+
+function drawWheel(angle) {
+  const canvas = document.getElementById('rouletteCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = 140, cy = 140, r = 135;
+  const seg = (Math.PI * 2) / students.length;
+  ctx.clearRect(0, 0, 280, 280);
+  students.forEach((s, i) => {
+    const start = angle + i * seg - Math.PI / 2;
+    const end = start + seg;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, start, end);
+    ctx.fillStyle = segColors[i];
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(start + seg / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 14px Nunito, sans-serif';
+    ctx.fillText(s.name, r - 12, 5);
+    ctx.font = '18px serif';
+    ctx.fillText(s.emoji, r - 70, 7);
+    ctx.restore();
+  });
+  // Center circle
+  ctx.beginPath();
+  ctx.arc(cx, cy, 28, 0, Math.PI * 2);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  ctx.strokeStyle = '#e2e8f0';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.font = 'bold 18px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#f59e0b';
+  ctx.fillText('🎰', cx, cy + 7);
+}
+
+let audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+
+function playTick(volume) {
+  const ctx = getAudioCtx();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+  osc.frequency.value = 800 + Math.random() * 200;
+  gain.gain.setValueAtTime(volume, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+  osc.start(ctx.currentTime);
+  osc.stop(ctx.currentTime + 0.04);
+}
+
+function playFanfare() {
+  const ctx = getAudioCtx();
+  const notes = [523, 659, 784, 1047];
+  notes.forEach((freq, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'sine';
+    const t = ctx.currentTime + i * 0.15;
+    gain.gain.setValueAtTime(0.25, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+    osc.start(t);
+    osc.stop(t + 0.25);
+  });
+}
+
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
+  document.getElementById('spin-btn').disabled = true;
+  document.getElementById('result-display').textContent = '🎰 回転中...';
+
+  const totalRotation = (Math.random() * 4 + 6) * Math.PI * 2;
+  const duration = 3500;
+  const start = performance.now();
+  const startAngle = currentAngle;
+  let lastTickAngle = currentAngle;
+  const tickInterval = (Math.PI * 2) / students.length;
+
+  function animate(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 4);
+    currentAngle = startAngle + totalRotation * ease;
+    drawWheel(currentAngle);
+
+    // セグメントを1つ越えるたびにチッと鳴らす
+    if (Math.abs(currentAngle - lastTickAngle) >= tickInterval) {
+      const volume = 0.1 + 0.25 * (1 - progress);
+      playTick(volume);
+      lastTickAngle = currentAngle;
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      spinning = false;
+      document.getElementById('spin-btn').disabled = false;
+      playFanfare();
+      showResult();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function showResult() {
+  const seg = (Math.PI * 2) / students.length;
+  const normalized = ((-currentAngle % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+  const idx = Math.floor(normalized / seg) % students.length;
+  const s = students[idx];
+  const rd = document.getElementById('result-display');
+  rqIndex = Math.floor(Math.random() * rqList.length);
+  const q = rqList[rqIndex];
+  const isYesNo = /^(Can|Do)\b/i.test(q.speak);
+  document.getElementById('rq-display').innerHTML = q.text + (isYesNo ? ' <span style="color:#ef4444;font-size:1.4rem;font-weight:900;">⤴</span>' : '');
+  rd.innerHTML = `${s.emoji} <strong>${s.name}</strong> の番です！`;
+  launchConfetti();
+  speakName(s.speak, rqList[rqIndex].speak, s.male === true);
+}
+
+// ===================== CONFETTI =====================
+function launchConfetti() {
+  const container = document.getElementById('confetti');
+  container.innerHTML = '';
+  const colors = ['#f59e0b','#fb923c','#ef4444','#a855f7','#3b82f6','#22c55e','#ec4899'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.top = '-20px';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.width = (8 + Math.random() * 8) + 'px';
+    piece.style.height = (8 + Math.random() * 8) + 'px';
+    piece.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+    piece.style.animationDelay = Math.random() * 0.5 + 's';
+    container.appendChild(piece);
+  }
+  setTimeout(() => container.innerHTML = '', 4000);
+}
+
+// ===================== VOCAB CARDS =====================
+const vocabData = [
+  { en: 'know',        pos: '動詞',   ja: '知っている',   ex: 'Do you know EBIKEN?' },
+  { en: 'dancer',      pos: '名詞',   ja: 'ダンサー',     ex: 'She is a great dancer.' },
+  { en: 'want to ~',   pos: '動詞句', ja: '〜したい',     ex: 'I want to dance.' },
+  { en: 'dance',       pos: '動詞',   ja: '踊る',         ex: 'Can you dance?' },
+  { en: 'can',         pos: '助動詞', ja: '〜できる',     ex: 'I can do it.' },
+  { en: 'talent show', pos: '名詞',   ja: 'タレントショー', ex: "Let's dance at our talent show." },
+  { en: 'bon dance',   pos: '名詞',   ja: '盆踊り',       ex: 'I can do the bon dance.' },
+];
+
+let currentMode = 'en'; // 'en' = 表: 英語, 'ja' = 表: 日本語
+
+function buildVocabCards() {
+  const grid = document.getElementById('vocab-grid');
+  grid.innerHTML = '';
+  vocabData.forEach((w, i) => {
+    const card = document.createElement('div');
+    card.className = 'flip-card';
+    card.id = 'vc-' + i;
+    card.onclick = () => {
+      card.classList.toggle('flipped');
+      // めくって開いたときに単語の発音を自動再生
+      if (card.classList.contains('flipped')) speak(w.en.replace('~', ''));
+    };
+    card.innerHTML = buildCardHTML(w, currentMode);
+    grid.appendChild(card);
+  });
+}
+
+function buildCardHTML(w, mode) {
+  const speakText = w.en.replace('~', '');
+  if (mode === 'en') {
+    return `
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-en">${w.en}</div>
+          <div class="flip-pos">${w.pos}</div>
+          <button class="flip-speak" onclick="event.stopPropagation();speak('${speakText}')">🔊 読む</button>
+          <div class="flip-hint" style="margin-top:8px;">タップで日本語を確認</div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-ja">${w.ja}</div>
+          <div class="flip-ex">${w.ex}</div>
+          <button class="flip-speak" onclick="event.stopPropagation();speak('${w.ex}')">🔊 例文</button>
+        </div>
+      </div>`;
+  } else {
+    return `
+      <div class="flip-inner">
+        <div class="flip-front">
+          <div class="flip-en" style="font-size:1.3rem;">${w.ja}</div>
+          <div class="flip-pos">${w.pos}</div>
+          <div class="flip-hint" style="margin-top:8px;">タップで英語を確認</div>
+        </div>
+        <div class="flip-back">
+          <div class="flip-en">${w.en}</div>
+          <div class="flip-ex">${w.ex}</div>
+          <button class="flip-speak" onclick="event.stopPropagation();speak('${speakText}')">🔊 読む</button>
+        </div>
+      </div>`;
+  }
+}
+
+function flipMode(mode) {
+  currentMode = mode;
+  buildVocabCards();
+}
+
+function resetAllCards() {
+  document.querySelectorAll('.flip-card').forEach(c => c.classList.remove('flipped'));
+}
+
+// ===================== INIT =====================
+window.addEventListener('load', () => {
+  renderLQ();
+  drawWheel(0);
+  buildVocabCards();
+});
+</script>
+</body>
+</html>

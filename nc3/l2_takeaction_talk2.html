@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>NEW CROWN 3 — Lesson 2 Take Action Talk 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fff8f0;
+  --card: #ffffff;
+  --gold: #f59e0b;
+  --gold2: #d97706;
+  --orange: #fb923c;
+  --blue: #3b82f6;
+  --blue2: #1d4ed8;
+  --green: #16a34a;
+  --red: #dc2626;
+  --dark: #1c1917;
+  --gray: #78716c;
+  --shadow: 0 4px 20px rgba(245,158,11,0.18);
+  --radius: 20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body {
+  font-family: 'Nunito', 'Noto Sans JP', sans-serif;
+  font-size: 20px;
+  background: var(--bg);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ── SCREENS ── */
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: white;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.back-btn {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.top-bar-title { font-size: 1.1rem; font-weight: 900; flex: 1; }
+.prog-wrap { flex: 2; }
+.prog-outer { height: 10px; background: #e5e7eb; border-radius: 10px; }
+.prog-inner {
+  height: 10px; border-radius: 10px;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+  transition: width .4s;
+}
+.prog-label { font-size: .72rem; color: var(--gray); text-align: right; margin-top: 2px; }
+
+/* ── HOME ── */
+#home {
+  background: linear-gradient(160deg, #fef3c7 0%, #fff8f0 50%, #fde8d0 100%);
+  align-items: center;
+  padding-bottom: 48px;
+}
+.home-hero {
+  width: 100%;
+  padding: 36px 24px 20px;
+  text-align: center;
+}
+.home-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: white;
+  font-size: .82rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 5px 18px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+.home-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+.home-title span { color: var(--gold2); }
+.home-sub { font-size: 1rem; color: var(--gray); margin-bottom: 28px; }
+.artist-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border-radius: 28px;
+  padding: 18px 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  border: 3px solid var(--gold);
+}
+.artist-emoji { font-size: 4rem; margin-bottom: 8px; }
+.artist-name { font-size: 1.5rem; font-weight: 900; color: var(--dark); }
+.artist-sub { font-size: .9rem; color: var(--gray); }
+.word-count-badge {
+  display: inline-block;
+  background: #fef3c7;
+  border: 2px solid var(--gold);
+  color: var(--gold2);
+  font-size: .9rem;
+  font-weight: 900;
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 28px;
+}
+.home-menu {
+  width: 100%;
+  max-width: 420px;
+  padding: 0 20px;
+}
+.menu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.menu-card {
+  background: white;
+  border-radius: 22px;
+  padding: 24px 14px;
+  text-align: center;
+  cursor: pointer;
+  border: 2.5px solid transparent;
+  box-shadow: var(--shadow);
+  transition: all .2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.menu-card:hover { transform: translateY(-4px); }
+.menu-card:active { transform: scale(.96); }
+.menu-icon { font-size: 2.6rem; }
+.menu-name { font-size: 1.1rem; font-weight: 900; }
+.menu-sub { font-size: .75rem; color: var(--gray); font-weight: 700; }
+.menu-card.c-gold   { border-top: 5px solid var(--gold);   }
+.menu-card.c-gold:hover { border-color: var(--gold); }
+.menu-card.c-blue   { border-top: 5px solid var(--blue);   }
+.menu-card.c-blue:hover { border-color: var(--blue); }
+.menu-card.c-green  { border-top: 5px solid var(--green);  }
+.menu-card.c-green:hover { border-color: var(--green); }
+.menu-card.c-orange { border-top: 5px solid var(--orange); }
+.menu-card.c-orange:hover { border-color: var(--orange); }
+.menu-full { grid-column: 1 / -1; }
+
+/* ── FLIP CARDS ── */
+#vocab { background: var(--bg); overflow-y: auto; }
+.vocab-mode-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  width: 100%;
+}
+.mode-toggle-btn {
+  padding: 9px 24px;
+  border-radius: 30px;
+  border: 2.5px solid #e5e7eb;
+  font-size: .95rem;
+  font-weight: 900;
+  cursor: pointer;
+  background: white;
+  color: var(--gray);
+  font-family: inherit;
+  transition: all .2s;
+}
+.mode-toggle-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
+.flip-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 20px;
+  gap: 18px;
+  width: 100%;
+}
+.flip-counter-text { font-size: 1rem; font-weight: 900; color: var(--gray); }
+.flip-card-wrap {
+  width: 100%; max-width: 420px;
+  cursor: pointer;
+  position: relative;
+}
+.flip-face {
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 28px;
+  min-height: 220px;
+  box-shadow: 0 8px 32px rgba(245,158,11,0.22);
+}
+.flip-face.hidden { display: none; }
+.flip-front {
+  background: linear-gradient(135deg, var(--gold2), var(--gold), var(--orange));
+  color: white;
+}
+.flip-back {
+  background: white;
+  border: 3px solid var(--gold);
+}
+.flip-pos-badge {
+  font-size: .85rem;
+  font-weight: 900;
+  padding: 4px 16px;
+  border-radius: 20px;
+}
+.flip-front .flip-pos-badge { background: rgba(255,255,255,0.28); color: white; }
+.flip-back .flip-pos-badge { background: #fef3c7; color: var(--gold2); }
+.flip-main { font-size: 2.6rem; font-weight: 900; text-align: center; line-height: 1.2; }
+.flip-front .flip-main { color: white; }
+.flip-back .flip-main { color: var(--gold2); font-size: 2.2rem; }
+.flip-sub { font-size: 1rem; font-weight: 700; text-align: center; opacity: .85; }
+.flip-tap-hint { font-size: .78rem; opacity: .6; margin-top: 4px; }
+.flip-speak-row {
+  display: flex; gap: 10px;
+  width: 100%; max-width: 420px;
+}
+.flip-speak-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 16px;
+  background: white;
+  border: 2.5px solid var(--gold);
+  color: var(--gold2);
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.flip-speak-btn:hover { background: var(--gold); color: white; }
+.flip-example-box {
+  width: 100%; max-width: 420px;
+  background: white;
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--orange);
+}
+.flip-ex-en { font-size: 1.05rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.6; }
+.flip-ex-ja { font-size: .95rem; color: var(--gray); }
+.ex-hl-en { color: var(--gold2); font-weight: 900; border-bottom: 2px solid var(--gold); }
+.flip-nav {
+  display: flex; gap: 12px;
+  width: 100%; max-width: 420px;
+}
+.flip-prev, .flip-next {
+  flex: 1;
+  padding: 15px;
+  border-radius: 16px;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all .2s;
+}
+.flip-prev { background: #e5e7eb; color: var(--dark); }
+.flip-prev:hover { background: #d1d5db; }
+.flip-prev:disabled { opacity: .4; cursor: default; }
+.flip-next { background: linear-gradient(90deg, var(--gold), var(--orange)); color: white; }
+.flip-next:hover { transform: scale(1.02); }
+.flip-next:disabled { opacity: .4; cursor: default; }
+
+/* ── QUIZ ── */
+#quiz { background: var(--bg); overflow-y: auto; }
+.quiz-area {
+  flex: 1;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+.quiz-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quiz-q-label { font-size: 1rem; font-weight: 900; color: var(--gray); }
+.quiz-score-badge {
+  background: var(--gold);
+  color: white;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 5px 16px;
+  border-radius: 30px;
+}
+.quiz-prog-outer { height: 10px; background: #e5e7eb; border-radius: 10px; }
+.quiz-prog-inner {
+  height: 10px; border-radius: 10px;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+  transition: width .4s;
+}
+.quiz-card {
+  background: white;
+  border-radius: 22px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.quiz-label { font-size: .9rem; color: var(--gray); font-weight: 700; margin-bottom: 10px; }
+.quiz-stem {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.quiz-jp { font-size: 1.1rem; color: var(--gray); font-weight: 700; }
+.quiz-audio-btn {
+  margin-top: 10px;
+  background: #fef3c7;
+  border: 2px solid var(--gold);
+  color: var(--gold2);
+  border-radius: 30px;
+  padding: 5px 16px;
+  font-size: .9rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+}
+.quiz-opts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.quiz-opt {
+  background: white;
+  border: 2.5px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px 14px;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .15s;
+  min-height: 72px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--gold); background: #fef3c7; }
+.quiz-opt.correct { border-color: var(--green); background: #dcfce7; color: var(--green); }
+.quiz-opt.wrong   { border-color: var(--red);   background: #fee2e2; color: var(--red);   }
+.quiz-opt:disabled { cursor: default; }
+.quiz-feedback {
+  border-radius: 16px;
+  padding: 18px 20px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.ok { background: #dcfce7; border: 2px solid #bbf7d0; }
+.quiz-feedback.ng { background: #fee2e2; border: 2px solid #fecaca; }
+.quiz-fb-title { font-size: 1.3rem; font-weight: 900; margin-bottom: 6px; }
+.quiz-feedback.ok .quiz-fb-title { color: var(--green); }
+.quiz-feedback.ng .quiz-fb-title { color: var(--red); }
+.btn-next {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+  color: white;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-next:hover { transform: scale(1.01); }
+.btn-next:disabled { background: #d1d5db; cursor: default; }
+
+/* Quiz Result */
+.quiz-result {
+  background: white;
+  border-radius: 24px;
+  padding: 40px 28px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  display: none;
+}
+.quiz-result.show { display: block; }
+.result-medal { font-size: 5rem; margin-bottom: 16px; }
+.result-title { font-size: 1.6rem; font-weight: 900; color: var(--dark); margin-bottom: 8px; }
+.result-score { font-size: 2.4rem; font-weight: 900; color: var(--gold2); margin-bottom: 12px; }
+.result-msg { font-size: 1.05rem; color: var(--gray); line-height: 1.7; margin-bottom: 28px; }
+.btn-retry {
+  padding: 15px 40px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(90deg, var(--gold), var(--orange));
+  color: white;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+/* ── WORD LIST ── */
+#wordlist { background: var(--bg); overflow-y: auto; }
+.wordlist-area {
+  flex: 1;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+.word-card {
+  background: white;
+  border-radius: 20px;
+  padding: 22px 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border-left: 5px solid var(--gold);
+}
+.word-num {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--gold2);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.word-body { flex: 1; }
+.word-en {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.word-pos-badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: var(--gold2);
+  font-size: .8rem;
+  font-weight: 900;
+  padding: 2px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+.word-ja { font-size: 1.2rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+.word-ex-en { font-size: 1rem; color: var(--gray); margin-bottom: 3px; }
+.word-ex-ja { font-size: .92rem; color: var(--gray); }
+.word-speak-btn {
+  background: #fef3c7;
+  border: 2px solid var(--gold);
+  color: var(--gold2);
+  border-radius: 30px;
+  padding: 6px 14px;
+  font-size: .9rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.word-speak-btn:hover { background: var(--gold); color: white; }
+
+/* ── HONBUN ── */
+#honbun { background: var(--bg); overflow-y: auto; }
+.honbun-area {
+  flex: 1;
+  padding: 20px 18px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+.honbun-section-label {
+  font-size: .85rem;
+  font-weight: 900;
+  color: var(--gray);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 6px 0 2px;
+  border-bottom: 2px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+.sent-box {
+  background: white;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 10px rgba(245,158,11,0.10);
+  border: 1.5px solid #f3f4f6;
+}
+.sent-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.sent-tab {
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  font-family: inherit;
+  font-size: .88rem;
+  font-weight: 900;
+  color: var(--gray);
+  cursor: pointer;
+  transition: all .15s;
+}
+.sent-tab.active { background: var(--gold); color: white; border-color: var(--gold); }
+.sent-en {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.8;
+  color: var(--dark);
+  transition: filter .2s;
+}
+.sent-en .hl { color: var(--gold2); font-weight: 900; border-bottom: 2px solid var(--gold); }
+.key-word {
+  display: inline-block;
+  border-radius: 4px;
+  padding: 0 3px;
+  font-weight: 900;
+  color: var(--gold2);
+  transition: background .15s, color .15s;
+}
+.key-word.masked {
+  background: #1c1917;
+  color: transparent !important;
+  cursor: pointer;
+  border-radius: 4px;
+  min-width: 2em;
+  border-bottom: none !important;
+}
+.sent-jp {
+  font-size: 1rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-top: 6px;
+  display: none;
+}
+.sent-audio-btn {
+  background: #fef3c7;
+  border: 1.5px solid var(--gold);
+  color: var(--gold2);
+  border-radius: 100px;
+  padding: 3px 12px;
+  font-size: .82rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.sent-audio-btn:hover { background: var(--gold); color: white; }
+.honbun-all-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.all-mode-btn {
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 2px solid var(--gold);
+  background: white;
+  color: var(--gold2);
+  font-family: inherit;
+  font-size: .92rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all .15s;
+}
+.all-mode-btn:hover { background: var(--gold); color: white; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 90px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--dark);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 100px;
+  font-weight: 900;
+  font-size: 1rem;
+  z-index: 999;
+  transition: transform .3s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── CONFETTI ── */
+#confettiCanvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 900;
+}
+
+@media (max-width: 400px) {
+  .home-title { font-size: 1.9rem; }
+  .flip-main { font-size: 2rem; }
+  .quiz-stem { font-size: 1.4rem; }
+  .quiz-opt { font-size: 1.05rem; min-height: 64px; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="confettiCanvas"></canvas>
+
+<!-- ─────────── HOME ─────────── -->
+<div class="screen active" id="home">
+  <div class="home-hero">
+    <div class="home-badge">📘 NEW CROWN 3 · Lesson 2 · Take Action Talk 2</div>
+    <div class="home-title">Help! by the <span>Beatles</span></div>
+    <p class="home-sub">中3 · 新出単語をマスターしよう！</p>
+    <div class="artist-card">
+      <div class="artist-emoji">🎵</div>
+      <div class="artist-name">The Beatles</div>
+      <div class="artist-sub">イギリス出身の伝説的ロックバンド</div>
+    </div>
+    <div class="word-count-badge">📚 今日の単語：12語</div>
+  </div>
+  <div class="home-menu">
+    <div class="menu-row">
+      <div class="menu-card c-gold" onclick="goTo('vocab')">
+        <div class="menu-icon">🃏</div>
+        <div class="menu-name">単語カード</div>
+        <div class="menu-sub">タップでひっくり返す</div>
+      </div>
+      <div class="menu-card c-blue" onclick="startQuiz()">
+        <div class="menu-icon">🎯</div>
+        <div class="menu-name">クイズ</div>
+        <div class="menu-sub">24問チャレンジ</div>
+      </div>
+    </div>
+    <div class="menu-row">
+      <div class="menu-card c-green" onclick="goTo('wordlist')">
+        <div class="menu-icon">📖</div>
+        <div class="menu-name">単語一覧</div>
+        <div class="menu-sub">意味・例文をチェック</div>
+      </div>
+      <div class="menu-card c-orange" onclick="goTo('honbun')">
+        <div class="menu-icon">📄</div>
+        <div class="menu-name">本文</div>
+        <div class="menu-sub">タップで文字を表示</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── FLIP CARDS ─────────── -->
+<div class="screen" id="vocab">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goTo('home')">←</button>
+    <div class="top-bar-title">🃏 単語カード</div>
+    <div class="prog-wrap">
+      <div class="prog-outer"><div class="prog-inner" id="flipProg" style="width:8%"></div></div>
+      <div class="prog-label" id="flipProgLabel">1 / 12</div>
+    </div>
+  </div>
+  <div class="vocab-mode-bar">
+    <button class="mode-toggle-btn active" id="modeEN" onclick="setFlipMode('en')">英 → 日</button>
+    <button class="mode-toggle-btn" id="modeJP" onclick="setFlipMode('jp')">日 → 英</button>
+  </div>
+  <div class="flip-area">
+    <div class="flip-counter-text" id="flipCounter">1 / 12</div>
+    <div class="flip-card-wrap" id="flipWrap" onclick="flipCard()">
+      <div class="flip-face flip-front" id="flipFront">
+        <div class="flip-pos-badge" id="fPosFront"></div>
+        <div class="flip-main" id="fMainFront"></div>
+        <div class="flip-sub" id="fSubFront"></div>
+        <div class="flip-tap-hint">👆 タップでひっくり返す</div>
+      </div>
+      <div class="flip-face flip-back hidden" id="flipBack">
+        <div class="flip-pos-badge" id="fPosBack"></div>
+        <div class="flip-main" id="fMainBack"></div>
+        <div class="flip-sub" id="fSubBack"></div>
+        <div class="flip-tap-hint">👆 もう一度タップで戻る</div>
+      </div>
+    </div>
+    <div class="flip-speak-row">
+      <button class="flip-speak-btn" onclick="speakCurrent()">🔊 英語で聞く</button>
+    </div>
+    <div class="flip-example-box">
+      <div class="flip-ex-en" id="flipExEn"></div>
+      <div class="flip-ex-ja" id="flipExJa"></div>
+    </div>
+    <div class="flip-nav">
+      <button class="flip-prev" id="flipPrev" onclick="moveFlip(-1)">◀ 前</button>
+      <button class="flip-next" id="flipNext" onclick="moveFlip(1)">次 ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────── QUIZ ─────────── -->
+<div class="screen" id="quiz">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goTo('home')">←</button>
+    <div class="top-bar-title">🎯 クイズ</div>
+    <div class="prog-wrap">
+      <div class="quiz-prog-outer"><div class="quiz-prog-inner" id="quizProg" style="width:0%"></div></div>
+      <div class="prog-label" id="quizProgLabel">0 / 24</div>
+    </div>
+  </div>
+  <div class="quiz-area" id="quizArea"></div>
+</div>
+
+<!-- ─────────── HONBUN ─────────── -->
+<div class="screen" id="honbun">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goTo('home')">←</button>
+    <div class="top-bar-title">📄 本文 — Take Action Talk 2</div>
+  </div>
+  <div class="honbun-area">
+    <div class="honbun-all-bar">
+      <button class="all-mode-btn" onclick="setAllMode('en')">📖 全部表示</button>
+      <button class="all-mode-btn" onclick="setAllMode('hide')">⬛ 全部隠す</button>
+      <button class="all-mode-btn" onclick="setAllMode('jp')">🇯🇵 全部日本語</button>
+      <button class="all-mode-btn" style="border-color:var(--red);color:var(--red);" onclick="resetMasks()">🔄 リセット</button>
+    </div>
+    <div id="honbunSents"></div>
+  </div>
+</div>
+
+<!-- ─────────── WORD LIST ─────────── -->
+<div class="screen" id="wordlist">
+  <div class="top-bar">
+    <button class="back-btn" onclick="goTo('home')">←</button>
+    <div class="top-bar-title">📖 単語一覧</div>
+  </div>
+  <div class="wordlist-area" id="wordlistArea"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const words = [
+  {
+    en: 'unhappy',
+    pos: '形容詞',
+    ja: '悲しい・幸せでない',
+    ex_en: 'I feel <b>unhappy</b> today.',
+    ex_ja: '今日は悲しい気持ちです。',
+    ex_plain: 'I feel unhappy today.',
+  },
+  {
+    en: 'word',
+    pos: '名詞',
+    ja: '言葉・単語',
+    ex_en: 'The song starts with the <b>word</b> "help."',
+    ex_ja: 'その歌は「ヘルプ」という単語で始まります。',
+    ex_plain: 'The song starts with the word help.',
+  },
+  {
+    en: 'throughout',
+    pos: '前置詞・副詞',
+    ja: '〜をとおして・ずっと',
+    ex_en: '<b>Throughout</b> the song, a person is feeling down.',
+    ex_ja: '歌をとおして、ある人が落ち込んでいます。',
+    ex_plain: 'Throughout the song, a person is feeling down.',
+  },
+  {
+    en: 'concern',
+    pos: '名詞',
+    ja: '心配事・悩み',
+    ex_en: 'If you sing along, you will forget your <b>concerns</b>.',
+    ex_ja: '一緒に歌えば、悩みを忘れるでしょう。',
+    ex_plain: 'If you sing along, you will forget your concerns.',
+  },
+  {
+    en: 'afraid',
+    pos: '形容詞',
+    ja: '怖がって',
+    ex_en: 'I am <b>afraid</b> of speaking in public.',
+    ex_ja: '私は人前で話すのが怖いです。',
+    ex_plain: 'I am afraid of speaking in public.',
+  },
+  {
+    en: 'passion',
+    pos: '名詞',
+    ja: '情熱',
+    ex_en: 'She has a great <b>passion</b> for music.',
+    ex_ja: '彼女は音楽への強い情熱を持っています。',
+    ex_plain: 'She has a great passion for music.',
+  },
+  {
+    en: 'person',
+    pos: '名詞',
+    ja: '人・人物',
+    ex_en: 'A <b>person</b> is asking for help in the song.',
+    ex_ja: '歌の中で、ある人が助けを求めています。',
+    ex_plain: 'A person is asking for help in the song.',
+  },
+  {
+    en: 'ask for',
+    pos: '熟語',
+    ja: '〜を求める',
+    ex_en: 'He is <b>asking for</b> help.',
+    ex_ja: '彼は助けを求めています。',
+    ex_plain: 'He is asking for help.',
+  },
+  {
+    en: 'contrast',
+    pos: '名詞',
+    ja: '対照',
+    ex_en: 'In <b>contrast</b>, the melody is upbeat.',
+    ex_ja: 'それとは対照的に、メロディーは陽気です。',
+    ex_plain: 'In contrast, the melody is upbeat.',
+  },
+  {
+    en: 'Help!',
+    pos: '曲名',
+    ja: 'ヘルプ！（曲名）',
+    ex_en: '"<b>Help!</b>" is a famous song by the Beatles.',
+    ex_ja: '「ヘルプ！」はビートルズの有名な曲です。',
+    ex_plain: 'Help! is a famous song by the Beatles.',
+  },
+  {
+    en: 'The Beatles',
+    pos: '固有名詞',
+    ja: 'ビートルズ',
+    ex_en: '<b>The Beatles</b> are a legendary band from the UK.',
+    ex_ja: 'ビートルズはイギリス出身の伝説的なバンドです。',
+    ex_plain: 'The Beatles are a legendary band from the UK.',
+  },
+  {
+    en: 'upbeat',
+    pos: '形容詞',
+    ja: '陽気な・明るい',
+    ex_en: 'The melody is <b>upbeat</b> and catchy.',
+    ex_ja: 'メロディーは陽気で覚えやすいです。',
+    ex_plain: 'The melody is upbeat and catchy.',
+  },
+];
+
+function buildQuizData() {
+  const qs = [];
+  words.forEach(w => {
+    const wrong = words.filter(x => x.en !== w.en).map(x => x.ja).sort(() => Math.random() - .5).slice(0, 3);
+    const opts = [w.ja, ...wrong].sort(() => Math.random() - .5);
+    qs.push({
+      mode: 'en→ja',
+      stem: w.en,
+      posLabel: w.pos,
+      answer: w.ja,
+      opts,
+      feedback: `「<b>${w.en}</b>」は <b>${w.ja}</b> という意味だよ！`,
+      audio: w.ex_plain,
+    });
+  });
+  words.forEach(w => {
+    const wrong = words.filter(x => x.en !== w.en).map(x => x.en).sort(() => Math.random() - .5).slice(0, 3);
+    const opts = [w.en, ...wrong].sort(() => Math.random() - .5);
+    qs.push({
+      mode: 'ja→en',
+      stem: w.ja,
+      posLabel: w.pos,
+      answer: w.en,
+      opts,
+      feedback: `「<b>${w.ja}</b>」の英語は <b>${w.en}</b> だよ！`,
+      audio: w.ex_plain,
+    });
+  });
+  return qs.sort(() => Math.random() - .5);
+}
+
+/* ============================================================
+   SPEECH（カタカナ英語防止パターン）
+============================================================ */
+let enVoice = null;
+function loadVoice() {
+  const voices = speechSynthesis.getVoices();
+  for (const lang of ['en-US', 'en-GB', 'en-AU', 'en']) {
+    const v = voices.find(v => v.lang.startsWith(lang) && !v.name.toLowerCase().includes('japanese'));
+    if (v) { enVoice = v; break; }
+  }
+  if (!enVoice) enVoice = voices.find(v => v.lang.startsWith('en')) || null;
+}
+if (window.speechSynthesis) {
+  speechSynthesis.onvoiceschanged = loadVoice;
+  loadVoice();
+}
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const doSpeak = () => {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    if (enVoice) u.voice = enVoice;
+    u.rate = 0.85;
+    speechSynthesis.speak(u);
+  };
+  const voices = speechSynthesis.getVoices();
+  if (voices.length > 0) { doSpeak(); }
+  else {
+    speechSynthesis.onvoiceschanged = () => {
+      speechSynthesis.onvoiceschanged = null;
+      doSpeak();
+    };
+  }
+}
+
+/* ============================================================
+   SCREEN NAVIGATION
+============================================================ */
+function goTo(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'vocab') { flipIdx = 0; flipMode = 'en'; isFlipped = false; showFlipFace(); renderFlip(); }
+  if (id === 'wordlist') renderWordList();
+  if (id === 'honbun') renderHonbun();
+}
+
+/* ============================================================
+   FLIP CARDS
+============================================================ */
+let flipIdx = 0, flipMode = 'en', isFlipped = false;
+
+function setFlipMode(mode) {
+  flipMode = mode;
+  document.getElementById('modeEN').classList.toggle('active', mode === 'en');
+  document.getElementById('modeJP').classList.toggle('active', mode === 'jp');
+  isFlipped = false;
+  showFlipFace();
+  renderFlip();
+}
+
+function showFlipFace() {
+  const front = document.getElementById('flipFront');
+  const back  = document.getElementById('flipBack');
+  if (!front || !back) return;
+  if (isFlipped) { front.classList.add('hidden'); back.classList.remove('hidden'); }
+  else { front.classList.remove('hidden'); back.classList.add('hidden'); }
+}
+
+function renderFlip() {
+  const w = words[flipIdx];
+  const total = words.length;
+  document.getElementById('flipCounter').textContent = `${flipIdx + 1} / ${total}`;
+  document.getElementById('flipProg').style.width = `${((flipIdx + 1) / total) * 100}%`;
+  document.getElementById('flipProgLabel').textContent = `${flipIdx + 1} / ${total}`;
+  document.getElementById('flipPrev').disabled = flipIdx === 0;
+  document.getElementById('flipNext').disabled = flipIdx === total - 1;
+
+  if (flipMode === 'en') {
+    document.getElementById('fPosFront').textContent = w.pos;
+    document.getElementById('fMainFront').textContent = w.en;
+    document.getElementById('fSubFront').textContent = '';
+    document.getElementById('fPosBack').textContent = w.pos;
+    document.getElementById('fMainBack').textContent = w.ja;
+    document.getElementById('fSubBack').textContent = '';
+  } else {
+    document.getElementById('fPosFront').textContent = w.pos;
+    document.getElementById('fMainFront').textContent = w.ja;
+    document.getElementById('fSubFront').textContent = '';
+    document.getElementById('fPosBack').textContent = w.pos;
+    document.getElementById('fMainBack').textContent = w.en;
+    document.getElementById('fSubBack').textContent = '';
+  }
+  document.getElementById('flipExEn').innerHTML = '📝 ' + w.ex_en;
+  document.getElementById('flipExJa').textContent = '→ ' + w.ex_ja;
+}
+
+function flipCard() {
+  isFlipped = !isFlipped;
+  showFlipFace();
+}
+
+function moveFlip(dir) {
+  flipIdx = Math.max(0, Math.min(words.length - 1, flipIdx + dir));
+  isFlipped = false;
+  showFlipFace();
+  renderFlip();
+}
+
+function speakCurrent() {
+  speak(words[flipIdx].ex_plain);
+}
+
+function speakHonbun(idx) {
+  const allSents = honbunData.flatMap(s => s.sents);
+  if (allSents[idx]) speak(allSents[idx].audio);
+}
+
+/* ============================================================
+   QUIZ
+============================================================ */
+let quizData = [];
+let quizIdx = 0, quizScore = 0, quizAnswered = false;
+
+function startQuiz() {
+  quizData = buildQuizData();
+  quizIdx = 0; quizScore = 0;
+  goTo('quiz');
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const total = quizData.length;
+  document.getElementById('quizProg').style.width = `${(quizIdx / total) * 100}%`;
+  document.getElementById('quizProgLabel').textContent = `${quizIdx} / ${total}`;
+
+  const q = quizData[quizIdx];
+  document.getElementById('quizArea').innerHTML = `
+    <div class="quiz-header-row">
+      <div class="quiz-q-label">問 ${quizIdx + 1} / ${total}</div>
+      <div class="quiz-score-badge">⭐ ${quizScore} pt</div>
+    </div>
+    <div class="quiz-card">
+      <div class="quiz-label">${q.mode === 'en→ja' ? '英語 → 日本語' : '日本語 → 英語'}</div>
+      <div class="quiz-stem">${q.stem}</div>
+      <button class="quiz-audio-btn" onclick="speak('${q.audio.replace(/'/g,"\\'")}')">🔊 例文を聞く</button>
+    </div>
+    <div class="quiz-opts">
+      ${q.opts.map((opt, i) => `<button class="quiz-opt" onclick="answerQuiz(${i})">${opt}</button>`).join('')}
+    </div>
+    <div class="quiz-feedback" id="qfb"></div>
+    <button class="btn-next" id="qNext" onclick="nextQuiz()" disabled>
+      ${quizIdx < total - 1 ? '次の問題 →' : '結果を見る →'}
+    </button>
+  `;
+  quizAnswered = false;
+}
+
+function answerQuiz(idx) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = quizData[quizIdx];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(o => o.disabled = true);
+  const correct = q.opts[idx] === q.answer;
+  const correctIdx = q.opts.indexOf(q.answer);
+  opts[correctIdx].classList.add('correct');
+  const fb = document.getElementById('qfb');
+  if (correct) {
+    quizScore += 10;
+    fb.className = 'quiz-feedback show ok';
+    fb.innerHTML = `<div class="quiz-fb-title">🎉 正解！ +10pt</div>${q.feedback}`;
+    showToast('🎉 正解！ +10pt');
+    playOK();
+    launchConfetti();
+  } else {
+    opts[idx].classList.add('wrong');
+    fb.className = 'quiz-feedback show ng';
+    fb.innerHTML = `<div class="quiz-fb-title">😅 惜しい！</div>${q.feedback}`;
+    showToast('😅 もう一度覚えよう！');
+    playNG();
+  }
+  document.getElementById('qNext').disabled = false;
+}
+
+function nextQuiz() {
+  quizIdx++;
+  if (quizIdx >= quizData.length) { showResult(); return; }
+  renderQuiz();
+}
+
+function showResult() {
+  const total = quizData.length;
+  const pct = Math.round((quizScore / (total * 10)) * 100);
+  let medal = '🥈', msg = 'もう一度チャレンジ！';
+  if (pct >= 90) { medal = '🏆'; msg = '完璧！ビートルズ博士に認定！'; }
+  else if (pct >= 70) { medal = '🥇'; msg = 'すごい！単語マスターに認定！'; }
+  else if (pct >= 50) { medal = '🥈'; msg = '合格ライン突破！もう少しで完璧！'; }
+  document.getElementById('quizArea').innerHTML = `
+    <div class="quiz-result show">
+      <div class="result-medal">${medal}</div>
+      <div class="result-title">クイズ完了！</div>
+      <div class="result-score">${quizScore} / ${total * 10} pt（${pct}%）</div>
+      <div class="result-msg">${msg}</div>
+      <button class="btn-retry" onclick="startQuiz()">🔄 もう一度チャレンジ</button>
+    </div>
+  `;
+}
+
+/* ============================================================
+   HONBUN
+============================================================ */
+const honbunData = [
+  {
+    section: '🎵 Take Action Talk 2 — Main Text',
+    sents: [
+      {
+        en: 'When you are <span class="key-word">unhappy</span>, you should listen to "Help!" by the Beatles.',
+        jp: '悲しいときは、ビートルズの「ヘルプ！」を聞くとよいです。',
+        audio: 'When you are unhappy, you should listen to Help! by the Beatles.',
+      },
+      {
+        en: 'The song starts with the <span class="key-word">word</span> "help."',
+        jp: 'この歌は "help" ということばで始まります。',
+        audio: 'The song starts with the word help.',
+      },
+      {
+        en: '<span class="key-word">Throughout</span> the song, a <span class="key-word">person</span> is feeling down and <span class="key-word">asking for</span> help.',
+        jp: '歌をとおして、ある人が落ち込んで助けを求めています。',
+        audio: 'Throughout the song, a person is feeling down and asking for help.',
+      },
+      {
+        en: 'You feel like this <span class="key-word">person</span> is speaking for you.',
+        jp: 'あなたは、この人があなたの気持ちを代弁しているように感じます。',
+        audio: 'You feel like this person is speaking for you.',
+      },
+      {
+        en: 'In <span class="key-word">contrast</span>, the melody is <span class="key-word">upbeat</span> and catchy.',
+        jp: 'それとは対照的に、メロディーは陽気で覚えやすいです。',
+        audio: 'In contrast, the melody is upbeat and catchy.',
+      },
+      {
+        en: 'If you sing along, you will forget your <span class="key-word">concerns</span>.',
+        jp: 'いっしょに歌えば、悩みを忘れるでしょう。',
+        audio: 'If you sing along, you will forget your concerns.',
+      },
+      {
+        en: 'This song will help you feel better.',
+        jp: 'この歌は、あなたの気持ちを楽にしてくれます。',
+        audio: 'This song will help you feel better.',
+      },
+    ]
+  },
+];
+
+function renderHonbun() {
+  let html = '';
+  honbunData.forEach(section => {
+    html += `<div class="honbun-section-label">${section.section}</div>`;
+    section.sents.forEach((s, i) => {
+      const id = `sent-${i}`;
+      html += `
+        <div class="sent-box" id="${id}">
+          <div class="sent-tabs">
+            <button class="sent-tab active" onclick="setSentMode('${id}','en',this)">📖 英語</button>
+            <button class="sent-tab" onclick="setSentMode('${id}','hide',this)">⬛ 隠す</button>
+            <button class="sent-tab" onclick="setSentMode('${id}','jp',this)">🇯🇵 日本語</button>
+            <button class="sent-audio-btn" onclick="speakHonbun(${i})">🔊</button>
+          </div>
+          <div class="sent-en" id="${id}-en">${s.en}</div>
+          <div class="sent-jp" id="${id}-jp">${s.jp}</div>
+        </div>`;
+    });
+  });
+  document.getElementById('honbunSents').innerHTML = html;
+  document.querySelectorAll('.key-word').forEach(kw => {
+    kw.addEventListener('click', () => {
+      if (kw.classList.contains('masked')) kw.classList.remove('masked');
+    });
+  });
+}
+
+function setSentMode(id, mode, btn) {
+  const enEl = document.getElementById(id + '-en');
+  const jpEl = document.getElementById(id + '-jp');
+  document.querySelectorAll(`#${id} .sent-tab`).forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  if (mode === 'en') {
+    enEl.style.display = '';
+    enEl.querySelectorAll('.key-word').forEach(kw => kw.classList.remove('masked'));
+    jpEl.style.display = 'none';
+  } else if (mode === 'hide') {
+    enEl.style.display = '';
+    enEl.querySelectorAll('.key-word').forEach(kw => kw.classList.add('masked'));
+    jpEl.style.display = 'block';
+  } else {
+    enEl.style.display = 'none';
+    enEl.querySelectorAll('.key-word').forEach(kw => kw.classList.remove('masked'));
+    jpEl.style.display = 'block';
+  }
+}
+
+function resetMasks() {
+  document.querySelectorAll('.key-word').forEach(kw => kw.classList.add('masked'));
+  showToast('🔄 リセットしました');
+}
+
+function setAllMode(mode) {
+  document.querySelectorAll('.sent-box').forEach(box => {
+    const id = box.id;
+    const tabs = box.querySelectorAll('.sent-tab');
+    const tabIdx = mode === 'en' ? 0 : mode === 'hide' ? 1 : 2;
+    tabs.forEach((t, i) => t.classList.toggle('active', i === tabIdx));
+    setSentMode(id, mode, null);
+    if (mode !== 'en') tabs[tabIdx].classList.add('active');
+  });
+}
+
+/* ============================================================
+   WORD LIST
+============================================================ */
+function renderWordList() {
+  document.getElementById('wordlistArea').innerHTML = words.map((w, i) => `
+    <div class="word-card">
+      <div class="word-num">${i + 1}</div>
+      <div class="word-body">
+        <div class="word-en">${w.en}</div>
+        <div class="word-pos-badge">${w.pos}</div>
+        <div class="word-ja">${w.ja}</div>
+        <div class="word-ex-en">📝 ${w.ex_en}</div>
+        <div class="word-ex-ja">→ ${w.ex_ja}</div>
+      </div>
+      <button class="word-speak-btn" onclick="speak('${w.ex_plain.replace(/'/g,"\\'")}')">🔊</button>
+    </div>
+  `).join('');
+}
+
+/* ============================================================
+   SOUND
+============================================================ */
+let audioCtx = null;
+function getCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  return audioCtx;
+}
+function playOK() {
+  try {
+    const ctx = getCtx();
+    [523.25, 783.99].forEach((freq, i) => {
+      const osc = ctx.createOscillator(), g = ctx.createGain();
+      osc.connect(g); g.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
+      g.gain.setValueAtTime(0, ctx.currentTime + i * 0.15);
+      g.gain.linearRampToValueAtTime(0.08, ctx.currentTime + i * 0.15 + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.5);
+      osc.start(ctx.currentTime + i * 0.15);
+      osc.stop(ctx.currentTime + i * 0.15 + 0.51);
+    });
+  } catch(e) {}
+}
+function playNG() {
+  try {
+    const ctx = getCtx(), osc = ctx.createOscillator(), g = ctx.createGain();
+    osc.connect(g); g.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(260, ctx.currentTime);
+    osc.frequency.linearRampToValueAtTime(200, ctx.currentTime + 0.25);
+    g.gain.setValueAtTime(0.07, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.29);
+  } catch(e) {}
+}
+
+/* ============================================================
+   CONFETTI
+============================================================ */
+const cc = document.getElementById('confettiCanvas');
+const cx = cc.getContext('2d');
+let cParts = [], cAnim = null;
+const cColors = ['#f59e0b','#fb923c','#3b82f6','#10b981','#ec4899','#8b5cf6','#fcd34d'];
+
+function launchConfetti() {
+  cc.width = window.innerWidth; cc.height = window.innerHeight;
+  cParts = Array.from({length: 120}, () => ({
+    x: Math.random() * cc.width, y: -10 - Math.random() * 100,
+    w: 6 + Math.random() * 8, h: 3 + Math.random() * 5,
+    color: cColors[Math.floor(Math.random() * cColors.length)],
+    vx: (Math.random() - .5) * 3.5, vy: 2.5 + Math.random() * 3,
+    angle: Math.random() * Math.PI * 2, spin: (Math.random() - .5) * .18,
+  }));
+  if (cAnim) cancelAnimationFrame(cAnim);
+  animConf();
+  setTimeout(stopConf, 2600);
+}
+function animConf() {
+  cx.clearRect(0, 0, cc.width, cc.height);
+  let alive = false;
+  cParts.forEach(p => {
+    if (p.y > cc.height + 20) return;
+    alive = true;
+    p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.angle += p.spin;
+    cx.save();
+    cx.translate(p.x, p.y); cx.rotate(p.angle);
+    cx.fillStyle = p.color;
+    cx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    cx.restore();
+  });
+  if (alive) cAnim = requestAnimationFrame(animConf);
+  else stopConf();
+}
+function stopConf() {
+  if (cAnim) { cancelAnimationFrame(cAnim); cAnim = null; }
+  cx.clearRect(0, 0, cc.width, cc.height);
+}
+
+/* ============================================================
+   TOAST
+============================================================ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* ============================================================
+   KEYBOARD SHORTCUTS
+============================================================ */
+document.addEventListener('keydown', e => {
+  const activeScreen = document.querySelector('.screen.active')?.id;
+
+  /* ── フリップカード画面 ── */
+  if (activeScreen === 'vocab') {
+    if (e.key === 'ArrowRight' || e.key === 'Enter') {
+      if (!document.getElementById('flipNext').disabled) moveFlip(1);
+    } else if (e.key === 'ArrowLeft') {
+      if (!document.getElementById('flipPrev').disabled) moveFlip(-1);
+    } else if (e.key === ' ') {
+      e.preventDefault();
+      flipCard();
+    }
+  }
+
+  /* ── クイズ画面 ── */
+  if (activeScreen === 'quiz') {
+    const nextBtn = document.getElementById('qNext');
+    if ((e.key === 'ArrowRight' || e.key === 'Enter') && nextBtn && !nextBtn.disabled) {
+      nextQuiz();
+    }
+    /* 数字キー 1〜4 で選択肢を選ぶ */
+    if (['1','2','3','4'].includes(e.key)) {
+      const opts = document.querySelectorAll('.quiz-opt:not([disabled])');
+      const idx = parseInt(e.key) - 1;
+      if (opts[idx]) answerQuiz(idx);
+    }
+  }
+});
+
+/* ============================================================
+   INIT
+============================================================ */
+window.addEventListener('load', () => {
+  renderFlip();
+  renderWordList();
+});
+</script>
+</body>
+</html>
