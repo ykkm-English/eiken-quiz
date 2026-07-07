@@ -641,7 +641,7 @@
     <span class="tab-icon">🎧</span>練習
   </button>
   <button class="tab-btn" onclick="switchTab('writing')">
-    <span class="tab-icon">✏️</span>書き込み
+    <span class="tab-icon">🃏</span>めくって確認
   </button>
   <button class="tab-btn" onclick="switchTab('roulette')">
     <span class="tab-icon">🎰</span>ルーレット
@@ -1216,6 +1216,11 @@ const fillGroups = [
 
 function toggleReveal(el) {
   el.classList.toggle('revealed');
+  if (el.classList.contains('revealed')) {
+    speak(el.textContent.trim());
+  } else if (window.speechSynthesis) {
+    speechSynthesis.cancel();
+  }
 }
 
 function resetReveal() {
