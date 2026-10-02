@@ -126,6 +126,7 @@ const NH1_GAMES = [
   { book:'NEW HORIZON 1', unit:'Unit 2 Part 3', sub:'単語カード・クイズ・本文', file:'nh1/unit2_part3.html' },
   { book:'NEW HORIZON 1', unit:'Unit 3 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part1.html' },
   { book:'NEW HORIZON 1', unit:'Unit 3 Part 2', sub:'単語カード・クイズ・本文', file:'nh1/unit3_part2.html' },
+  { book:'NEW HORIZON 1', unit:'Unit 5 Part 1', sub:'単語カード・クイズ・本文', file:'nh1/unit5_part1.html' },
 ];
 
 const NC3_GAMES = [
@@ -147,13 +148,13 @@ function urlOf(item){
 }
 function quizMessage(item){
   return 'こんにちは。今週の英語の宿題クイズ（' + item.unit + '）です。\n'
-    + '下のリンクをタップすると始められます（iPadでそのまま開けます）。\n\n'
+    + '下のリンクをタップ（PCならクリック）すると始められます（PCでもiPadでもそのまま開けます）。\n\n'
     + urlOf(item) + '\n\n'
     + '全部で' + item.q + '問＋英作文チャレンジです。満点目指してがんばってね！';
 }
 function nh1Message(item){
   return '英語の授業で使ったゲーム教材（' + item.book + ' ' + item.unit + '）です。\n'
-    + '下のリンクをタップすると開けます（iPadでそのまま使えます）。\n\n'
+    + '下のリンクをタップ（PCならクリック）すると開けます（PCでもiPadでもそのまま使えます）。\n\n'
     + urlOf(item) + '\n\n'
     + '単語カードやクイズで復習してね！';
 }

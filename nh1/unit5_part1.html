@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>NEW HORIZON 1 — Unit 3 Part 1「家紋とキャラクター」</title>
+<title>NEW HORIZON 1 — Unit 5 Part 1「ハワイで働く兄・文也」</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -818,80 +818,76 @@ body.pen-on .pen-bar { display: flex; }
 <!-- ════════ HOME ════════ -->
 <div class="screen active" id="home">
   <div class="home-hero">
-    <div class="home-badge">NEW HORIZON 1 — UNIT 3 PART 1</div>
-    <div class="home-title">家紋と<span>キャラクター</span></div>
-    <div class="home-sub">「あれは何？」家紋から始まる、好きなキャラの話</div>
+    <div class="home-badge">NEW HORIZON 1 — UNIT 5 PART 1</div>
+    <div class="home-title">ハワイで働く<span>兄・文也</span></div>
+    <div class="home-sub">リコが兄の文也についてスピーチ。「彼は〜します」の言い方を学ぼう</div>
 
     <div class="sunset-card">
-      <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="家紋と侍のイラスト">
+      <svg viewBox="0 0 380 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ハワイの海とヤシの木のイラスト">
         <defs>
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#312e81"/>
-            <stop offset="55%" stop-color="#7c3aed"/>
-            <stop offset="100%" stop-color="#fbbf24"/>
+            <stop offset="0%" stop-color="#0ea5e9"/>
+            <stop offset="55%" stop-color="#fb923c"/>
+            <stop offset="100%" stop-color="#fde68a"/>
           </linearGradient>
         </defs>
         <rect width="380" height="200" fill="url(#sky)"/>
-        <!-- 赤い太陽 -->
-        <circle cx="272" cy="80" r="46" fill="#dc2626" opacity=".92"/>
-        <!-- 星 -->
+        <!-- 太陽 -->
+        <circle cx="262" cy="108" r="44" fill="#fde047" opacity=".95"/>
+        <circle cx="262" cy="108" r="56" fill="#fde047" opacity=".25"/>
+        <!-- 雲 -->
         <g fill="#fff" opacity=".85">
-          <circle cx="40" cy="26" r="2.5"/>
-          <circle cx="200" cy="18" r="2"/>
-          <circle cx="330" cy="22" r="2.5"/>
-          <circle cx="150" cy="38" r="1.6"/>
+          <ellipse cx="70" cy="34" rx="26" ry="9"/>
+          <ellipse cx="90" cy="28" rx="18" ry="9"/>
+          <ellipse cx="330" cy="46" rx="22" ry="7"/>
         </g>
-        <!-- 桜の花びら -->
-        <g fill="#fbcfe8" opacity=".9">
-          <ellipse cx="210" cy="60" rx="5" ry="3" transform="rotate(-25 210 60)"/>
-          <ellipse cx="340" cy="120" rx="5" ry="3" transform="rotate(30 340 120)"/>
-          <ellipse cx="180" cy="140" rx="5" ry="3" transform="rotate(-40 180 140)"/>
+        <!-- 飛行機 -->
+        <g transform="translate(170,40) rotate(-8)">
+          <path d="M0 0 h38 l8 -4 l3 4 l-3 4 l-8 -4 h-38 z" fill="#fff"/>
+          <path d="M14 0 l-8 -12 h6 l12 12 z M14 0 l-8 12 h6 l12 -12 z" fill="#e0f2fe"/>
         </g>
-        <!-- 地面 -->
-        <ellipse cx="190" cy="210" rx="260" ry="30" fill="#1c1917"/>
-        <!-- 家紋（丸に三つ巴ふう） -->
-        <g transform="translate(105,95)">
-          <circle r="62" fill="#fff7ed"/>
-          <circle r="62" fill="none" stroke="#1c1917" stroke-width="7"/>
-          <g fill="#1c1917">
-            <ellipse cx="0" cy="-26" rx="13" ry="24"/>
-            <ellipse cx="0" cy="-26" rx="13" ry="24" transform="rotate(120)"/>
-            <ellipse cx="0" cy="-26" rx="13" ry="24" transform="rotate(240)"/>
-            <circle r="9"/>
-          </g>
+        <!-- 海 -->
+        <rect y="124" width="380" height="76" fill="#0ea5e9"/>
+        <path d="M0 132 Q24 124 48 132 T96 132 T144 132 T192 132 T240 132 T288 132 T336 132 T384 132 V150 H0Z" fill="#38bdf8"/>
+        <path d="M0 154 Q24 146 48 154 T96 154 T144 154 T192 154 T240 154 T288 154 T336 154 T384 154 V200 H0Z" fill="#0284c7"/>
+        <!-- 太陽の反射 -->
+        <g stroke="#fef9c3" stroke-width="3" stroke-linecap="round" opacity=".8">
+          <line x1="244" y1="140" x2="280" y2="140"/>
+          <line x1="250" y1="150" x2="274" y2="150"/>
+          <line x1="256" y1="160" x2="268" y2="160"/>
         </g>
-        <!-- 侍のシルエット -->
-        <g transform="translate(272,96)">
-          <rect x="14" y="-34" width="5" height="50" rx="2.5" fill="#fff7ed" transform="rotate(35 16 -9)"/>
-          <g fill="#1c1917">
-            <rect x="-3" y="-26" width="6" height="10" rx="3"/>
-            <rect x="-10" y="-18" width="20" height="6" rx="3"/>
-            <circle cx="0" cy="0" r="13"/>
-            <path d="M-20 14 L20 14 L26 66 L-26 66 Z"/>
-            <rect x="-26" y="60" width="52" height="8" rx="4"/>
-            <rect x="6" y="8" width="22" height="6" rx="3" transform="rotate(-35 6 11)"/>
-          </g>
+        <!-- 砂浜 -->
+        <ellipse cx="96" cy="206" rx="130" ry="34" fill="#fcd9a0"/>
+        <!-- ヤシの木 -->
+        <path d="M104 190 Q92 140 106 86" stroke="#92400e" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <g transform="translate(106,86)" fill="#16a34a">
+          <path d="M0 0 Q30 -34 66 -6 Q30 -14 0 0z"/>
+          <path d="M0 0 Q-30 -34 -66 -6 Q-30 -14 0 0z"/>
+          <path d="M0 0 Q24 -50 52 -40 Q22 -26 0 0z"/>
+          <path d="M0 0 Q-24 -50 -52 -40 Q-22 -26 0 0z"/>
+          <path d="M0 0 Q40 6 58 36 Q24 20 0 0z"/>
+          <path d="M0 0 Q-40 6 -58 36 Q-24 20 0 0z"/>
+          <circle cx="-5" cy="6" r="6" fill="#78350f"/>
+          <circle cx="7" cy="8" r="6" fill="#78350f"/>
         </g>
-        <!-- マンガ本（表紙に家紋） -->
-        <g transform="translate(34,140) rotate(-10)">
-          <rect width="38" height="48" rx="4" fill="#fff7ed" stroke="#1c1917" stroke-width="3"/>
-          <circle cx="19" cy="18" r="10" fill="none" stroke="#1c1917" stroke-width="2.5"/>
-          <circle cx="19" cy="18" r="3.5" fill="#1c1917"/>
-          <rect x="7" y="34" width="24" height="4" rx="2" fill="#1c1917"/>
+        <!-- ツアーガイドの旗 -->
+        <g transform="translate(176,150)">
+          <rect x="0" y="-48" width="4" height="60" rx="2" fill="#7c2d12"/>
+          <path d="M4 -48 h34 l-8 11 l8 11 h-34 z" fill="#ef4444"/>
         </g>
         <!-- キラキラ -->
-        <g fill="#fde047">
-          <path d="M180 95 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/>
-          <path d="M330 160 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" opacity=".85"/>
+        <g fill="#fff">
+          <path d="M330 100 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z" opacity=".9"/>
+          <path d="M40 90 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" opacity=".8"/>
         </g>
       </svg>
     </div>
 
-    <div class="grammar-badge">📚 文法：What's that? / Who's 〜? のたずね方</div>
+    <div class="grammar-badge">📚 文法：主語が he / she / 人名のときの動詞（三単現の s）</div>
 
     <div class="chars-row">
-      <div class="char-chip"><div class="char-face" style="background:#fbcfe8">👱‍♀️</div><div class="char-name">Anna</div></div>
       <div class="char-chip"><div class="char-face" style="background:#bfdbfe">👧</div><div class="char-name">Riko</div></div>
+      <div class="char-chip"><div class="char-face" style="background:#fde68a">👨</div><div class="char-name">Fumiya</div></div>
     </div>
   </div>
 
@@ -996,21 +992,21 @@ body.pen-on .pen-bar { display: flex; }
 <div class="screen" id="text">
   <div class="top-bar">
     <button class="back-btn" onclick="go('home')">←</button>
-    <div class="top-bar-title">📄 本文「家紋とキャラクター」</div>
+    <div class="top-bar-title">📄 本文「ハワイで働く兄・文也」</div>
   </div>
   <div class="text-wrap">
     <div class="qa-card" id="qaCard" onclick="this.classList.toggle('open')">
-      <div class="qa-q">リコのいちばん好きなキャラクターはだれですか。また、なぜ好きなのでしょうか。</div>
-      <div class="qa-a">Kojiro（コジロー）。強くて勇かんで、そのうえとても優しいから。</div>
+      <div class="qa-q">リコが文也のハワイでの生活についてよく知っているのはなぜですか。</div>
+      <div class="qa-a">文也がハワイの地元の食べ物や自然、美しい場所についてブログを書いていて、リコがそれを楽しんで読んでいるから。</div>
       <div class="qa-tap">👆 タップして答えを見る</div>
     </div>
     <div class="grammar-card">
-      <div class="grammar-title">📚 文法ポイント：「何？」「だれ？」のたずね方</div>
+      <div class="grammar-title">📚 文法ポイント：三人称単数現在形（三単現の s）</div>
       <div class="grammar-body">
-        <b>What is that?</b> → <b>It is ....</b>（「あれは何？」とものをたずねる）<br>
-        <b>What's ... about?</b>（何についての話かをたずねる）<br>
-        <b>Who is ...?</b>（「だれ？」と人をたずねる）<br>
-        what's = what is、who's = who is の短縮形も覚えよう！
+        <b>I live in Japan.</b>（私は日本に住んでいます）← 主語が I のときは動詞はそのまま<br>
+        <b>Fumiya lives in Hawaii.</b>（文也はハワイに住んでいます）← 主語が he / she / 人名など（自分とあなた以外の1人）のときは、動詞に <b>s</b>（es）をつける<br>
+        live → lives　work → works　write → writes　like → likes　study → <b>studies</b>（y を i にして es）<br>
+        <b>can</b> のあとの動詞には s をつけない：He can speak English.
       </div>
     </div>
     <div class="mode-tabs">
@@ -1119,65 +1115,69 @@ body.pen-on .pen-bar { display: flex; }
 <script>
 /* ══════════ データ ══════════ */
 const WORDS = [
-  { en: "symbol", ja: "シンボル、象徴、記号", pos: "名", ex: "It's a symbol for a family.", exJa: "それは家族を表すしるしです。" },
-  { en: "for", ja: "…に相当する、…を表す", pos: "前", ex: "a symbol for a family", exJa: "家族を表すしるし", speak: "for" },
-  { en: "interesting", ja: "おもしろい、興味深い", pos: "形", ex: "That's interesting!", exJa: "それはおもしろいね！" },
-  { en: "favorite", ja: "いちばん好きな、お気に入りの", pos: "形", ex: "It's from my favorite comic.", exJa: "それは私のいちばん好きなマンガに出てくるんだ。" },
-  { en: "character", ja: "登場人物、キャラクター", pos: "名", ex: "Who's your favorite character?", exJa: "いちばん好きな登場人物はだれ？" },
-  { en: "also", ja: "…もまた、そのうえ", pos: "副", ex: "He's also very kind.", exJa: "彼はそのうえ、とても優しい。" },
-  { en: "what", ja: "何、どんなもの", pos: "代", ex: "What's that?", exJa: "あれは何？", speak: "what" },
-  { en: "family", ja: "家族", pos: "名", ex: "It's a symbol for a family.", exJa: "それは家族を表すしるしです。", speak: "family" },
-  { en: "who", ja: "だれ、だれが", pos: "代", ex: "Who is that boy? — He's Minato.", exJa: "あの男の子はだれ？—ミナトだよ。", speak: "who" },
-  { en: "why", ja: "なぜ、どうして", pos: "副", ex: "Why do you like the comic, Mia?", exJa: "どうしてそのマンガが好きなの、ミア？", speak: "why" },
-  { en: "brave", ja: "勇かんな、勇ましい", pos: "形", ex: "Leo is strong and brave.", exJa: "レオは強くて勇かんだ。" },
-  { en: "kind", ja: "親切な、やさしい", pos: "形", ex: "Emma is also very kind.", exJa: "エマはそのうえ、とても優しい。" },
-  { en: "what's = what is", ja: "what is の短縮形", pos: "短縮", ex: "What's that?", exJa: "あれは何？", speak: "what's" },
-  { en: "who's = who is", ja: "who is の短縮形", pos: "短縮", ex: "Who's your favorite character?", exJa: "いちばん好きな登場人物はだれ？", speak: "who's" },
+  { en: "as", ja: "…として", pos: "前", ex: "He works as a tour guide.", exJa: "彼はツアーガイドとして働いています。" },
+  { en: "tour", ja: "旅行、ツアー、見学", pos: "名", ex: "We enjoy a tour of Honolulu.", exJa: "私たちはホノルルのツアーを楽しみます。" },
+  { en: "guide", ja: "ガイド、案内人", pos: "名", ex: "He works as a tour guide.", exJa: "彼はツアーガイドとして働いています。" },
+  { en: "write(s)", ja: "（…を）書く", pos: "動", ex: "He writes a blog.", exJa: "彼はブログを書いています。", speak: "writes" },
+  { en: "blog", ja: "ブログ", pos: "名", ex: "I enjoy reading his blog very much.", exJa: "私は彼のブログを読んでとても楽しんでいます。" },
+  { en: "local", ja: "（ある）地方の、地元の", pos: "形", ex: "He writes about local food.", exJa: "彼は地元の食べ物についてブログを書いています。" },
+  { en: "beautiful", ja: "美しい", pos: "形", ex: "Hawaii is beautiful.", exJa: "ハワイは美しいです。" },
+  { en: "spot(s)", ja: "地点、場所", pos: "名", ex: "He writes about beautiful spots.", exJa: "彼は美しい場所についてブログを書いています。", speak: "spots" },
+  { en: "his", ja: "彼の", pos: "代", ex: "I enjoy reading his blog.", exJa: "私は彼のブログを読んで楽しんでいます。" },
+  { en: "Honolulu", ja: "ホノルル", pos: "地名", ex: "He lives in Honolulu, Hawaii.", exJa: "彼はハワイのホノルルに住んでいます。" },
+  { en: "Hawaii", ja: "ハワイ", pos: "地名", ex: "He really likes Hawaii.", exJa: "彼はハワイが本当に好きです。" },
+  { en: "brother", ja: "兄、弟、兄弟", pos: "名", ex: "This is my brother, Fumiya.", exJa: "こちらは私の兄の文也です。" },
+  { en: "year(s)", ja: "…歳、年齢、年", pos: "名", ex: "He's twenty-four years old.", exJa: "彼は24歳です。", speak: "years" },
+  { en: "old", ja: "…歳の、年を取った", pos: "形", ex: "How old is Fumiya?", exJa: "文也は何歳ですか？" },
+  { en: "... year(s) old", ja: "…歳", pos: "熟語", ex: "He's twenty-four years old.", exJa: "彼は24歳です。", speak: "years old" },
+  { en: "work(s)", ja: "働く、作業をする", pos: "動", ex: "He works as a tour guide.", exJa: "彼はツアーガイドとして働いています。", speak: "work" },
+  { en: "nature", ja: "自然", pos: "名", ex: "He writes about food and nature.", exJa: "彼は食べ物や自然についてブログを書いています。" },
+  { en: "enjoy ...ing", ja: "…して楽しむ", pos: "熟語", ex: "I enjoy reading his blog very much.", exJa: "私は彼のブログを読んでとても楽しんでいます。", speak: "enjoy" },
+  { en: "live(s)", ja: "住む、住んでいる", pos: "動", ex: "Fumiya lives in Hawaii.", exJa: "文也はハワイに住んでいます。", speak: "live" },
 ];
 
 const CHARS = {
-  Anna: { emoji: "👱‍♀️", color: "#fbcfe8", right: false },
-  Riko: { emoji: "👧", color: "#bfdbfe", right: true },
+  Riko: { emoji: "👧", color: "#bfdbfe", right: false },
 };
 
 const LINES = [
-  { sp: "Anna", n: "①②", en: "Hi, Riko! What's that?", ja: "こんにちは、リコ！あれは何？", kw: ["What's that"] },
-  { sp: "Riko", n: "③", en: "It's a kamon, a symbol for a family.", ja: "家紋だよ。家族を表すしるしなの。", kw: ["symbol", "family"] },
-  { sp: "Anna", n: "④", en: "That's interesting!", ja: "それはおもしろいね！", kw: ["interesting"] },
-  { sp: "Riko", n: "⑤", en: "It's from my favorite comic.", ja: "私のいちばん好きなマンガに出てくるんだ。", kw: ["favorite"] },
-  { sp: "Anna", n: "⑥", en: "What's the comic about?", ja: "そのマンガは何についての話なの？", kw: ["What's", "about"] },
-  { sp: "Riko", n: "⑦", en: "It's about a samurai.", ja: "侍についての話だよ。", kw: ["about"] },
-  { sp: "Anna", n: "⑧", en: "Oh, a samurai!", ja: "へえ、侍なんだ！", kw: ["samurai"] },
+  { sp: "Riko", n: "", en: "This is my brother, Fumiya.", ja: "こちらは私の兄の文也です。", kw: ["brother", "Fumiya"] },
+  { sp: "Riko", n: "①", en: "He's twenty-four years old.", ja: "彼は24歳です。", kw: ["twenty-four", "years old"] },
+  { sp: "Riko", n: "②", en: "He lives in Honolulu, Hawaii.", ja: "ハワイのホノルルに住んでいます。", kw: ["lives", "Honolulu"] },
+  { sp: "Riko", n: "③", en: "He works as a tour guide.", ja: "ツアーガイドとして働いています。", kw: ["works", "tour guide"] },
+  { sp: "Riko", n: "④", en: "He really likes Hawaii. He can speak English very well.", ja: "ハワイが本当に好きです。英語をとてもじょうずに話せます。", kw: ["likes", "speak", "very well"] },
   { sp: "BREAK", n: "", en: "", ja: "" },
-  { sp: "Anna", n: "⑨", en: "Who's your favorite character?", ja: "いちばん好きな登場人物はだれ？", kw: ["Who's", "favorite character"] },
-  { sp: "Riko", n: "⑩", en: "My favorite character is Kojiro.", ja: "私のいちばん好きなキャラクターはコジローだよ。", kw: ["favorite character"] },
-  { sp: "Anna", n: "⑪", en: "Why?", ja: "どうして？", kw: ["Why"] },
-  { sp: "Riko", n: "⑫⑬", en: "He's strong and brave. He's also very kind.", ja: "彼は強くて勇かんなの。そのうえ、とても優しいんだ。", kw: ["strong", "brave", "also", "kind"] },
+  { sp: "Riko", n: "⑤", en: "Fumiya studies a lot about Hawaii.", ja: "文也はハワイについてたくさん勉強しています。", kw: ["studies", "a lot"] },
+  { sp: "Riko", n: "⑥", en: "He writes a blog about local food, nature, and beautiful spots.", ja: "地元の食べ物や自然、そして美しい場所についてブログを書いています。", kw: ["writes", "blog", "local", "beautiful", "spots"] },
+  { sp: "Riko", n: "⑦", en: "I enjoy reading his blog very much.", ja: "私は彼のブログを読んでとても楽しんでいます。", kw: ["enjoy", "reading", "his"] },
 ];
 
 /* ── 生徒の名前（ここに追加・変更してください。"" で囲んで , で区切る） ── */
-const STUDENTS = ["Minato", "Mia", "Leo", "Emma"];
+const STUDENTS = ["Ikechan", "Hayatchi", "Akaringo"];
 
 /* ── ルーレットで出る質問（この単元の文法を使ったもの） ── */
 const TALK_QS = [
-  { en: "What's that?", ja: "（先生が何かを指さす）→ It's .... で答えよう" },
-  { en: "What's your favorite comic?", ja: "いちばん好きなマンガは？ → My favorite comic is .... で答えよう" },
-  { en: "Who's your favorite character?", ja: "いちばん好きなキャラクターはだれ？ → My favorite character is .... で答えよう" },
-  { en: "Why do you like the character?", ja: "どうしてそのキャラクターが好き？ → He's / She's .... で答えよう" },
-  { en: "What's your favorite anime?", ja: "いちばん好きなアニメは？ → My favorite anime is .... で答えよう" },
-  { en: "Who's your favorite singer?", ja: "いちばん好きな歌手はだれ？ → My favorite singer is .... で答えよう" },
+  { en: "Where do you live?", ja: "どこに住んでいる？ → I live in .... で答えよう" },
+  { en: "Do you like Hawaii?", ja: "ハワイは好き？ → Yes, I do. / No, I don't. で答えよう" },
+  { en: "Can you speak English?", ja: "英語は話せる？ → Yes, I can. / No, I can't. で答えよう" },
+  { en: "How old is your brother?", ja: "お兄さん（弟）は何歳？ → He's .... years old. で答えよう（いない人は友だちや家族で）" },
+  { en: "Tell us about your family.", ja: "家族のことを話そう → My brother lives in .... / He likes .... で答えよう" },
+  { en: "Do you enjoy reading blogs?", ja: "ブログを読むのは楽しい？ → Yes, I do. / I enjoy reading .... で答えよう" },
 ];
 
 /* ── 並べかえゲームの英文 ── */
 const ORDER_QS = [
-  { en: "It's a kamon, a symbol for a family.", ja: "家紋だよ。家族を表すしるしなの。" },
-  { en: "It's from my favorite comic.", ja: "私のいちばん好きなマンガに出てくるんだ。" },
-  { en: "What's the comic about?", ja: "そのマンガは何についての話なの？" },
-  { en: "It's about a samurai.", ja: "侍についての話だよ。" },
-  { en: "Who's your favorite character?", ja: "いちばん好きな登場人物はだれ？" },
-  { en: "My favorite character is Kojiro.", ja: "私のいちばん好きなキャラクターはコジローだよ。" },
-  { en: "He's strong and brave.", ja: "彼は強くて勇かんだ。" },
-  { en: "He's also very kind.", ja: "彼はそのうえ、とても優しい。" },
+  { en: "This is my brother, Fumiya.", ja: "こちらは私の兄の文也です。" },
+  { en: "He's twenty-four years old.", ja: "彼は24歳です。" },
+  { en: "He lives in Honolulu, Hawaii.", ja: "彼はハワイのホノルルに住んでいます。" },
+  { en: "He works as a tour guide.", ja: "彼はツアーガイドとして働いています。" },
+  { en: "He really likes Hawaii.", ja: "彼はハワイが本当に好きです。" },
+  { en: "He can speak English very well.", ja: "彼は英語をとてもじょうずに話せます。" },
+  { en: "Fumiya studies a lot about Hawaii.", ja: "文也はハワイについてたくさん勉強しています。" },
+  { en: "He writes a blog about local food, nature, and beautiful spots.", ja: "彼は地元の食べ物や自然、そして美しい場所についてブログを書いています。" },
+  { en: "I enjoy reading his blog very much.", ja: "私は彼のブログを読んでとても楽しんでいます。" },
+  { en: "I live in Japan.", ja: "私は日本に住んでいます。" },
+  { en: "Fumiya lives in Hawaii.", ja: "文也はハワイに住んでいます。" },
 ];
 
 /* ── クラスの侍（経験値とランク） ── */
@@ -1188,8 +1188,8 @@ const RANKS = [
   { name: "武将", emoji: "🏯", xp: 600 },
   { name: "将軍", emoji: "👑", xp: 1000 },
 ];
-const XP_KEY = 'nh1u3p1_xp';
-const TA_KEY = 'nh1u3p1_ta';
+const XP_KEY = 'nh1u5p1_xp';
+const TA_KEY = 'nh1u5p1_ta';
 
 /* ══════════ 音声（カタカナ英語防止パターン） ══════════ */
 function getEnVoice() {
@@ -1494,7 +1494,7 @@ function renderDialogue() {
   const isJa = textMode === 'ja';
   box.innerHTML = LINES.map((l, i) => {
     if (l.sp === 'BREAK') {
-      return `<div class="d-narr"><span class="d-narr-inner">🎬 会話の続き</span></div>`;
+      return `<div class="d-narr"><span class="d-narr-inner">🎬 スピーチの続き</span></div>`;
     }
     const speakBtn = `<button class="speak-btn small" onclick="speak('${l.en.replace(/'/g, "\\'")}')">🔊</button>`;
     const tapCls = isJa ? ' ja-tap' : '';
@@ -1808,6 +1808,7 @@ function speakPronModel() { speak(PRON_QS[pronIdx].en); }
 
 function normWords(s) {
   return s.toLowerCase()
+    .replace(/\b24\b/g, 'twenty four')
     .replace(/(\w)'s\b/g, '$1 is')
     .replace(/[^a-z0-9 ]/g, ' ')
     .split(/\s+/).filter(Boolean);
