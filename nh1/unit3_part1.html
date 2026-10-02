@@ -1472,12 +1472,21 @@ function escReg(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 function lineHTML(l) {
   if (textMode === 'ja') return `${l.ja}<div class="en-reveal">${l.en}</div>`;
   if (textMode === 'en') return l.en;
-  let html = l.en;
+  // 元の英文の中でキーワードの位置を先に求めてから、1回で組み立てる
+  const ranges = [];
   l.kw.forEach(k => {
-    html = html.replace(new RegExp(escReg(k), 'i'), m =>
-      `<span class="blk" onclick="event.stopPropagation(); this.classList.toggle('open'); if(this.classList.contains('open')){ sfx('flip'); speak(this.textContent); }">${m}</span>`);
+    const m = new RegExp(escReg(k), 'i').exec(l.en);
+    if (m) ranges.push([m.index, m.index + m[0].length]);
   });
-  return html;
+  ranges.sort((a, b) => a[0] - b[0]);
+  let html = '', pos = 0;
+  ranges.forEach(([s, e]) => {
+    if (s < pos) return;
+    html += l.en.slice(pos, s) +
+      `<span class="blk" onclick="event.stopPropagation(); this.classList.toggle('open'); if(this.classList.contains('open')){ sfx('flip'); speak(this.textContent); }">${l.en.slice(s, e)}</span>`;
+    pos = e;
+  });
+  return html + l.en.slice(pos);
 }
 
 function renderDialogue() {
