@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>英検結果一覧</title>
+<style>
+  body { font-family: "Hiragino Sans", "Yu Gothic", sans-serif; background:#f5f7fa; color:#222; margin:0; padding:16px; }
+  h1 { font-size:1.4rem; margin:0 0 12px; }
+  .card { background:#fff; border-radius:12px; box-shadow:0 1px 4px rgba(0,0,0,.12); padding:16px; margin:0 auto 16px; max-width:720px; }
+  .head { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:10px; }
+  .name { font-size:1.2rem; font-weight:bold; }
+  .grade { background:#e8442f; color:#fff; border-radius:6px; padding:2px 10px; font-weight:bold; }
+  .pass { background:#1f8a4c; color:#fff; border-radius:6px; padding:2px 10px; font-weight:bold; }
+  .fail { background:#888; color:#fff; border-radius:6px; padding:2px 10px; font-weight:bold; }
+  .date { color:#666; font-size:.9rem; }
+  table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  th, td { border:1px solid #ddd; padding:6px 8px; text-align:center; }
+  th { background:#2a4d69; color:#fff; }
+  td.l { text-align:left; font-weight:bold; }
+  tfoot td { background:#fff4cc; font-weight:bold; }
+  .bar { background:#eee; border-radius:4px; height:10px; overflow:hidden; min-width:80px; }
+  .bar > span { display:block; height:100%; background:#e8442f; }
+  .note { font-size:.8rem; color:#666; margin-top:8px; }
+</style>
+</head>
+<body>
+<h1>英検結果一覧</h1>
+<div id="list"></div>
+<script>
+// 結果を追加するときは、この配列の先頭に1件ずつ足す
+const results = [
+  {
+    name: "Rio",
+    grade: "準2級",
+    date: "2026年10月",
+    pass: true,
+    cefr: "A2",
+    skills: [
+      { label: "Reading",   cse: 451, max: 600, correct: "16 / 29問", rate: 55 },
+      { label: "Listening", cse: 445, max: 600, correct: "22 / 30問", rate: 73 },
+      { label: "Writing",   cse: 530, max: 600, correct: "25 / 28点", rate: 89 }
+    ],
+    total: 1426, totalMax: 1800
+  }
+];
+
+const list = document.getElementById("list");
+results.forEach(r => {
+  const rows = r.skills.map(s => `
+    <tr>
+      <td class="l">${s.label}</td>
+      <td>${s.cse} / ${s.max}</td>
+      <td>${s.correct}</td>
+      <td>${s.rate}%<div class="bar"><span style="width:${s.rate}%"></span></div></td>
+    </tr>`).join("");
+  list.insertAdjacentHTML("beforeend", `
+  <div class="card">
+    <div class="head">
+      <span class="name">${r.name}</span>
+      <span class="grade">${r.grade}</span>
+      <span class="${r.pass ? "pass" : "fail"}">${r.pass ? "合格" : "不合格"}</span>
+      <span class="date">${r.date}（一次試験）　CEFR：${r.cefr}</span>
+    </div>
+    <table>
+      <thead><tr><th>技能</th><th>英検CSEスコア</th><th>正答数</th><th>正答率</th></tr></thead>
+      <tbody>${rows}</tbody>
+      <tfoot><tr><td class="l">合計</td><td colspan="3">${r.total} / ${r.totalMax}</td></tr></tfoot>
+    </table>
+    <div class="note">Writing は得点の合計と得点率です。</div>
+  </div>`);
+});
+</script>
+</body>
+</html>
