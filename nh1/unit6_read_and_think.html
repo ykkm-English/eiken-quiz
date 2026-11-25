@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>NEW HORIZON 1 — Unit 6 Read and Think「Interview Questions for Diane Kichijitsu」</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fff8f0; --gold: #f59e0b; --gold2: #d97706; --orange: #fb923c;
+  --blue: #3b82f6; --blue2: #1d4ed8; --green: #16a34a; --red: #dc2626;
+  --pink: #ec4899; --dark: #1c1917; --gray: #78716c;
+  --shadow: 0 4px 20px rgba(245,158,11,0.18);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: 'Nunito','Noto Sans JP',sans-serif; font-size: 20px; background: var(--bg); color: var(--dark); min-height: 100vh; }
+.screen { display: none; min-height: 100vh; flex-direction: column; width: 100%; max-width: 900px;
+  margin-left: max(0px, calc(50% - 510px)); margin-right: auto; }
+.screen.active { display: flex; }
+.top-bar { background: white; padding: 10px 16px; display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.07); position: sticky; top: 0; z-index: 50; }
+.back-btn { width: 42px; height: 42px; border-radius: 50%; background: var(--bg); border: none; font-size: 1.3rem; cursor: pointer; flex-shrink: 0; }
+.top-bar-title { font-size: 1.05rem; font-weight: 900; flex: 1; }
+
+/* HOME */
+#home { background: linear-gradient(160deg,#fef3c7 0%,#fff8f0 45%,#fde8d0 100%); align-items: center; padding-bottom: 48px; }
+.home-hero { width: 100%; padding: 30px 24px 8px; text-align: center; }
+.home-badge { display: inline-block; background: var(--gold); color: white; font-size: .82rem; font-weight: 900; letter-spacing: 1px; padding: 5px 18px; border-radius: 30px; margin-bottom: 14px; }
+.home-title { font-size: 1.9rem; font-weight: 900; line-height: 1.2; margin-bottom: 6px; }
+.home-title span { color: var(--gold2); }
+.home-sub { font-size: 1rem; color: var(--gray); margin-bottom: 14px; }
+.stage-card { width: 100%; max-width: 440px; margin: 0 auto 14px; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); border: 3px solid var(--gold); background: white; }
+.stage-card svg { display: block; width: 100%; height: auto; }
+.grammar-badge { display: inline-block; background: #fef3c7; border: 2px solid var(--gold); color: var(--gold2); font-size: .85rem; font-weight: 900; padding: 7px 18px; border-radius: 30px; margin-bottom: 18px; }
+.home-menu { width: 100%; max-width: 420px; padding: 0 20px; }
+.menu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.menu-card { background: white; border-radius: 22px; padding: 22px 12px; text-align: center; cursor: pointer; border: 2.5px solid transparent; box-shadow: var(--shadow); transition: all .2s; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.menu-card:hover { transform: translateY(-4px); }
+.menu-card:active { transform: scale(.96); }
+.menu-icon { font-size: 2.4rem; }
+.menu-name { font-size: 1.05rem; font-weight: 900; }
+.menu-sub { font-size: .72rem; color: var(--gray); font-weight: 700; }
+
+/* FLASH */
+.wrap { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 18px 20px 40px; max-width: 480px; width: 100%; margin: 0 auto; }
+.dir-toggle { display: flex; background: white; border-radius: 30px; padding: 4px; box-shadow: var(--shadow); margin-bottom: 18px; }
+.dir-btn { border: none; background: transparent; font-family: inherit; font-size: .92rem; font-weight: 900; padding: 9px 22px; border-radius: 26px; cursor: pointer; color: var(--gray); }
+.dir-btn.on { background: linear-gradient(90deg,var(--gold),var(--orange)); color: white; }
+.flash-card { width: 100%; min-height: 290px; perspective: 1200px; cursor: pointer; margin-bottom: 16px; }
+.flash-inner { position: relative; width: 100%; min-height: 290px; transition: transform .5s; transform-style: preserve-3d; }
+.flash-card.flipped .flash-inner { transform: rotateY(180deg); }
+.flash-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: white; border-radius: 26px; box-shadow: var(--shadow); border: 3px solid var(--gold); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; gap: 10px; }
+.flash-face.back { transform: rotateY(180deg); border-color: var(--orange); }
+.flash-pos { background: #fef3c7; color: var(--gold2); font-size: .75rem; font-weight: 900; padding: 3px 14px; border-radius: 20px; }
+.flash-word { font-size: 2rem; font-weight: 900; line-height: 1.2; }
+.flash-mean { font-size: 1.4rem; font-weight: 900; line-height: 1.35; }
+.flash-ex { font-size: .92rem; color: var(--gray); font-weight: 700; line-height: 1.5; }
+.flash-hint { font-size: .72rem; color: #d6d3d1; font-weight: 700; }
+.speak-btn { border: none; background: linear-gradient(135deg,var(--blue),var(--blue2)); color: white; width: 52px; height: 52px; border-radius: 50%; font-size: 1.35rem; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,.35); flex-shrink: 0; }
+.speak-btn:active { transform: scale(.9); }
+.speak-btn.small { width: 40px; height: 40px; font-size: 1.05rem; }
+.flash-nav { display: flex; gap: 14px; align-items: center; width: 100%; justify-content: center; }
+.nav-btn { border: none; background: white; box-shadow: var(--shadow); font-size: 1.4rem; width: 56px; height: 56px; border-radius: 50%; cursor: pointer; font-weight: 900; color: var(--gold2); }
+.nav-btn:active { transform: scale(.92); }
+.flash-count { font-weight: 900; color: var(--gray); font-size: .95rem; min-width: 70px; text-align: center; }
+
+/* QUIZ */
+.quiz-mode-card { width: 100%; background: white; border-radius: 22px; box-shadow: var(--shadow); border: 2.5px solid transparent; padding: 22px 20px; text-align: center; cursor: pointer; margin-bottom: 16px; transition: all .2s; }
+.quiz-mode-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+.quiz-mode-icon { font-size: 2.2rem; margin-bottom: 6px; }
+.quiz-mode-name { font-size: 1.15rem; font-weight: 900; }
+.quiz-mode-sub { font-size: .8rem; color: var(--gray); font-weight: 700; }
+.q-card { width: 100%; background: white; border-radius: 24px; box-shadow: var(--shadow); border: 3px solid var(--gold); padding: 24px 20px; text-align: center; margin-bottom: 18px; }
+.q-label { font-size: .78rem; font-weight: 900; color: var(--gold2); margin-bottom: 8px; }
+.q-word { font-size: 1.5rem; font-weight: 900; line-height: 1.35; display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.choices { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+.choice-btn { border: 2.5px solid #f3e8d8; background: white; border-radius: 18px; font-family: inherit; font-size: 1.02rem; font-weight: 900; padding: 15px 18px; cursor: pointer; text-align: left; transition: all .15s; color: var(--dark); }
+.choice-btn:hover { border-color: var(--gold); background: #fffbf2; }
+.choice-btn.correct { border-color: var(--green); background: #f0fdf4; color: var(--green); }
+.choice-btn.wrong { border-color: var(--red); background: #fef2f2; color: var(--red); }
+.choice-btn:disabled { cursor: default; }
+.q-feedback { font-size: 1.2rem; font-weight: 900; min-height: 36px; margin-top: 14px; }
+.q-feedback.good { color: var(--green); } .q-feedback.bad { color: var(--red); }
+.result-card { width: 100%; background: white; border-radius: 26px; box-shadow: var(--shadow); border: 3px solid var(--gold); padding: 36px 24px; text-align: center; }
+.result-emoji { font-size: 4rem; margin-bottom: 10px; }
+.result-score { font-size: 2.4rem; font-weight: 900; color: var(--gold2); margin-bottom: 6px; }
+.result-msg { font-size: 1.05rem; font-weight: 900; color: var(--gray); margin-bottom: 24px; }
+.big-btn { border: none; background: linear-gradient(90deg,var(--gold),var(--orange)); color: white; font-family: inherit; font-size: 1.05rem; font-weight: 900; padding: 15px 36px; border-radius: 30px; cursor: pointer; box-shadow: 0 5px 16px rgba(245,158,11,.4); }
+.big-btn:active { transform: scale(.95); }
+.big-btn.ghost { background: white; color: var(--gold2); border: 2.5px solid var(--gold); box-shadow: none; margin-top: 12px; }
+
+/* TEXT */
+.text-wrap { flex: 1; width: 100%; max-width: 560px; margin: 0 auto; padding: 14px 16px 50px; }
+.scene-bar { display: flex; justify-content: center; gap: 28px; margin-bottom: 10px; }
+.face { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: .72rem; font-weight: 900; color: var(--gray); }
+.face i { font-style: normal; overflow: hidden; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,.12); transition: transform .2s; }
+.face.active i { transform: scale(1.25); }
+.mode-tabs { display: flex; background: white; border-radius: 30px; padding: 4px; box-shadow: var(--shadow); margin-bottom: 10px; position: sticky; top: 66px; z-index: 40; }
+.mode-tab { flex: 1; border: none; background: transparent; font-family: inherit; font-size: .8rem; font-weight: 900; padding: 9px 4px; border-radius: 26px; cursor: pointer; color: var(--gray); }
+.mode-tab.on { background: linear-gradient(90deg,var(--gold),var(--orange)); color: white; }
+.hint { text-align: center; font-size: .78rem; font-weight: 800; color: var(--gold2); margin-bottom: 12px; min-height: 1.2em; }
+.hint button { border: none; background: #fef3c7; color: var(--gold2); font-family: inherit; font-weight: 900; border-radius: 14px; padding: 3px 10px; cursor: pointer; margin-left: 6px; }
+.qa-head { font-size: .8rem; font-weight: 900; color: var(--gold2); margin: 16px 0 6px; }
+.dia-line { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; cursor: pointer; transition: opacity .3s; }
+.dia-line.done { opacity: .6; }
+.dia-line .av { width: 46px; height: 46px; overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+.dia-line.I .av { background: #dbeafe; } .dia-line.D .av { background: #fce7f3; }
+.bubble { flex: 1; border-radius: 16px; padding: 12px 14px; font-size: 1rem; font-weight: 800; line-height: 1.7; background: white; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+.dia-line.I .bubble { border: 2px solid #bfdbfe; } .dia-line.D .bubble { border: 2px solid #fbcfe8; }
+.ja { color: var(--gray); font-size: .88rem; font-weight: 700; margin-top: 4px; }
+.hl { border-bottom: 3px solid; padding-bottom: 1px; }
+.hl.c0 { border-color: #f59e0b; } .hl.c1 { border-color: #3b82f6; } .hl.c2 { border-color: #16a34a; } .hl.c3 { border-color: #ec4899; }
+.dmask { background: #1c1917; color: #1c1917; border-radius: 6px; padding: 0 4px; cursor: pointer; user-select: none; }
+.dmask.open { background: #fef3c7; color: var(--dark); }
+.reveal-row { display: flex; justify-content: flex-end; margin-top: 6px; }
+.reveal-btn { border: none; background: #fef3c7; color: var(--gold2); font-family: inherit; font-size: .75rem; font-weight: 900; padding: 5px 12px; border-radius: 14px; cursor: pointer; }
+
+/* WORD LIST */
+.wl-item { background: white; border-radius: 16px; box-shadow: var(--shadow); padding: 12px 14px; margin-bottom: 10px; display: flex; gap: 12px; align-items: center; }
+.wl-body { flex: 1; } .wl-en { font-weight: 900; font-size: 1.1rem; } .wl-pos { font-size: .7rem; background: #fef3c7; color: var(--gold2); border-radius: 10px; padding: 1px 8px; margin-left: 6px; }
+.wl-ja { font-weight: 800; font-size: .95rem; } .wl-ex { font-size: .8rem; color: var(--gray); font-weight: 700; }
+
+/* ROULETTE */
+.roul-box { width: 100%; background: white; border-radius: 26px; box-shadow: var(--shadow); border: 3px solid var(--gold); padding: 30px 20px; text-align: center; margin-bottom: 18px; }
+.roul-name { font-size: 2.6rem; font-weight: 900; color: var(--gold2); min-height: 1.3em; }
+.roul-q { font-size: 1.25rem; font-weight: 900; line-height: 1.5; min-height: 3em; margin-top: 10px; }
+.roul-pat { font-size: .85rem; color: var(--gray); font-weight: 700; margin-top: 8px; }
+.roul-actions { display: flex; justify-content: flex-end; gap: 10px; width: 100%; }
+
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #1c1917; color: white; padding: 10px 22px; border-radius: 30px; font-weight: 900; font-size: .9rem; opacity: 0; visibility: hidden; transition: opacity .25s; z-index: 100; }
+.toast.show { opacity: 1; visibility: visible; }
+.cf { position: fixed; top: -20px; font-size: 1.6rem; pointer-events: none; z-index: 90; animation: fall 1.6s ease-in forwards; }
+@keyframes fall { to { transform: translateY(105vh) rotate(360deg); opacity: .8; } }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div class="screen active" id="home">
+  <div class="home-hero">
+    <div class="home-badge">NEW HORIZON 1 ・ UNIT 6 ・ READ AND THINK</div>
+    <div class="home-title">Interview Questions<br>for <span>Diane Kichijitsu</span></div>
+    <div class="home-sub">ダイアン吉日さんへの質問</div>
+    <div class="stage-card">
+      <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2762b"/><stop offset="1" stop-color="#7c3a0e"/></linearGradient>
+          <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+          <linearGradient id="gZab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a855f7"/><stop offset="1" stop-color="#6b21a8"/></linearGradient>
+          <linearGradient id="gKim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f5fc0"/><stop offset="1" stop-color="#2b3680"/></linearGradient>
+          <linearGradient id="gSpot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7d6" stop-opacity=".55"/><stop offset="1" stop-color="#fff7d6" stop-opacity=".05"/></linearGradient>
+        </defs>
+        <rect width="400" height="260" fill="#7f1d1d"/>
+        <g fill="#000" opacity=".16"><rect x="0" width="22" height="180"/><rect x="50" width="22" height="180"/><rect x="100" width="22" height="180"/><rect x="278" width="22" height="180"/><rect x="328" width="22" height="180"/><rect x="378" width="22" height="180"/></g>
+        <g stroke="#92400e" stroke-width="3">
+          <rect x="82" y="44" width="59" height="134" fill="url(#gGold)"/><rect x="141" y="44" width="59" height="134" fill="url(#gGold)"/>
+          <rect x="200" y="44" width="59" height="134" fill="url(#gGold)"/><rect x="259" y="44" width="59" height="134" fill="url(#gGold)"/>
+        </g>
+        <g fill="none" stroke="#b45309" stroke-width="2.5" stroke-linecap="round" opacity=".75">
+          <path d="M92 160 Q112 120 130 160"/><path d="M96 150 Q112 132 126 150"/>
+          <path d="M270 168 Q290 110 306 168"/><path d="M276 150 Q290 124 302 150"/>
+        </g>
+        <g fill="#b45309" opacity=".6"><circle cx="160" cy="70" r="5"/><circle cx="176" cy="82" r="4"/><circle cx="228" cy="68" r="5"/><circle cx="240" cy="84" r="4"/></g>
+        <rect width="400" height="22" fill="#fbbf24"/>
+        <g fill="#dc2626"><circle cx="10" cy="20" r="10"/><circle cx="30" cy="20" r="10"/><circle cx="50" cy="20" r="10"/><circle cx="70" cy="20" r="10"/><circle cx="90" cy="20" r="10"/><circle cx="110" cy="20" r="10"/><circle cx="130" cy="20" r="10"/><circle cx="150" cy="20" r="10"/><circle cx="170" cy="20" r="10"/><circle cx="190" cy="20" r="10"/><circle cx="210" cy="20" r="10"/><circle cx="230" cy="20" r="10"/><circle cx="250" cy="20" r="10"/><circle cx="270" cy="20" r="10"/><circle cx="290" cy="20" r="10"/><circle cx="310" cy="20" r="10"/><circle cx="330" cy="20" r="10"/><circle cx="350" cy="20" r="10"/><circle cx="370" cy="20" r="10"/><circle cx="390" cy="20" r="10"/></g>
+        <rect width="400" height="12" fill="#fbbf24"/>
+        <g>
+          <line x1="40" y1="12" x2="40" y2="40" stroke="#451a03" stroke-width="2"/>
+          <ellipse cx="40" cy="58" rx="17" ry="20" fill="#ef4444"/><rect x="31" y="36" width="18" height="5" fill="#1c1917"/><rect x="31" y="75" width="18" height="5" fill="#1c1917"/>
+          <path d="M26 58 Q40 52 54 58 M26 66 Q40 60 54 66" stroke="#fca5a5" fill="none" stroke-width="1.5"/>
+          <line x1="360" y1="12" x2="360" y2="40" stroke="#451a03" stroke-width="2"/>
+          <ellipse cx="360" cy="58" rx="17" ry="20" fill="#ef4444"/><rect x="351" y="36" width="18" height="5" fill="#1c1917"/><rect x="351" y="75" width="18" height="5" fill="#1c1917"/>
+          <path d="M346 58 Q360 52 374 58 M346 66 Q360 60 374 66" stroke="#fca5a5" fill="none" stroke-width="1.5"/>
+        </g>
+        <rect x="14" y="78" width="34" height="88" rx="3" fill="#fff" stroke="#1c1917" stroke-width="2.5"/>
+        <g font-family="'Noto Sans JP',sans-serif" font-weight="900" font-size="12" fill="#1c1917" text-anchor="middle">
+          <text x="31" y="94">ダ</text><text x="31" y="107">イ</text><text x="31" y="120">ア</text><text x="31" y="133">ン</text><text x="31" y="148" fill="#dc2626">吉</text><text x="31" y="161" fill="#dc2626">日</text>
+        </g>
+        <rect x="0" y="176" width="400" height="84" fill="url(#gFloor)"/>
+        <rect x="0" y="176" width="400" height="5" fill="#451a03"/>
+        <g stroke="#451a03" stroke-width="1.5" opacity=".45"><line x1="0" y1="198" x2="400" y2="198"/><line x1="0" y1="221" x2="400" y2="221"/><line x1="0" y1="245" x2="400" y2="245"/><line x1="90" y1="181" x2="70" y2="198"/><line x1="300" y1="198" x2="320" y2="221"/><line x1="150" y1="221" x2="135" y2="245"/></g>
+        <path d="M184 12 L216 12 L322 230 L78 230 Z" fill="url(#gSpot)"/>
+        <ellipse cx="200" cy="226" rx="90" ry="10" fill="#000" opacity=".25"/>
+        <rect x="118" y="196" width="164" height="30" rx="8" fill="url(#gZab)" stroke="#581c87" stroke-width="2"/>
+        <line x1="124" y1="204" x2="276" y2="204" stroke="#d8b4fe" stroke-width="1.5" opacity=".7"/>
+        <g fill="#fbbf24"><circle cx="118" cy="196" r="4"/><circle cx="282" cy="196" r="4"/><circle cx="118" cy="226" r="4"/><circle cx="282" cy="226" r="4"/></g>
+        <path d="M138 206 Q140 180 170 176 L230 176 Q260 180 262 206 Q200 220 138 206Z" fill="url(#gKim)"/>
+        <g fill="#fff" opacity=".35"><circle cx="160" cy="198" r="3"/><circle cx="182" cy="204" r="3"/><circle cx="208" cy="205" r="3"/><circle cx="232" cy="203" r="3"/><circle cx="249" cy="196" r="3"/></g>
+        <path d="M166 124 Q164 150 160 184 L240 184 Q236 150 234 124 Q200 112 166 124Z" fill="url(#gKim)"/>
+        <g fill="#fff" opacity=".3"><circle cx="176" cy="140" r="3"/><circle cx="224" cy="138" r="3"/><circle cx="182" cy="176" r="3"/><circle cx="220" cy="178" r="3"/></g>
+        <path d="M185 118 L200 146 L215 118 L208 114 L200 128 L192 114Z" fill="#fff"/>
+        <path d="M192 114 L200 128 L208 114" fill="none" stroke="#dc2626" stroke-width="3"/>
+        <rect x="162" y="152" width="76" height="22" rx="4" fill="#f59e0b"/><rect x="162" y="160" width="76" height="6" fill="#ec4899"/>
+        <path d="M168 124 Q136 142 138 186 Q156 196 172 176 Q176 150 180 130Z" fill="#3a49a8" stroke="#2b3680" stroke-width="2"/>
+        <g transform="rotate(-14 150 190)"><rect x="124" y="180" width="38" height="24" rx="3" fill="#38bdf8" stroke="#0369a1" stroke-width="1.5"/><g stroke="#fff" stroke-width="2.5"><line x1="124" y1="188" x2="162" y2="188"/><line x1="124" y1="196" x2="162" y2="196"/></g></g>
+        <circle cx="163" cy="186" r="7" fill="#fde0c0"/>
+        <path d="M232 124 Q268 118 290 106 Q298 124 276 140 Q254 152 232 150Z" fill="#3a49a8" stroke="#2b3680" stroke-width="2"/>
+        <path d="M284 108 L258 64 A50 50 0 0 1 314 70 Z" fill="#fbbf24" stroke="#92400e" stroke-width="2"/>
+        <g stroke="#92400e" stroke-width="1.2"><line x1="284" y1="108" x2="268" y2="60"/><line x1="284" y1="108" x2="284" y2="58"/><line x1="284" y1="108" x2="300" y2="60"/></g>
+        <circle cx="286" cy="80" r="9" fill="#dc2626"/>
+        <circle cx="284" cy="108" r="7" fill="#fde0c0"/>
+        <circle cx="200" cy="86" r="31" fill="#1c1917"/>
+        <circle cx="200" cy="50" r="12" fill="#1c1917"/><circle cx="212" cy="46" r="4" fill="#ef4444"/><line x1="206" y1="52" x2="228" y2="36" stroke="#fbbf24" stroke-width="3" stroke-linecap="round"/><circle cx="229" cy="35" r="3.5" fill="#fbbf24"/>
+        <ellipse cx="200" cy="94" rx="26" ry="27" fill="#fde0c0"/>
+        <path d="M173 88 Q176 62 200 62 Q224 62 227 88 Q214 74 200 76 Q186 74 173 88Z" fill="#1c1917"/>
+        <path d="M187 95 Q192 89 197 95" stroke="#1c1917" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M203 95 Q208 89 213 95" stroke="#1c1917" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+        <ellipse cx="185" cy="104" rx="6" ry="4" fill="#fda4af" opacity=".8"/><ellipse cx="215" cy="104" rx="6" ry="4" fill="#fda4af" opacity=".8"/>
+        <path d="M191 105 Q200 120 209 105Z" fill="#b91c1c"/><path d="M195 112 Q200 116 205 112 Q200 108 195 112Z" fill="#f87171"/>
+        <path d="M56 56 Q56 44 70 44 L148 44 Q162 44 162 56 L162 80 Q162 92 148 92 L108 92 L92 106 L96 92 L70 92 Q56 92 56 80Z" fill="#fff" stroke="#1c1917" stroke-width="2"/>
+        <text x="109" y="64" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="14" fill="#1c1917">Rakugo is</text>
+        <text x="109" y="82" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="900" font-size="14" fill="#dc2626">comic fun!</text>
+        <g fill="#fff7d6"><path d="M330 120 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z"/><path d="M246 40 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/><path d="M170 36 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z"/></g>
+        <g fill="#1f0a0a"><circle cx="24" cy="250" r="14"/><circle cx="76" cy="254" r="14"/><circle cx="130" cy="252" r="14"/><circle cx="270" cy="252" r="14"/><circle cx="326" cy="254" r="14"/><circle cx="378" cy="250" r="14"/>
+          <ellipse cx="24" cy="276" rx="26" ry="18"/><ellipse cx="76" cy="280" rx="26" ry="18"/><ellipse cx="130" cy="278" rx="26" ry="18"/><ellipse cx="270" cy="278" rx="26" ry="18"/><ellipse cx="326" cy="280" rx="26" ry="18"/><ellipse cx="378" cy="276" rx="26" ry="18"/></g>
+      </svg>
+    </div>
+    <div class="grammar-badge">Which do you …, A or B? ／ I usually …, but I sometimes …</div>
+  </div>
+  <div class="home-menu">
+    <div class="menu-row">
+      <div class="menu-card" onclick="go('flash');renderCard()"><div class="menu-icon">🃏</div><div class="menu-name">単語カード</div><div class="menu-sub">めくって覚える</div></div>
+      <div class="menu-card" onclick="go('quiz');renderQuizMenu()"><div class="menu-icon">🎯</div><div class="menu-name">クイズ</div><div class="menu-sub">単語＋内容</div></div>
+    </div>
+    <div class="menu-row">
+      <div class="menu-card" onclick="go('text');renderDialogue()"><div class="menu-icon">📄</div><div class="menu-name">本文</div><div class="menu-sub">タップして読む</div></div>
+      <div class="menu-card" onclick="go('list');renderList()"><div class="menu-icon">📖</div><div class="menu-name">単語一覧</div><div class="menu-sub">ぜんぶ見る</div></div>
+    </div>
+    <div class="menu-row">
+      <div class="menu-card" onclick="go('roul')" style="grid-column:1/3"><div class="menu-icon">🎤</div><div class="menu-name">だれが答える？ルーレット</div><div class="menu-sub">Which do you …, A or B?</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FLASH -->
+<div class="screen" id="flash">
+  <div class="top-bar"><button class="back-btn" onclick="go('home')">←</button><div class="top-bar-title">🃏 単語カード</div></div>
+  <div class="wrap">
+    <div class="dir-toggle">
+      <button class="dir-btn on" id="dir-ej" onclick="setDir('ej')">英 → 日</button>
+      <button class="dir-btn" id="dir-je" onclick="setDir('je')">日 → 英</button>
+    </div>
+    <div class="flash-card" id="flashCard" onclick="flipCard()"><div class="flash-inner" id="flashInner"></div></div>
+    <div class="flash-nav">
+      <button class="nav-btn" onclick="moveCard(-1)">◀</button>
+      <div class="flash-count" id="flashCount"></div>
+      <button class="nav-btn" onclick="moveCard(1)">▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="quiz">
+  <div class="top-bar"><button class="back-btn" onclick="quizBack()">←</button><div class="top-bar-title" id="quizTitle">🎯 クイズ</div></div>
+  <div class="wrap" id="quizBody"></div>
+</div>
+
+<!-- TEXT -->
+<div class="screen" id="text">
+  <div class="top-bar"><button class="back-btn" onclick="speechSynthesis.cancel();go('home')">←</button><div class="top-bar-title">📄 本文</div></div>
+  <div class="text-wrap">
+    <div class="scene-bar">
+      <div class="face" id="face-I"><i></i>Interviewer</div>
+      <div class="face" id="face-D"><i></i>Diane</div>
+    </div>
+    <div class="mode-tabs">
+      <button class="mode-tab on" onclick="setTextMode('en',this)">①英語のみ</button>
+      <button class="mode-tab" onclick="setTextMode('hide',this)">②英語を隠す</button>
+      <button class="mode-tab" onclick="setTextMode('ja',this)">③日本語のみ</button>
+    </div>
+    <div class="hint" id="textHint"></div>
+    <div id="dialogue"></div>
+  </div>
+</div>
+
+<!-- LIST -->
+<div class="screen" id="list">
+  <div class="top-bar"><button class="back-btn" onclick="go('home')">←</button><div class="top-bar-title">📖 単語一覧</div></div>
+  <div class="wrap" id="listBody" style="max-width:560px"></div>
+</div>
+
+<!-- ROULETTE -->
+<div class="screen" id="roul">
+  <div class="top-bar"><button class="back-btn" onclick="go('home')">←</button><div class="top-bar-title">🎤 だれが答える？ルーレット</div></div>
+  <div class="wrap">
+    <div class="roul-box">
+      <div class="roul-name" id="roulName">？</div>
+      <div class="roul-q" id="roulQ">スタートを押してね</div>
+      <div class="roul-pat">答え方：I usually …, but I sometimes … ／ I like … better.</div>
+    </div>
+    <div class="roul-actions">
+      <button class="big-btn ghost" style="margin-top:0" onclick="speak(document.getElementById('roulQ').textContent)">🔊 もう一度</button>
+      <button class="big-btn" id="spinBtn" onclick="spinRoulette()">🎰 スタート</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* speechShim: 音声読み上げが使えない端末（Android・LINE内ブラウザ等）でもボタンが止まらないようにする */
+if(!window.speechSynthesis){window.speechSynthesis={cancel:function(){},speak:function(){},pause:function(){},resume:function(){},getVoices:function(){return[];},onvoiceschanged:null};}
+if(!window.SpeechSynthesisUtterance){window.SpeechSynthesisUtterance=function(t){this.text=t;};}
+
+const WORDS = [
+  {en:"cushion", pos:"名詞", ja:"クッション、ざぶとん", ex:"A performer sits on a cushion.", exja:"演者は座布団に座ります。"},
+  {en:"different", pos:"形容詞", ja:"いろいろな", ex:"A performer plays different roles.", exja:"演者はいろいろな役を演じます。"},
+  {en:"role(s)", pos:"名詞", ja:"役、役割", ex:"She plays a funny role.", exja:"彼女はおもしろい役を演じます。"},
+  {en:"use(s)", pos:"動詞", ja:"…を使う、利用する、消費する", ex:"The performer uses a fan.", exja:"演者は扇子を使います。"},
+  {en:"only", pos:"副詞", ja:"ただ〜だけ", ex:"He uses only two props.", exja:"彼は小道具を2つだけ使います。"},
+  {en:"prop(s)", pos:"名詞", ja:"小道具", ex:"A fan is a prop.", exja:"扇子は小道具です。"},
+  {en:"which", pos:"代名詞", ja:"どちら、どれ、どちらの人[もの]", ex:"Which do you like, dogs or cats?", exja:"イヌとネコでは、どちらが好きですか。"},
+  {en:"or", pos:"接続詞", ja:"…かまたは〜、〜や〜", ex:"Do you like tea or coffee?", exja:"紅茶かコーヒーが好きですか。"},
+  {en:"casual", pos:"形容詞", ja:"カジュアルな、くだけた、ふだん着の", ex:"I usually wear casual clothes.", exja:"私はたいていふだん着を着ています。"},
+  {en:"large", pos:"形容詞", ja:"多い、多数の", ex:"She has a large kimono collection.", exja:"彼女はたくさんの着物のコレクションを持っています。"},
+  {en:"collection", pos:"名詞", ja:"収集したもの、コレクション", ex:"I have a stamp collection.", exja:"私は切手のコレクションを持っています。"},
+  {en:"comic storytelling", pos:"熟語", ja:"落語", ex:"Rakugo is comic storytelling.", exja:"落語はこっけいな話芸です。"},
+  {en:"hand", pos:"名詞", ja:"手", ex:"He has a fan in his hand.", exja:"彼は手に扇子を持っています。"},
+  {en:"towel", pos:"名詞", ja:"タオル、手ぬぐい", ex:"I have a blue towel.", exja:"私は青いタオルを持っています。"},
+  {en:"wear", pos:"動詞", ja:"…を着ている、身につけている", ex:"She wears a blue kimono.", exja:"彼女は青い着物を着ています。"},
+  {en:"clothes", pos:"名詞", ja:"衣服（複数あつかい）", ex:"I like these clothes.", exja:"私はこの服が好きです。"}
+];
+
+// [[ ]] で囲んだ語が ①の色つき下線 / ②の黒塗り になる
+const LINES = [
+  {sp:'I', q:'1. What is rakugo?', en:'What is [[rakugo]]?', ja:'落語とは何ですか。'},
+  {sp:'D', en:'Rakugo is Japanese [[comic]] [[storytelling]].', ja:'落語は日本の話芸です。'},
+  {sp:'D', en:'A [[performer]] on a [[cushion]] plays different [[roles]].', ja:'座布団に座った演者がいろいろな役を演じます。'},
+  {sp:'D', en:'The performer uses only two [[props]], a [[fan]] and a hand [[towel]].', ja:'演者は扇子と手ぬぐいという2つの小道具だけを使います。'},
+  {sp:'I', q:'2. Which do you speak?', en:'[[Which]] do you [[speak]] in your shows, English or Japanese?', ja:'ショーでは英語と日本語のどちらを話しますか。'},
+  {sp:'D', en:'I [[usually]] speak English, but I [[sometimes]] speak Japanese.', ja:'たいていは英語を話しますが、ときどき日本語を話します。'},
+  {sp:'I', q:'3. Which do you wear?', en:'Which do you [[usually]] [[wear]], kimonos or casual clothes?', ja:'たいていは着物とふだん着のどちらを着ますか。'},
+  {sp:'D', en:'I usually wear [[casual clothes]], but I love [[kimonos]].', ja:'たいていはふだん着を着ますが、着物は大好きです。'},
+  {sp:'D', en:'I have a [[large]] kimono [[collection]].', ja:'たくさんの着物のコレクションを持っています。'}
+];
+
+const CONTENT_QS = [
+  {q:'What is rakugo?', a:'Japanese comic storytelling', w:['A kind of Japanese food','Japanese comic storytelling','A Japanese sport']},
+  {q:'What does a rakugo performer sit on?', a:'A cushion', w:['A chair','A cushion','A box']},
+  {q:'What two props does the performer use?', a:'A fan and a hand towel', w:['A fan and a hand towel','A hat and a bag','A book and a pen']},
+  {q:'Which does Diane usually speak in her shows?', a:'English', w:['English','Japanese','Chinese']},
+  {q:'Which does Diane usually wear?', a:'Casual clothes', w:['Kimonos','Casual clothes','Uniforms']},
+  {q:'What does Diane have?', a:'A large kimono collection', w:['A large kimono collection','A big dog','Many fans']}
+];
+
+const STUDENTS = ['Minatan','Akaringo','Hayatchi'];
+const ROUL_QS = [
+  'Which do you like, dogs or cats?',
+  'Which do you like, summer or winter?',
+  'Which do you usually eat, rice or bread?',
+  'Which do you usually watch, movies or TV?',
+  'Which do you like, soccer or baseball?',
+  'Which do you usually drink, tea or juice?',
+  'Which do you usually use, a pen or a pencil?',
+  'Which do you like, music or sports?',
+  'Which do you speak at home, English or Japanese?'
+];
+
+/* ── 音声 ── */
+function getEnVoice() {
+  const voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('en') && !v.name.toLowerCase().includes('japanese'));
+  if (!voices.length) return null;
+  const score = v => { const n = v.name.toLowerCase(); let s = 0;
+    if (n.includes('natural')) s += 8; if (n.includes('google')) s += 6; if (n.includes('online')) s += 4;
+    if (n.includes('aria') || n.includes('jenny') || n.includes('emma')) s += 2; if (v.lang.startsWith('en-US')) s += 1; return s; };
+  return voices.sort((a, b) => score(b) - score(a))[0];
+}
+function getJaVoice() {
+  const voices = speechSynthesis.getVoices().filter(v => v.lang.startsWith('ja'));
+  if (!voices.length) return null;
+  const score = v => { const n = v.name.toLowerCase(); let s = 0;
+    if (n.includes('natural')) s += 8; if (n.includes('google')) s += 6; if (n.includes('online')) s += 4; return s; };
+  return voices.sort((a, b) => score(b) - score(a))[0];
+}
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const run = () => { const u = new SpeechSynthesisUtterance(text); u.lang = 'en-US'; const v = getEnVoice(); if (v) u.voice = v; u.rate = 0.85; speechSynthesis.speak(u); };
+  if (speechSynthesis.getVoices().length > 0) run();
+  else speechSynthesis.onvoiceschanged = () => { speechSynthesis.onvoiceschanged = null; run(); };
+}
+function speakJa(text) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const t = text.replace(/〔[^〕]*〕|（[^）]*）/g, '').replace(/[、]/g, '、');
+  const run = () => { const u = new SpeechSynthesisUtterance(t); u.lang = 'ja-JP'; const v = getJaVoice(); if (v) u.voice = v; u.rate = 0.95; speechSynthesis.speak(u); };
+  if (speechSynthesis.getVoices().length > 0) run();
+  else speechSynthesis.onvoiceschanged = () => { speechSynthesis.onvoiceschanged = null; run(); };
+}
+
+const FACE_D = `<svg viewBox="0 0 60 60" width="100%" height="100%"><circle cx="30" cy="30" r="30" fill="#fce7f3"/><circle cx="30" cy="30" r="19" fill="#1c1917"/><circle cx="30" cy="11" r="7" fill="#1c1917"/><circle cx="36" cy="9" r="2.5" fill="#ef4444"/><line x1="33" y1="12" x2="45" y2="4" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><ellipse cx="30" cy="35" rx="16" ry="17" fill="#fde0c0"/><path d="M14 31 Q15 15 30 15 Q45 15 46 31 Q38 22 30 23 Q22 22 14 31Z" fill="#1c1917"/><path d="M22 36 Q25 32 28 36 M32 36 Q35 32 38 36" stroke="#1c1917" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="20" cy="42" rx="4" ry="2.5" fill="#fda4af"/><ellipse cx="40" cy="42" rx="4" ry="2.5" fill="#fda4af"/><path d="M25 44 Q30 53 35 44Z" fill="#b91c1c"/><path d="M12 56 L30 50 L48 56 L48 60 L12 60Z" fill="#4f5fc0"/><path d="M24 52 L30 58 L36 52" fill="#fff"/></svg>`;
+const FACE_I = `<svg viewBox="0 0 60 60" width="100%" height="100%"><circle cx="30" cy="30" r="30" fill="#dbeafe"/><ellipse cx="30" cy="33" rx="16" ry="17" fill="#fde0c0"/><path d="M13 32 Q12 11 30 11 Q48 11 47 32 Q44 20 36 19 Q28 23 20 19 Q15 22 13 32Z" fill="#78350f"/><circle cx="23" cy="35" r="2.3" fill="#1c1917"/><circle cx="37" cy="35" r="2.3" fill="#1c1917"/><g fill="none" stroke="#1c1917" stroke-width="1.5"><circle cx="23" cy="35" r="5.5"/><circle cx="37" cy="35" r="5.5"/><line x1="28.5" y1="35" x2="31.5" y2="35"/></g><path d="M25 43 Q30 48 35 43" stroke="#b91c1c" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M10 60 Q12 51 30 50 Q48 51 50 60Z" fill="#334155"/><rect x="43" y="40" width="6" height="12" rx="3" fill="#1c1917"/><circle cx="46" cy="39" r="5" fill="#ef4444" stroke="#1c1917" stroke-width="1.5"/></svg>`;
+document.querySelector('#face-I i').innerHTML = FACE_I; document.querySelector('#face-D i').innerHTML = FACE_D;
+const plain = s => s.replace(/\[\[|\]\]/g, '');
+
+/* ── 効果音 ── */
+let audioCtx = null;
+function ac() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); return audioCtx; }
+function tone(f, start, dur, type, vol) {
+  try { const c = ac(), o = c.createOscillator(), g = c.createGain();
+    o.type = type || 'sine'; o.frequency.value = f; g.gain.value = vol || .15;
+    g.gain.exponentialRampToValueAtTime(.001, c.currentTime + start + dur);
+    o.connect(g); g.connect(c.destination); o.start(c.currentTime + start); o.stop(c.currentTime + start + dur); } catch (e) {}
+}
+function sfx(k) {
+  if (k === 'ok') { tone(660, 0, .12); tone(880, .1, .2); }
+  else if (k === 'ng') { tone(200, 0, .25, 'sawtooth', .1); }
+  else if (k === 'tap') { tone(500, 0, .06, 'square', .06); }
+  else if (k === 'tick') { tone(900, 0, .04, 'square', .05); }
+  else if (k === 'fan') { [523, 659, 784, 1046].forEach((f, i) => tone(f, i * .12, .25, 'triangle', .15)); }
+}
+function confetti(n) {
+  const em = ['🎉','✨','🌸','⭐','🎊'];
+  for (let i = 0; i < n; i++) { const s = document.createElement('div'); s.className = 'cf'; s.textContent = em[i % em.length];
+    s.style.left = Math.random() * 100 + 'vw'; s.style.animationDelay = Math.random() * .5 + 's'; document.body.appendChild(s); setTimeout(() => s.remove(), 2400); }
+}
+let toastT = null;
+function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 1600); }
+
+function go(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  window.scrollTo(0, 0);
+}
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+/* ── 単語カード ── */
+let cardIdx = 0, cardDir = 'ej';
+function setDir(d) { cardDir = d; document.getElementById('dir-ej').classList.toggle('on', d === 'ej'); document.getElementById('dir-je').classList.toggle('on', d === 'je'); cardIdx = 0; renderCard(); }
+function renderCard() {
+  const w = WORDS[cardIdx], fc = document.getElementById('flashCard');
+  fc.classList.remove('flipped');
+  const front = cardDir === 'ej'
+    ? `<div class="flash-pos">${w.pos}</div><div class="flash-word">${w.en}</div><button class="speak-btn" onclick="event.stopPropagation();speak('${w.en.replace(/\(s\)/g,'')}')">🔊</button><div class="flash-hint">タップしてめくる</div>`
+    : `<div class="flash-pos">${w.pos}</div><div class="flash-mean">${w.ja}</div><div class="flash-hint">タップしてめくる</div>`;
+  const back = cardDir === 'ej'
+    ? `<div class="flash-mean">${w.ja}</div><div class="flash-ex">${w.ex}<br>${w.exja}</div>`
+    : `<div class="flash-word">${w.en}</div><button class="speak-btn" onclick="event.stopPropagation();speak('${w.en.replace(/\(s\)/g,'')}')">🔊</button><div class="flash-ex">${w.ex}<br>${w.exja}</div>`;
+  document.getElementById('flashInner').innerHTML = `<div class="flash-face">${front}</div><div class="flash-face back">${back}</div>`;
+  document.getElementById('flashCount').textContent = `${cardIdx + 1} / ${WORDS.length}`;
+}
+function flipCard() {
+  const fc = document.getElementById('flashCard'); fc.classList.toggle('flipped'); sfx('tap');
+  const w = WORDS[cardIdx];
+  if (fc.classList.contains('flipped')) { cardDir === 'ej' ? speakJa(w.ja) : speak(w.en.replace(/\(s\)/g, '')); } else speechSynthesis.cancel();
+}
+function moveCard(d) { speechSynthesis.cancel(); cardIdx = (cardIdx + d + WORDS.length) % WORDS.length; renderCard(); }
+
+/* ── クイズ ── */
+let quiz = null;
+function quizBack() { if (quiz) { quiz = null; renderQuizMenu(); } else go('home'); }
+function renderQuizMenu() {
+  quiz = null;
+  document.getElementById('quizTitle').textContent = '🎯 クイズ';
+  document.getElementById('quizBody').innerHTML = `
+    <div class="quiz-mode-card" onclick="startQuiz('ej')"><div class="quiz-mode-icon">🔤</div><div class="quiz-mode-name">英語 → 日本語</div><div class="quiz-mode-sub">単語の意味をえらぶ</div></div>
+    <div class="quiz-mode-card" onclick="startQuiz('je')"><div class="quiz-mode-icon">✏️</div><div class="quiz-mode-name">日本語 → 英語</div><div class="quiz-mode-sub">英単語をえらぶ</div></div>
+    <div class="quiz-mode-card" onclick="startQuiz('ct')"><div class="quiz-mode-icon">📄</div><div class="quiz-mode-name">本文の内容クイズ</div><div class="quiz-mode-sub">インタビューの内容をえらぶ</div></div>`;
+}
+function startQuiz(mode) {
+  let qs;
+  if (mode === 'ct') qs = shuffle(CONTENT_QS).map(c => ({label:'本文の内容は？', text:c.q, say:c.q, ans:c.a, choices:shuffle(c.w), en:true}));
+  else qs = shuffle(WORDS).slice(0, 10).map(w => {
+    const others = shuffle(WORDS.filter(x => x !== w)).slice(0, 3);
+    return mode === 'ej'
+      ? {label:'この英語の意味は？', text:w.en, say:w.en.replace(/\(s\)/g, ''), ans:w.ja, choices:shuffle([w.ja, ...others.map(o => o.ja)]), en:false}
+      : {label:'この意味の英語は？', text:w.ja, say:null, ans:w.en, choices:shuffle([w.en, ...others.map(o => o.en)]), en:true};
+  });
+  quiz = {qs, i:0, score:0, mode};
+  document.getElementById('quizTitle').textContent = mode === 'ct' ? '📄 内容クイズ' : '🎯 単語クイズ';
+  renderQuestion();
+}
+function renderQuestion() {
+  const q = quiz.qs[quiz.i];
+  document.getElementById('quizBody').innerHTML = `
+    <div style="width:100%;text-align:right;font-weight:900;color:var(--gray);font-size:.85rem;margin-bottom:8px">${quiz.i + 1} / ${quiz.qs.length}</div>
+    <div class="q-card"><div class="q-label">${q.label}</div><div class="q-word">${q.text}${q.say ? `<button class="speak-btn small" onclick="speak('${q.say.replace(/'/g, "\\'")}')">🔊</button>` : ''}</div></div>
+    <div class="choices">${q.choices.map(c => `<button class="choice-btn" data-c="${c.replace(/"/g, '&quot;')}" onclick="answer(this)">${c}</button>`).join('')}</div>
+    <div class="q-feedback" id="qfb"></div>`;
+  if (q.say) speak(q.say);
+}
+function answer(btn) {
+  const q = quiz.qs[quiz.i], ok = btn.dataset.c === q.ans;
+  document.querySelectorAll('.choice-btn').forEach(b => { b.disabled = true; if (b.dataset.c === q.ans) b.classList.add('correct'); });
+  const fb = document.getElementById('qfb');
+  if (ok) { quiz.score++; sfx('ok'); confetti(14); fb.textContent = '⭕ Great!'; fb.className = 'q-feedback good'; if (q.en && quiz.mode !== 'ct') speak(q.ans.replace(/\(s\)/g, '')); }
+  else { btn.classList.add('wrong'); sfx('ng'); fb.textContent = '❌ 答えは「' + q.ans + '」'; fb.className = 'q-feedback bad'; }
+  setTimeout(() => { quiz.i++; quiz.i < quiz.qs.length ? renderQuestion() : renderResult(); }, 1500);
+}
+function renderResult() {
+  const r = quiz.score / quiz.qs.length;
+  const emoji = r === 1 ? '🏆' : r >= .7 ? '🎉' : '💪', msg = r === 1 ? 'パーフェクト！' : r >= .7 ? 'すばらしい！' : 'もう一回やってみよう！';
+  if (r >= .7) { sfx('fan'); confetti(40); }
+  document.getElementById('quizBody').innerHTML = `<div class="result-card"><div class="result-emoji">${emoji}</div><div class="result-score">${quiz.score} / ${quiz.qs.length}</div><div class="result-msg">${msg}</div>
+    <button class="big-btn" onclick="startQuiz('${quiz.mode}')">もう一回</button><br><button class="big-btn ghost" onclick="renderQuizMenu()">メニューへ</button></div>`;
+}
+
+/* ── 本文 ── */
+let textMode = 'en';
+const shown = {}, flipped = {}, read = {};
+function lineHTML(l, i) {
+  let k = 0;
+  return l.en.replace(/\[\[(.+?)\]\]/g, (m, w) =>
+    textMode === 'en' ? `<span class="hl c${k++ % 4}">${w}</span>`
+    : textMode === 'hide' ? `<span class="dmask" onclick="maskTap(event,this,${i})">${w}</span>` : w);
+}
+function renderDialogue() {
+  let html = '';
+  LINES.forEach((l, i) => {
+    if (l.q) html += `<div class="qa-head">${l.q.split('.')[0] === '' ? '' : 'QUESTION ' + l.q.split('.')[0]}</div>`;
+    let body;
+    if (textMode === 'en') {
+      body = `<div id="t-${i}">${lineHTML(l, i)}</div>` + (shown[i] ? `<div class="ja">${l.ja}</div>` : `<div class="reveal-row"><button class="reveal-btn" onclick="revealJa(event,${i})">👁 日本語を見る</button></div>`);
+    } else if (textMode === 'hide') {
+      body = `<div id="t-${i}">${lineHTML(l, i)}</div><div class="ja">${l.ja}</div>`;
+    } else {
+      body = `<div id="t-${i}">${flipped[i] ? plain(l.en) : l.ja}</div>`;
+    }
+    html += `<div class="dia-line ${l.sp}${read[i] ? ' done' : ''}" id="dl-${i}" onclick="lineTap(${i})"><div class="av">${l.sp === 'I' ? FACE_I : FACE_D}</div><div class="bubble">${body}</div></div>`;
+  });
+  document.getElementById('dialogue').innerHTML = html;
+  updateHint();
+}
+function updateHint() {
+  const h = document.getElementById('textHint');
+  h.innerHTML = textMode === 'en' ? '💡 セリフをタップすると読み上げます'
+    : textMode === 'hide' ? '⬛ 黒いところをタップ！ぜんぶあけると文を読み上げます 🔊 <button onclick="resetMask()">🔄リセット</button>'
+    : '💡 日本語をタップすると英語に変わるよ';
+}
+function setActive(sp) { ['I', 'D'].forEach(s => document.getElementById('face-' + s).classList.toggle('active', s === sp)); }
+function lineTap(i) {
+  const l = LINES[i];
+  if (textMode === 'hide') return;
+  sfx('tap'); setActive(l.sp);
+  if (textMode === 'ja') {
+    flipped[i] = !flipped[i];
+    document.getElementById('t-' + i).textContent = flipped[i] ? plain(l.en) : l.ja;
+    flipped[i] ? speak(plain(l.en)) : speechSynthesis.cancel();
+    return;
+  }
+  read[i] = true; document.getElementById('dl-' + i).classList.add('done');
+  speak(plain(l.en));
+}
+function revealJa(ev, i) { ev.stopPropagation(); shown[i] = true; sfx('tap'); renderDialogue(); }
+function maskTap(ev, el, i) {
+  ev.stopPropagation(); sfx('tap'); setActive(LINES[i].sp);
+  el.classList.toggle('open');
+  const left = document.querySelectorAll(`#t-${i} .dmask:not(.open)`).length;
+  if (el.classList.contains('open')) { if (left === 0) { read[i] = true; setTimeout(() => speak(plain(LINES[i].en)), 200); } }
+  else speechSynthesis.cancel();
+}
+function resetMask() { document.querySelectorAll('.dmask').forEach(m => m.classList.remove('open')); speechSynthesis.cancel(); }
+function setTextMode(m, btn) {
+  textMode = m; speechSynthesis.cancel();
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('on')); btn.classList.add('on');
+  renderDialogue();
+}
+
+/* ── 単語一覧 ── */
+function renderList() {
+  document.getElementById('listBody').innerHTML = WORDS.map(w => `<div class="wl-item"><div class="wl-body"><div class="wl-en">${w.en}<span class="wl-pos">${w.pos}</span></div><div class="wl-ja">${w.ja}</div><div class="wl-ex">${w.ex}<br>${w.exja}</div></div><button class="speak-btn small" onclick="speak('${w.ex.replace(/'/g, "\\'")}')">🔊</button></div>`).join('');
+}
+
+/* ── ルーレット ── */
+let spinning = false, lastStudent = null;
+function spinRoulette() {
+  if (spinning) return; spinning = true;
+  const btn = document.getElementById('spinBtn'), nm = document.getElementById('roulName'), qe = document.getElementById('roulQ');
+  btn.disabled = true; qe.textContent = '…';
+  const pool = STUDENTS.filter(s => s !== lastStudent), target = pool[Math.floor(Math.random() * pool.length)];
+  const steps = 24 + Math.floor(Math.random() * 6); let n = 0, delay = 60;
+  (function step() {
+    n++; nm.textContent = n >= steps ? target : STUDENTS[n % STUDENTS.length]; sfx('tick');
+    if (n < steps) { delay += 6; setTimeout(step, delay); }
+    else {
+      lastStudent = target; sfx('fan'); confetti(24);
+      const q = ROUL_QS[Math.floor(Math.random() * ROUL_QS.length)];
+      qe.textContent = q;
+      setTimeout(() => speak(target + ', ' + q.charAt(0).toLowerCase() + q.slice(1)), 700);
+      spinning = false; btn.disabled = false; btn.textContent = '🎰 もう一回';
+    }
+  })();
+}
+</script>
+</body>
+</html>

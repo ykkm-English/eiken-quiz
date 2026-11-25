@@ -1117,6 +1117,10 @@ body.pen-on .pen-bar { display: flex; }
 <button class="pen-fab" id="penFab" onclick="togglePen()" title="ペン">✏️</button>
 
 <script>
+/* speechShim: 音声読み上げが使えない端末（Android・LINE内ブラウザ等）でもボタンが止まらないようにする */
+if(!window.speechSynthesis){window.speechSynthesis={cancel:function(){},speak:function(){},pause:function(){},resume:function(){},getVoices:function(){return[];},onvoiceschanged:null};}
+if(!window.SpeechSynthesisUtterance){window.SpeechSynthesisUtterance=function(t){this.text=t;};}
+
 /* ══════════ データ ══════════ */
 const WORDS = [
   { en: "symbol", ja: "シンボル、象徴、記号", pos: "名", ex: "It's a symbol for a family.", exJa: "それは家族を表すしるしです。" },

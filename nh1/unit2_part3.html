@@ -308,6 +308,10 @@ body{background:var(--bg);font-family:'Nunito','Noto Sans JP',sans-serif;color:v
 <div class="conf-wrap" id="confWrap"></div>
 
 <script>
+/* speechShim: 音声読み上げが使えない端末（Android・LINE内ブラウザ等）でもボタンが止まらないようにする */
+if(!window.speechSynthesis){window.speechSynthesis={cancel:function(){},speak:function(){},pause:function(){},resume:function(){},getVoices:function(){return[];},onvoiceschanged:null};}
+if(!window.SpeechSynthesisUtterance){window.SpeechSynthesisUtterance=function(t){this.text=t;};}
+
 function gotoScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='dialogue-screen')initDialogue();if(id==='grammar-screen')initGrammar();}
 
 // TTS — カタカナ英語防止（高品質な声を優先するスコア方式）
